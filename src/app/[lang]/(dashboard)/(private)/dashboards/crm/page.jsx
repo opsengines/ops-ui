@@ -20,9 +20,9 @@ const DashboardCRM = () => {
     <Grid container spacing={6}>
       <Grid item xs={12} sm={6} md={3} className='self-end'>
         <CardStatWithImage
-          stats='13k'
-          title='Ratings'
-          trendNumber='15.6%'
+          stats='1K'
+          title='Total Scans'
+          trendNumber='11.23%'
           chipColor='primary'
           src='/images/illustrations/characters/9.png'
           chipText={`Year of ${new Date().getFullYear()}`}
@@ -30,11 +30,11 @@ const DashboardCRM = () => {
       </Grid>
       <Grid item xs={12} sm={6} md={3} className='self-end'>
         <CardStatWithImage
-          stats='24.5k'
+          stats='2.5k'
           trend='negative'
-          title='Sessions'
+          title='Total Findings'
           trendNumber='20%'
-          chipText='Last Week'
+          chipText='Dec 2024'
           src='/images/illustrations/characters/10.png'
         />
       </Grid>
@@ -68,7 +68,7 @@ const DashboardCRM = () => {
                   stats='862'
                   trend='negative'
                   trendNumber='18%'
-                  title='New Project'
+                  title='Test Repository'
                   subtitle='Yearly Project'
                   avatarColor='primary'
                   avatarIcon='ri-file-word-2-line'

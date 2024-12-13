@@ -40,16 +40,16 @@ const ActivityTimeline = () => {
             <TimelineContent>
               <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
                 <Typography className='font-medium' color='text.primary'>
-                  12 Invoices have been paid
+                  12 Vulnerabilities have been resolved
                 </Typography>
                 <Typography variant='caption' color='text.disabled'>
                   12 min ago
                 </Typography>
               </div>
-              <Typography className='mbe-2.5'>Invoices have been paid to the company</Typography>
+              <Typography className='mbe-2.5'>Vulnerabilities have been resolved</Typography>
               <div className='flex items-center gap-2.5 is-fit plb-[5px] pli-2.5 rounded bg-actionHover'>
                 <img height={20} alt='invoice.pdf' src='/images/icons/pdf-document.png' />
-                <Typography className='font-medium'>invoices.pdf</Typography>
+                <Typography className='font-medium'>findings.pdf</Typography>
               </div>
             </TimelineContent>
           </TimelineItem>
@@ -87,13 +87,13 @@ const ActivityTimeline = () => {
             <TimelineContent>
               <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
                 <Typography className='font-medium' color='text.primary'>
-                  Create a new project for client
+                  Create a new report for resolved findings
                 </Typography>
                 <Typography variant='caption' color='text.disabled'>
                   2 Day Ago
                 </Typography>
               </div>
-              <Typography>6 team members in a project</Typography>
+              <Typography>1K+ Findings Since Last Week</Typography>
             </TimelineContent>
           </TimelineItem>
         </Timeline>

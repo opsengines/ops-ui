@@ -17,11 +17,11 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 
 const series = [
   {
-    name: 'Earning',
+    name: 'Resolved Findings',
     data: [95, 177, 284, 256, 105, 63, 168, 218, 72]
   },
   {
-    name: 'Expense',
+    name: 'Open Findings',
     data: [-145, -80, -60, -180, -100, -60, -85, -75, -100]
   }
 ]
@@ -169,7 +169,7 @@ const RevenueReport = () => {
   return (
     <Card>
       <CardHeader
-        title='Revenue Report'
+        title='Findings Report'
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Last 28 Days', 'Last Month', 'Last Year']} />}
       />
       <CardContent>

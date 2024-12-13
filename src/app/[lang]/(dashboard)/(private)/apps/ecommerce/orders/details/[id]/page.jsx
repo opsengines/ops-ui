@@ -6,6 +6,7 @@ import OrderDetails from '@views/apps/ecommerce/orders/details'
 
 // Data Imports
 import { getEcommerceData } from '@/app/server/actions'
+import ComingSoon from '@/views/pages/misc/ComingSoon'
 
 /**
  * ! If you need data using an API call, uncomment the below API code, update the `process.env.API_URL` variable in the
@@ -31,8 +32,9 @@ const OrderDetailsPage = async ({ params }) => {
   if (!filteredData) {
     redirect('/not-found')
   }
+  //filteredData ? <OrderDetails orderData={filteredData} order={params.id} /> : null
 
-  return filteredData ? <OrderDetails orderData={filteredData} order={params.id} /> : null
+  return <ComingSoon />
 }
 
 export default OrderDetailsPage

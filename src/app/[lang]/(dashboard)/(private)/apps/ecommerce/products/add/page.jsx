@@ -9,40 +9,42 @@ import ProductVariants from '@views/apps/ecommerce/products/add/ProductVariants'
 import ProductInventory from '@views/apps/ecommerce/products/add/ProductInventory'
 import ProductPricing from '@views/apps/ecommerce/products/add/ProductPricing'
 import ProductOrganize from '@views/apps/ecommerce/products/add/ProductOrganize'
+import ComingSoon from '@/views/pages/misc/ComingSoon'
 
 const eCommerceProductsAdd = () => {
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <ProductAddHeader />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
-            <ProductInformation />
-          </Grid>
-          <Grid item xs={12}>
-            <ProductImage />
-          </Grid>
-          <Grid item xs={12}>
-            <ProductVariants />
-          </Grid>
-          <Grid item xs={12}>
-            <ProductInventory />
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} md={4}>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
-            <ProductPricing />
-          </Grid>
-          <Grid item xs={12}>
-            <ProductOrganize />
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+    // <Grid container spacing={6}>
+    //   <Grid item xs={12}>
+    //     <ProductAddHeader />
+    //   </Grid>
+    //   <Grid item xs={12} md={8}>
+    //     <Grid container spacing={6}>
+    //       <Grid item xs={12}>
+    //         <ProductInformation />
+    //       </Grid>
+    //       <Grid item xs={12}>
+    //         <ProductImage />
+    //       </Grid>
+    //       <Grid item xs={12}>
+    //         <ProductVariants />
+    //       </Grid>
+    //       <Grid item xs={12}>
+    //         <ProductInventory />
+    //       </Grid>
+    //     </Grid>
+    //   </Grid>
+    //   <Grid item xs={12} md={4}>
+    //     <Grid container spacing={6}>
+    //       <Grid item xs={12}>
+    //         <ProductPricing />
+    //       </Grid>
+    //       <Grid item xs={12}>
+    //         <ProductOrganize />
+    //       </Grid>
+    //     </Grid>
+    //   </Grid>
+    // </Grid>
+    <ComingSoon />
   )
 }
 

@@ -53,7 +53,7 @@ const TotalSales = () => {
     xaxis: {
       axisTicks: { show: false },
       axisBorder: { show: false },
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      categories: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       labels: {
         style: {
           fontSize: '0.9375rem',
@@ -69,8 +69,7 @@ const TotalSales = () => {
   return (
     <Card>
       <CardHeader
-        title='Total Sales'
-        subheader='$21,845'
+        title='Vulnerabilities'
         subheaderTypographyProps={{ sx: { color: 'var(--mui-palette-text-primary) !important' } }}
         className='pbe-0'
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Last 28 Days', 'Last Month', 'Last Year']} />}

@@ -97,7 +97,7 @@ const LineAreaChart = () => {
         <Typography variant='h4'>42.5k</Typography>
         <AppReactApexCharts type='area' height={100} width='100%' options={options} series={series} />
         <Typography color='text.primary' className='font-medium text-center'>
-          Total Growth
+          Total Resolved
         </Typography>
       </CardContent>
     </Card>

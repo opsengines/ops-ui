@@ -15,6 +15,7 @@ import LinearProgress from '@mui/material/LinearProgress'
 import TablePagination from '@mui/material/TablePagination'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import GitHubIcon from '@mui/icons-material/GitHub'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -110,12 +111,15 @@ const CourseTable = ({ courseData }) => {
           />
         )
       },
-      columnHelper.accessor('courseTitle', {
+      columnHelper.accessor('name', {
         header: 'Course Name',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
-            <CustomAvatar variant='rounded' skin='light' color={row.original.color}>
-              <i className={classnames('text-[28px]', row.original.logo)} />
+            <CustomAvatar variant='rounded' color={'white'}>
+              <GitHubIcon
+                fontSize='large'
+                sx={{ color: '#333', fontSize: 40, backgroundColor: 'white', borderRadius: '50%' }}
+              />
             </CustomAvatar>
             <div className='flex flex-col gap-0.5'>
               <Typography
@@ -124,72 +128,49 @@ const CourseTable = ({ courseData }) => {
                 className='font-medium hover:text-primary'
                 color='text.primary'
               >
-                {row.original.courseTitle}
+                {row.original.name}
               </Typography>
               <div className='flex items-center gap-2'>
-                <CustomAvatar src={row.original.image} size={22} />
-                <Typography variant='body2'>{row.original.user}</Typography>
+                <CustomAvatar src={row.original.avatar} size={22} />
+                <Typography variant='body2'>{row.original.owner}</Typography>
               </div>
             </div>
           </div>
         )
       }),
-      columnHelper.accessor('time', {
-        header: 'Time',
+      columnHelper.accessor('defaultBranch', {
+        header: 'Branch',
         cell: ({ row }) => (
           <Typography className='font-medium' color='text.primary'>
-            {row.original.time}
+            {row.original.defaultBranch}
           </Typography>
         ),
         enableSorting: false
       }),
-      columnHelper.accessor('progressValue', {
-        header: 'progress',
-        sortingFn: (rowA, rowB) => {
-          if (
-            !Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100) ||
-            !Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100)
-          )
-            return 0
-
-          return (
-            Number(Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100)) -
-            Number(Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100))
-          )
-        },
+      columnHelper.accessor('language', {
+        header: 'Language',
         cell: ({ row }) => (
-          <div className='flex items-center gap-4 min-is-48'>
-            <Typography
-              className='font-medium'
-              color='text.primary'
-            >{`${Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}%`}</Typography>
-            <LinearProgress
-              color='primary'
-              value={Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}
-              variant='determinate'
-              className='is-full bs-2'
-            />
-            <Typography variant='body2'>{`${row.original.completedTasks}/${row.original.totalTasks}`}</Typography>
-          </div>
-        )
+          <Typography className='font-medium' color='text.primary'>
+            {row.original.language}
+          </Typography>
+        ),
+        enableSorting: false
       }),
-      columnHelper.accessor('userCount', {
-        header: 'Status',
+      columnHelper.accessor('type', {
+        header: 'Repository Type',
         cell: ({ row }) => (
-          <div className='flex items-center justify-between gap-5'>
-            <div className='flex items-center gap-1.5'>
-              <i className='ri-group-line text-primary' />
-              <Typography>{row.original.userCount}</Typography>
-            </div>
-            <div className='flex items-center gap-1.5'>
-              <i className='ri-computer-line text-info' />
-              <Typography>{row.original.note}</Typography>
-            </div>
-            <div className='flex items-center gap-1.5'>
-              <i className='ri-video-upload-line text-error' />
-              <Typography>{row.original.view}</Typography>
-            </div>
-          </div>
+          <Typography className='font-medium' color='text.primary'>
+            {row.original.type}
+          </Typography>
+        ),
+        enableSorting: false
+      }),
+      columnHelper.accessor('updatedAt', {
+        header: 'Updated At',
+        cell: ({ row }) => (
+          <Typography className='font-medium' color='text.primary'>
+            {row.original.updatedAt}
+          </Typography>
         ),
         enableSorting: false
       })
@@ -228,14 +209,14 @@ const CourseTable = ({ courseData }) => {
   })
 
   return (
-    <Card>
+    <Card className='mt-16'>
       <CardHeader
-        title='Course you are taking'
+        title='Select Repositories To Scan'
         action={
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={value => setGlobalFilter(String(value))}
-            placeholder='Search Course'
+            placeholder='Search Repository'
           />
         }
         className='flex-wrap gap-4'

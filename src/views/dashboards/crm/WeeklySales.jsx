@@ -86,8 +86,8 @@ const WeeklySales = () => {
   return (
     <Card>
       <CardHeader
-        title='Weekly Sales'
-        subheader='Total 85.4k Sales'
+        title='Weekly Findings'
+        subheader='Total 11k'
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Last 28 Days', 'Last Month', 'Last Year']} />}
       />
       <CardContent>
@@ -105,9 +105,9 @@ const WeeklySales = () => {
             </CustomAvatar>
             <div className='flex flex-col'>
               <Typography className='font-medium' color='text.primary'>
-                34.6k
+                12K
               </Typography>
-              <Typography>Sales</Typography>
+              <Typography>Issues</Typography>
             </div>
           </div>
           <div className='flex items-center gap-3'>
@@ -116,9 +116,9 @@ const WeeklySales = () => {
             </CustomAvatar>
             <div className='flex flex-col'>
               <Typography className='font-medium' color='text.primary'>
-                $482k
+                8K
               </Typography>
-              <Typography>Total Profit</Typography>
+              <Typography>Resolved</Typography>
             </div>
           </div>
         </div>

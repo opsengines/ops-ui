@@ -12,21 +12,21 @@ import CustomAvatar from '@core/components/mui/Avatar'
 // Vars
 const data = [
   {
-    stats: '245k',
-    title: 'Sales',
+    stats: '1K',
+    title: 'Resolved Pre Production',
     color: 'primary',
     icon: 'ri-pie-chart-2-line'
   },
   {
-    stats: '12.5k',
-    title: 'Users',
+    stats: '3.5k',
+    title: 'PR With Findings',
     color: 'success',
     icon: 'ri-group-line'
   },
   {
-    stats: '1.54k',
+    stats: '$1.54k',
     color: 'warning',
-    title: 'Product',
+    title: 'Developer Effeciency',
     icon: 'ri-macbook-line'
   }
 ]
@@ -35,7 +35,7 @@ const Transactions = () => {
   return (
     <Card>
       <CardHeader
-        title='Transactions'
+        title='Resolution'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Share', 'Update']} />}
         subheader={
           <>

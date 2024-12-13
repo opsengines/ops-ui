@@ -12,6 +12,7 @@ import CourseTable from '@views/apps/academy/dashboard/CourseTable'
 
 // Data Imports
 import { getAcademyData } from '@/app/server/actions'
+import GithubIntegration from '@/views/apps/academy/dashboard/GithubIntegration'
 
 /**
  * ! If you need data using an API call, uncomment the below API code, update the `process.env.API_URL` variable in the
@@ -30,31 +31,13 @@ import { getAcademyData } from '@/app/server/actions'
   return res.json()
 } */
 const AcademyDashboard = async () => {
-  // Vars
-  const data = await getAcademyData()
-
   return (
     <Grid container spacing={6}>
-      <Grid item xs={12}>
+      {/* <Grid item md={12}>
         <WelcomeCard />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <InterestedTopics />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <PopularInstructors />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <TopCourses />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <UpcomingWebinar />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <AssignmentProgress />
-      </Grid>
-      <Grid item xs={12}>
-        <CourseTable courseData={data?.courses} />
+      </Grid> */}
+      <Grid item xs={12} md={12}>
+        <GithubIntegration />
       </Grid>
     </Grid>
   )

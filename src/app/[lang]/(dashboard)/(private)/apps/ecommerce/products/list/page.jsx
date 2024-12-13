@@ -7,6 +7,7 @@ import ProductCard from '@views/apps/ecommerce/products/list/ProductCard'
 
 // Data Imports
 import { getEcommerceData } from '@/app/server/actions'
+import ComingSoon from '@/views/pages/misc/ComingSoon'
 
 /**
  * ! If you need data using an API call, uncomment the below API code, update the `process.env.API_URL` variable in the
@@ -29,14 +30,15 @@ const eCommerceProductsList = async () => {
   const data = await getEcommerceData()
 
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <ProductCard />
-      </Grid>
-      <Grid item xs={12}>
-        <ProductListTable productData={data?.products} />
-      </Grid>
-    </Grid>
+    // <Grid container spacing={6}>
+    //   <Grid item xs={12}>
+    //     <ProductCard />
+    //   </Grid>
+    //   <Grid item xs={12}>
+    //     <ProductListTable productData={data?.products} />
+    //   </Grid>
+    // </Grid>
+    <ComingSoon />
   )
 }
 
