@@ -72,11 +72,7 @@ const Login = ({ mode }) => {
     handleSubmit,
     formState: { errors }
   } = useForm({
-    resolver: valibotResolver(schema),
-    defaultValues: {
-      email: 'admin@materio.com',
-      password: 'admin'
-    }
+    resolver: valibotResolver(schema)
   })
 
   const authBackground = useImageVariant(mode, lightImg, darkImg)
@@ -144,12 +140,12 @@ const Login = ({ mode }) => {
             <Typography variant='h4'>{`Welcome to ${themeConfig.templateName}!👋🏻`}</Typography>
             <Typography>Please sign-in to your account and start the adventure</Typography>
           </div>
-          <Alert icon={false} className='bg-primaryLight'>
+          {/* <Alert icon={false} className='bg-primaryLight'>
             <Typography variant='body2' color='primary'>
               Email: <span className='font-medium'>admin@materio.com</span> / Pass:{' '}
               <span className='font-medium'>admin</span>
             </Typography>
-          </Alert>
+          </Alert> */}
 
           <form
             noValidate
@@ -223,12 +219,12 @@ const Login = ({ mode }) => {
             <Button fullWidth variant='contained' type='submit'>
               Log In
             </Button>
-            <div className='flex justify-center items-center flex-wrap gap-2'>
+            {/* <div className='flex justify-center items-center flex-wrap gap-2'>
               <Typography>New on our platform?</Typography>
               <Typography component={Link} href='/register' color='primary'>
                 Create an account
               </Typography>
-            </div>
+            </div> */}
           </form>
           <Divider className='gap-3'>or</Divider>
           <Button

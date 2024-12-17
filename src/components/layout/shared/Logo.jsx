@@ -18,7 +18,7 @@ import { useSettings } from '@core/hooks/useSettings'
 
 const LogoText = styled.span`
   color: ${({ color }) => color ?? 'var(--mui-palette-text-primary)'};
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.2;
   font-weight: 600;
   letter-spacing: 0.15px;
@@ -58,7 +58,7 @@ const Logo = ({ color }) => {
 
   return (
     <div className='flex items-center min-bs-[24px]'>
-      <MaterioLogo className='text-[22px] text-primary' />
+      <MaterioLogo className='text-[18px] text-primary' />
       <LogoText
         color={color}
         ref={logoTextRef}
@@ -66,7 +66,7 @@ const Logo = ({ color }) => {
         isCollapsed={layout === 'collapsed'}
         transitionDuration={transitionDuration}
       >
-        {themeConfig.templateName}
+        <span style={{ marginLeft: '-10px' }}>{themeConfig.templateName}</span>
       </LogoText>
     </div>
   )
