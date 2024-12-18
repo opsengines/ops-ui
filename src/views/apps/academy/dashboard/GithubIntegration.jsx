@@ -1,12 +1,19 @@
 'use client'
 
+// External Imports
 import React, { useState } from 'react'
+
 import { TextField, Button, Grid, Typography, Box, CircularProgress, Paper } from '@mui/material'
+
 import GitHubIcon from '@mui/icons-material/GitHub'
+
+// Internal Imports
 import CourseTable from './CourseTable'
 import avatar from '@/@core/theme/overrides/avatar'
-import Image from 'next/image'
 import WelcomeCard from './WelcomeCard'
+
+// Data Imports
+import { getInvoiceData } from '@/app/server/actions'
 
 const GithubIntegration = () => {
   const [username, setUsername] = useState('')
@@ -28,6 +35,7 @@ const GithubIntegration = () => {
     // GitHub API URL to get user repositories
     const url = `https://api.github.com/users/${username}/repos`
     const githubToken = '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'
+
     try {
       // Optionally, add Authorization header with your GitHub token if necessary
       const headers = {
@@ -39,6 +47,7 @@ const GithubIntegration = () => {
 
       if (!response.ok) {
         const data = await response.json()
+
         throw new Error(data.message || 'Failed to fetch repositories')
       }
 
@@ -54,6 +63,7 @@ const GithubIntegration = () => {
         owner: repo.owner.login,
         avatar: repo.owner.avatar_url
       }))
+
       setRepos(formattedRepos)
     } catch (err) {
       setError(err.message || 'Error fetching data')
@@ -65,7 +75,7 @@ const GithubIntegration = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    // Handle form submission logic here
+
     handleFetchRepos()
   }
 
@@ -192,7 +202,7 @@ const GithubIntegration = () => {
                     </Button>
                   </Grid>
                 </Grid>
-              </form>{' '}
+              </form>
             </>
           ) : (
             <Typography className='mt-16'>Integration Coming Soon</Typography>

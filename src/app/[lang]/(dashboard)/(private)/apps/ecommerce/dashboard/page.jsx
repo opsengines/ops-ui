@@ -19,26 +19,32 @@ import { getInvoiceData } from '@/app/server/actions'
 import ComingSoon from '@/views/pages/misc/ComingSoon'
 
 /**
- * ! If you need data using an API call, uncomment the below API code, update the `process.env.API_URL` variable in the
- * ! `.env` file found at root of your project and also update the API endpoints like `/apps/user-list` in below example.
- * ! Also, remove the above server action import and the action itself from the `src/app/server/actions.ts` file to clean up unused code
- * ! because we've used the server action for getting our static data.
+ * If you need data using an API call, uncomment the below API code,
+ * update the `process.env.API_URL` variable in the `.env` file found at
+ * root of your project and also update the API endpoints like `/apps/user-list`
+ * in the example. Also, remove the above server action import and the action
+ * itself from the `src/app/server/actions.ts` file to clean up unused code
+ * because we've used the server action for getting our static data.
  */
-/* const getData = async () => {
-  // Vars
-  const res = await fetch(`${process.env.API_URL}/apps/invoice`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch invoice data')
-  }
+// const getData = async () => {
+//   // Vars
+//   const res = await fetch(`${process.env.API_URL}/apps/invoice`)
 
-  return res.json()
-} */
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch invoice data')
+//   }
+
+//   return res.json()
+// }
+
 const DashboardECommerce = async () => {
   // Vars
   const data = await getInvoiceData()
 
   return (
+    <ComingSoon />
+
     // <Grid container spacing={6}>
     //   <Grid item xs={12} md={8} className='self-end'>
     //     <Congratulations />
@@ -127,7 +133,6 @@ const DashboardECommerce = async () => {
     //     <MeetingSchedule />
     //   </Grid>
     // </Grid>
-    <ComingSoon />
   )
 }
 

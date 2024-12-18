@@ -24,7 +24,7 @@ import ComingSoon from '@/views/pages/misc/ComingSoon'
 const OrdersListPage = async () => {
   // Vars
   const data = await getEcommerceData()
-  //<OrderList orderData={data?.orderData} />
+
   return <ComingSoon />
 }
 

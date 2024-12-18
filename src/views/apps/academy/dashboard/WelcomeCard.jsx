@@ -11,8 +11,6 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { lighten, darken, useTheme } from '@mui/material/styles'
 
 // Component Imports
-import CustomAvatar from '@core/components/mui/Avatar'
-import { useState } from 'react'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))

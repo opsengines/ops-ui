@@ -13,6 +13,8 @@ import ComingSoon from '@/views/pages/misc/ComingSoon'
 
 const eCommerceProductsAdd = () => {
   return (
+    <ComingSoon />
+
     // <Grid container spacing={6}>
     //   <Grid item xs={12}>
     //     <ProductAddHeader />
@@ -44,7 +46,6 @@ const eCommerceProductsAdd = () => {
     //     </Grid>
     //   </Grid>
     // </Grid>
-    <ComingSoon />
   )
 }
 

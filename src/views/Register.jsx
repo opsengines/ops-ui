@@ -7,6 +7,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
+//axios
+import axios from 'axios'
+
 // MUI Imports
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
@@ -16,6 +19,8 @@ import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Divider from '@mui/material/Divider'
+import { Dialog, DialogTitle, DialogContent, DialogActions, Box } from '@mui/material'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -30,10 +35,13 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
+import { registerUrl } from '@/api/ApiConstanst'
 
 const RegisterV2 = ({ mode }) => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
+  const [formData, setFormData] = useState({})
+  const [open, setOpen] = useState(false)
 
   // Vars
   const darkImg = '/images/pages/auth-v2-mask-dark.png'
@@ -42,6 +50,16 @@ const RegisterV2 = ({ mode }) => {
   const lightIllustration = '/images/illustrations/auth/v2-register-light.png'
   const borderedDarkIllustration = '/images/illustrations/auth/v2-register-dark-border.png'
   const borderedLightIllustration = '/images/illustrations/auth/v2-register-light-border.png'
+
+  const registerUser = async () => {
+    try {
+      const response = await axios.post(`${registerUrl}`, formData)
+
+      console.log(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   // Hooks
   const { lang: locale } = useParams()
@@ -57,6 +75,21 @@ const RegisterV2 = ({ mode }) => {
   )
 
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
+
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
+  const onSubmit = e => {
+    e.preventDefault()
+    registerUser()
+    handleOpen()
+    setFormData({
+      name: '',
+      email: '',
+      reason: '',
+      role: ''
+    })
+  }
 
   return (
     <div className='flex bs-full justify-center'>
@@ -92,12 +125,38 @@ const RegisterV2 = ({ mode }) => {
         <div className='flex flex-col gap-5 is-full sm:is-auto md:is-full sm:max-is-[400px] md:max-is-[unset]'>
           <div>
             <Typography variant='h4'>Adventure starts here 🚀</Typography>
-            <Typography className='mbe-1'>Make your app management easy and fun!</Typography>
+            <Typography className='mbe-1'>Your all-in-one platform for product security</Typography>
           </div>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()} className='flex flex-col gap-5'>
-            <TextField autoFocus fullWidth label='Username' />
-            <TextField fullWidth label='Email' />
+          <form autoComplete='off' onSubmit={onSubmit} className='flex flex-col gap-5'>
             <TextField
+              required
+              autoFocus
+              fullWidth
+              label='Full Name'
+              value={formData?.name}
+              onChange={event => setFormData(prev => ({ ...prev, name: event.target.value }))}
+            />
+            <TextField
+              required
+              fullWidth
+              label='Email'
+              value={formData?.email}
+              onChange={event => setFormData(prev => ({ ...prev, email: event.target.value }))}
+            />
+            <TextField
+              fullWidth
+              label='Company / Role'
+              value={formData?.role}
+              onChange={event => setFormData(prev => ({ ...prev, role: event.target.value }))}
+            />
+            <TextField
+              fullWidth
+              label='Reason For Interest'
+              value={formData?.reason}
+              onChange={event => setFormData(prev => ({ ...prev, reason: event.target.value }))}
+            />
+
+            {/* <TextField
               fullWidth
               label='Password'
               type={isPasswordShown ? 'text' : 'password'}
@@ -115,8 +174,8 @@ const RegisterV2 = ({ mode }) => {
                   </InputAdornment>
                 )
               }}
-            />
-            <div className='flex justify-between items-center gap-3'>
+            /> */}
+            {/* <div className='flex justify-between items-center gap-3'>
               <FormControlLabel
                 control={<Checkbox />}
                 label={
@@ -128,17 +187,36 @@ const RegisterV2 = ({ mode }) => {
                   </>
                 }
               />
-            </div>
+            </div> */}
             <Button fullWidth variant='contained' type='submit'>
-              Sign Up
+              Apply For Early Access
             </Button>
-            <div className='flex justify-center items-center flex-wrap gap-2'>
+
+            <Dialog open={open} onClose={handleClose} maxWidth='sm' fullWidth>
+              <DialogTitle sx={{ textAlign: 'center', fontWeight: 'bold', fontSize: '1.2rem' }}>
+                <Box display='flex' justifyContent='center' alignItems='center'>
+                  <CheckCircleIcon sx={{ color: 'green', marginRight: 1, fontSize: '2rem' }} />
+                  <Typography>Success</Typography>
+                </Box>
+              </DialogTitle>
+              <DialogContent>
+                <Typography variant='body1' color='text.secondary' align='center'>
+                  Thank You For Reaching Out, Our Team Will Review Your Application And Reach Out To You Soon.
+                </Typography>
+              </DialogContent>
+              <DialogActions sx={{ justifyContent: 'flex-end', paddingRight: 2, paddingBottom: 2 }}>
+                <Button variant='contained' color='success' onClick={handleClose}>
+                  Close
+                </Button>
+              </DialogActions>
+            </Dialog>
+            {/* <div className='flex justify-center items-center flex-wrap gap-2'>
               <Typography>Already have an account?</Typography>
               <Typography component={Link} href='/login' color='primary'>
                 Sign in instead
               </Typography>
-            </div>
-            <Divider className='gap-3'>or</Divider>
+            </div> */}
+            {/* <Divider className='gap-3'>or</Divider>
             <div className='flex justify-center items-center gap-2'>
               <IconButton size='small'>
                 <i className='ri-facebook-fill text-facebook' />
@@ -152,7 +230,7 @@ const RegisterV2 = ({ mode }) => {
               <IconButton size='small'>
                 <i className='ri-google-fill text-googlePlus' />
               </IconButton>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

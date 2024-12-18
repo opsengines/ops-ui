@@ -32,6 +32,7 @@ const OrderDetailsPage = async ({ params }) => {
   if (!filteredData) {
     redirect('/not-found')
   }
+
   //filteredData ? <OrderDetails orderData={filteredData} order={params.id} /> : null
 
   return <ComingSoon />
