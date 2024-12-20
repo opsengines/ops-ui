@@ -73,7 +73,7 @@ const Courses = props => {
       <CardContent className='flex flex-col gap-6'>
         <div className='flex flex-wrap items-center justify-between gap-4'>
           <div>
-            <Typography variant='h5'>My Courses</Typography>
+            <Typography variant='h5'>Connectors</Typography>
             <Typography>Total 6 course you have purchased</Typography>
           </div>
           <div className='flex flex-wrap items-center gap-y-4 gap-x-6'>
@@ -107,23 +107,23 @@ const Courses = props => {
         {data.length > 0 ? (
           <Grid container spacing={6}>
             {data.slice(activePage * 6, activePage * 6 + 6).map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <div className='border rounded bs-full'>
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <div className='border rounded w-[250px]'>
                   <div className='pli-2 pbs-2'>
                     <Link href={getLocalizedUrl('/apps/academy/course-details', locale)} className='flex'>
                       <img src={item.tutorImg} alt={item.courseTitle} className='is-full' />
                     </Link>
                   </div>
                   <div className='flex flex-col gap-4 p-5'>
-                    <div className='flex items-center justify-between'>
+                    {/* <div className='flex items-center justify-between'>
                       <Chip label={item.tags} variant='tonal' size='small' color={chipColor[item.tags].color} />
                       <div className='flex items-start'>
                         <Typography className='font-medium mie-1'>{item.rating}</Typography>
                         <i className='ri-star-fill text-warning mie-2' />
                         <Typography>{`(${item.ratingCount})`}</Typography>
                       </div>
-                    </div>
-                    <div className='flex flex-col gap-1'>
+                    </div> */}
+                    {/* <div className='flex flex-col gap-1'>
                       <Typography
                         variant='h5'
                         component={Link}
@@ -133,8 +133,8 @@ const Courses = props => {
                         {item.courseTitle}
                       </Typography>
                       <Typography>{item.desc}</Typography>
-                    </div>
-                    <div className='flex flex-col gap-1'>
+                    </div> */}
+                    {/* <div className='flex flex-col gap-1'>
                       {item.completedTasks === item.totalTasks ? (
                         <div className='flex items-center gap-1'>
                           <i className='ri-check-line text-xl text-success' />
@@ -152,7 +152,7 @@ const Courses = props => {
                         variant='determinate'
                         className='is-full bs-2'
                       />
-                    </div>
+                    </div> */}
                     {item.completedTasks === item.totalTasks ? (
                       <Button
                         variant='outlined'
@@ -164,7 +164,7 @@ const Courses = props => {
                       </Button>
                     ) : (
                       <div className='flex flex-wrap gap-4'>
-                        <Button
+                        {/* <Button
                           fullWidth
                           variant='outlined'
                           color='secondary'
@@ -174,8 +174,8 @@ const Courses = props => {
                           className='is-auto flex-auto'
                         >
                           Start Over
-                        </Button>
-                        <Button
+                        </Button> */}
+                        {/* <Button
                           fullWidth
                           variant='outlined'
                           endIcon={
@@ -186,7 +186,7 @@ const Courses = props => {
                           className='is-auto flex-auto'
                         >
                           Continue
-                        </Button>
+                        </Button> */}
                       </div>
                     )}
                   </div>

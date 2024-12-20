@@ -24,12 +24,12 @@ const AcademyMyCourse = ({ courseData, mode }) => {
       <Grid item xs={12}>
         <Courses courseData={courseData} searchValue={searchValue} />
       </Grid>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <ColoredCards />
       </Grid>
       <Grid item xs={12}>
         <FreeCourses />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

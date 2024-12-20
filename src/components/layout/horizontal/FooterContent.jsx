@@ -24,8 +24,8 @@ const FooterContent = () => {
         <span>{`© ${new Date().getFullYear()}, Made with `}</span>
         <span>{`❤️`}</span>
         <span>{` by `}</span>
-        <Link href='https://mui.com/store/contributors/themeselection' target='_blank' className='text-primary'>
-          ThemeSelection
+        <Link href='https://opsengines.io/' target='_blank' className='font-medium text-white'>
+          OpsEngines
         </Link>
       </p>
       {!isBreakpointReached && (

@@ -34,7 +34,7 @@ const GithubIntegration = () => {
 
     // GitHub API URL to get user repositories
     const url = `https://api.github.com/users/${username}/repos`
-    const githubToken = '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'
+    const githubToken = token
 
     try {
       // Optionally, add Authorization header with your GitHub token if necessary

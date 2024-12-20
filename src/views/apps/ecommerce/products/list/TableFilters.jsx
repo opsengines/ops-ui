@@ -42,7 +42,7 @@ const TableFilters = ({ setData, productData }) => {
       <Grid container spacing={6}>
         <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
-            <InputLabel id='status-select'>Status</InputLabel>
+            <InputLabel id='status-select'>Select Profile</InputLabel>
             <Select
               fullWidth
               id='select-status'

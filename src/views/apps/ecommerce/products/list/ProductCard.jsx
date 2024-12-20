@@ -18,30 +18,30 @@ import CustomAvatar from '@core/components/mui/Avatar'
 // Vars
 const data = [
   {
-    title: 'In-Store Sales',
-    value: '$5,345',
+    title: 'Total Policies',
+    value: '95',
     icon: 'ri-home-6-line',
     desc: '5k',
     change: 5.7
   },
   {
-    title: 'Website Sales',
-    value: '$74,347',
+    title: 'Policies Enabled',
+    value: '85',
     icon: 'ri-computer-line',
     desc: '21k',
     change: 12.4
   },
   {
-    title: 'Discount',
-    value: '$14,235',
+    title: 'Modified By',
+    value: 'OE-Security',
     icon: 'ri-gift-line',
     desc: '6k'
   },
   {
-    title: 'Affiliate',
-    value: '$8,345',
+    title: 'Last modified',
+    value: '14/12/2024',
     icon: 'ri-money-dollar-circle-line',
-    desc: '150',
+    desc: '11:59:00',
     change: -3.5
   }
 ]

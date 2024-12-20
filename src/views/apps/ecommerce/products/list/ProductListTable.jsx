@@ -231,7 +231,7 @@ const ProductListTable = ({ productData }) => {
     },
     initialState: {
       pagination: {
-        pageSize: 10
+        pageSize: 15
       }
     },
     enableRowSelection: true, //enable row selection for all rows
@@ -251,7 +251,7 @@ const ProductListTable = ({ productData }) => {
   return (
     <>
       <Card>
-        <CardHeader title='Filters' className='pbe-4' />
+        <CardHeader title='Select Profile' className='pbe-4' />
         <TableFilters setData={setFilteredData} productData={data} />
         <Divider />
         <div className='flex justify-between flex-col items-start sm:flex-row sm:items-center gap-y-4 p-5'>

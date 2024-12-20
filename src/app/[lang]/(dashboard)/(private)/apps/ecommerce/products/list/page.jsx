@@ -30,16 +30,14 @@ const eCommerceProductsList = async () => {
   const data = await getEcommerceData()
 
   return (
-    <ComingSoon />
-
-    // <Grid container spacing={6}>
-    //   <Grid item xs={12}>
-    //     <ProductCard />
-    //   </Grid>
-    //   <Grid item xs={12}>
-    //     <ProductListTable productData={data?.products} />
-    //   </Grid>
-    // </Grid>
+    <Grid container spacing={6}>
+      <Grid item xs={12}>
+        <ProductCard />
+      </Grid>
+      <Grid item xs={12}>
+        <ProductListTable productData={data?.products} />
+      </Grid>
+    </Grid>
   )
 }
 
