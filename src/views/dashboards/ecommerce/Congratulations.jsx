@@ -11,11 +11,9 @@ const Congratulations = () => {
         <Grid container spacing={6}>
           <Grid item xs={12} sm={6}>
             <Typography variant='h4' className='mbe-9'>
-              Hello <span className='font-bold'>User!</span> 🎉
+              Security Plans
             </Typography>
-            {/* <Typography>
-              You have done 72% 😎 more sales today. Check your new raising badge in your profile.
-            </Typography> */}
+            <Typography>Tailored frameworks to guide users in achieving specific business goals.</Typography>
           </Grid>
           <Grid item xs={12} sm={6} className='flex justify-center sm:absolute sm:inline-end-11 sm:bottom-0'>
             <img

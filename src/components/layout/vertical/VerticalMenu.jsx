@@ -8,10 +8,17 @@ import { useTheme } from '@mui/material/styles'
 // Third-party Imports
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
-// Component Imports
+// import { GenerateVerticalMenu } from '@components/GenerateMenu'
+
+//Icon Import
+//Icon Imports
+import PolicyIcon from '@mui/icons-material/Policy'
+import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions'
+import AccountTreeIcon from '@mui/icons-material/AccountTree'
+import SettingsIcon from '@mui/icons-material/Settings'
+
 import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 
-// import { GenerateVerticalMenu } from '@components/GenerateMenu'
 // Hook Imports
 import useVerticalNav from '@menu/hooks/useVerticalNav'
 
@@ -98,14 +105,19 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           </MenuItem>
         </SubMenu> */}
         <SubMenu label={dictionary['navigation'].eCommerce} icon={<i className='ri-shopping-bag-3-line' />}>
+          <MenuItem href={`/${locale}/apps/ecommerce/dashboard1`}>SAST</MenuItem>
           <MenuItem href={`/${locale}/apps/ecommerce/dashboard`}>{dictionary['navigation'].dashboard}</MenuItem>
-          <SubMenu label={dictionary['navigation'].products}>
+          <MenuItem href={`/${locale}/apps/ecommerce/dashboard2`}>SBOM</MenuItem>
+          <MenuItem href={`/${locale}/apps/ecommerce/dashboard3`}>DAST</MenuItem>
+          <MenuItem href={`/${locale}/apps/ecommerce/dashboard4`}>CI/CD Security</MenuItem>
+          <MenuItem href={`/${locale}/apps/ecommerce/dashboard5`}>Cloud Security</MenuItem>
+          {/* <SubMenu label={dictionary['navigation'].products}>
             <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].add}</MenuItem>
             <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>
               {dictionary['navigation'].category}
             </MenuItem>
-          </SubMenu>
-          <SubMenu label={dictionary['navigation'].orders}>
+          </SubMenu> */}
+          {/* <SubMenu label={dictionary['navigation'].orders}>
             <MenuItem href={`/${locale}/apps/ecommerce/orders/list`}>{dictionary['navigation'].list}</MenuItem>
             <MenuItem
               href={`/${locale}/apps/ecommerce/orders/details/5434`}
@@ -114,8 +126,8 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
             >
               {dictionary['navigation'].details}
             </MenuItem>
-          </SubMenu>
-          <SubMenu label={dictionary['navigation'].customers}>
+          </SubMenu> */}
+          {/* <SubMenu label={dictionary['navigation'].customers}>
             <MenuItem href={`/${locale}/apps/ecommerce/customers/list`}>{dictionary['navigation'].list}</MenuItem>
             <MenuItem
               href={`/${locale}/apps/ecommerce/customers/details/879861`}
@@ -129,8 +141,17 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
             {dictionary['navigation'].manageReviews}
           </MenuItem>
           <MenuItem href={`/${locale}/apps/ecommerce/referrals`}>{dictionary['navigation'].referrals}</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/settings`}>{dictionary['navigation'].settings}</MenuItem>
+          <MenuItem href={`/${locale}/apps/ecommerce/settings`}>{dictionary['navigation'].settings}</MenuItem> */}
         </SubMenu>
+        <MenuItem href={`/${locale}/apps/ecommerce/products/list`} icon={<PolicyIcon />}>
+          {dictionary['navigation'].list}
+        </MenuItem>
+        <MenuItem href={`/${locale}/apps/ecommerce/products/list1`} icon={<AccountTreeIcon />}>
+          Workflows
+        </MenuItem>
+        <MenuItem href={`/${locale}/apps/academy/my-courses`} icon={<IntegrationInstructionsIcon />}>
+          {dictionary['navigation'].myCourses}
+        </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].academy} icon={<i className='ri-graduation-cap-line' />}>
             <MenuItem href={`/${locale}/apps/academy/dashboard`}>{dictionary['navigation'].dashboard}</MenuItem>
             <MenuItem href={`/${locale}/apps/academy/course-details`}>
@@ -169,16 +190,18 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
             </MenuItem>
             <MenuItem href={`/${locale}/apps/invoice/add`}>{dictionary['navigation'].add}</MenuItem>
           </SubMenu> */}
-        <SubMenu label={dictionary['navigation'].user} icon={<i className='ri-user-line' />}>
+        {/* <SubMenu label={dictionary['navigation'].user} icon={<i className='ri-user-line' />}>
           <MenuItem href={`/${locale}/apps/user/list`}>{dictionary['navigation'].list}</MenuItem>
           <MenuItem href={`/${locale}/apps/user/view`}>{dictionary['navigation'].view}</MenuItem>
         </SubMenu>
         <SubMenu label={dictionary['navigation'].rolesPermissions} icon={<i className='ri-lock-2-line' />}>
           <MenuItem href={`/${locale}/apps/roles`}>{dictionary['navigation'].roles}</MenuItem>
           <MenuItem href={`/${locale}/apps/permissions`}>{dictionary['navigation'].permissions}</MenuItem>
+        </SubMenu> */}
+        <SubMenu label={'Administration'} icon={<SettingsIcon />}>
+          <MenuItem href={`/${locale}/apps/user/list`}>User</MenuItem>
+          <MenuItem href={`/${locale}/apps/roles`}>{dictionary['navigation'].roles}</MenuItem>
         </SubMenu>
-        <MenuItem href={`/${locale}/apps/academy/my-courses`}>{dictionary['navigation'].myCourses}</MenuItem>
-        <MenuItem href={`/${locale}/apps/ecommerce/products/list`}>{dictionary['navigation'].list}</MenuItem>
         {/* <SubMenu label={dictionary['navigation'].pages} icon={<i className='ri-layout-left-line' />}>
             <MenuItem href={`/${locale}/pages/user-profile`}>{dictionary['navigation'].userProfile}</MenuItem>
             <MenuItem href={`/${locale}/pages/account-settings`}>{dictionary['navigation'].accountSettings}</MenuItem>

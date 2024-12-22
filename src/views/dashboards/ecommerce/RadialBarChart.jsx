@@ -32,7 +32,8 @@ const RadialBarChart = () => {
         endAngle: 90,
         startAngle: -90,
         hollow: { size: '65%' },
-        track: { background: 'var(--mui-palette-customColors-trackBg)' },
+
+        //track: { background: 'var(--mui-palette-customColors-trackBg)' },
         dataLabels: {
           name: { show: false },
           value: {
@@ -82,12 +83,12 @@ const RadialBarChart = () => {
   }
 
   return (
-    <Card className='bs-full'>
+    <Card className='bs-full bg-[#1C1C2B]'>
       <CardContent>
-        <Typography variant='h4'>135k</Typography>
-        <AppReactApexCharts type='radialBar' width='100%' height={205} options={options} series={[78]} />
+        {/* <Typography variant='h4'>135k</Typography> */}
+        <AppReactApexCharts type='radialBar' width='100%' height={205} options={options} series={[0]} />
         <Typography color='text.primary' className='font-medium text-center'>
-          Total Sales
+          Total Score
         </Typography>
       </CardContent>
     </Card>
