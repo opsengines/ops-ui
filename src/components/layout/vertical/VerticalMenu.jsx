@@ -16,6 +16,10 @@ import PolicyIcon from '@mui/icons-material/Policy'
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions'
 import AccountTreeIcon from '@mui/icons-material/AccountTree'
 import SettingsIcon from '@mui/icons-material/Settings'
+import CloudQueueIcon from '@mui/icons-material/CloudQueue'
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive'
+import AssistantIcon from '@mui/icons-material/Assistant'
+import SecurityIcon from '@mui/icons-material/Security'
 
 import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 
@@ -70,6 +74,9 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         renderExpandedMenuItemIcon={{ icon: <i className='ri-circle-line' /> }}
         menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
       >
+        <MenuItem href={`/${locale}/dashboards/academy`} icon={<AssistantIcon />}>
+          {dictionary['navigation'].academy}
+        </MenuItem>
         <SubMenu
           label={dictionary['navigation'].dashboards}
           icon={<i className='ri-home-smile-line' />}
@@ -79,14 +86,17 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/kanban`} icon={<i className='ri-drag-drop-line' />}>
             {dictionary['navigation'].kanban}
           </MenuItem>
-          <MenuItem href={`/${locale}/apps/chat`} icon={<i className='ri-wechat-line' />}>
+          {/* <MenuItem href={`/${locale}/apps/chat`} icon={<i className='ri-wechat-line' />}>
             {dictionary['navigation'].chat}
-          </MenuItem>
+          </MenuItem> */}
           {/* <MenuItem href={`/${locale}/dashboards/analytics`}>{dictionary['navigation'].analytics}</MenuItem> */}
           {/* <MenuItem href={`/${locale}/dashboards/ecommerce`}>{dictionary['navigation'].eCommerce}</MenuItem> */}
-          <MenuItem href={`/${locale}/dashboards/academy`}>{dictionary['navigation'].academy}</MenuItem>
           {/* <MenuItem href={`/${locale}/dashboards/logistics`}>{dictionary['navigation'].logistics}</MenuItem> */}
         </SubMenu>
+
+        <MenuItem href={`/${locale}/apps/securityplans`} icon={<SecurityIcon />}>
+          Security Plan Engines
+        </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].frontPages} icon={<i className='ri-file-copy-line' />}>
           <MenuItem href='/front-pages/landing-page' target='_blank'>
             {dictionary['navigation'].landing}
@@ -105,12 +115,12 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           </MenuItem>
         </SubMenu> */}
         <SubMenu label={dictionary['navigation'].eCommerce} icon={<i className='ri-shopping-bag-3-line' />}>
-          <MenuItem href={`/${locale}/apps/ecommerce/dashboard1`}>SAST</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/dashboard`}>{dictionary['navigation'].dashboard}</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/dashboard2`}>SBOM</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/dashboard3`}>DAST</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/dashboard4`}>CI/CD Security</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/dashboard5`}>Cloud Security</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/sast`}>SAST</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/scm`}>{dictionary['navigation'].dashboard}</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/sbom`}>SBOM</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/dast`}>DAST</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/cicd`}>CI/CD Security</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/cloudsecurity`}>Cloud Security</MenuItem>
           {/* <SubMenu label={dictionary['navigation'].products}>
             <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].add}</MenuItem>
             <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>
