@@ -5,6 +5,7 @@ import SecurityPlansHeader from '@/views/apps/securityplans/Header'
 import ScanList from '@/views/apps/securityplans/Scan'
 import SecurityCard from '@/views/dashboards/ecommerce/SecurityPlanCard'
 import ComingSoon from '@/views/pages/misc/ComingSoon'
+import SecurityPlanEngine from '@/views/apps/securityplanengine/SecurityPlanEngine'
 
 /**
  * If you need data using an API call, uncomment the below API code,
@@ -64,16 +65,7 @@ const SAST = async () => {
     }
   ]
 
-  return (
-    <Grid container spacing={6}>
-      <Grid item xs={12} md={12} className='self-end'>
-        <SecurityPlansHeader data={headerData} />
-      </Grid>
-      <Grid item xs={12} md={12}>
-        <ScanList data={scans} />
-      </Grid>
-    </Grid>
-  )
+  return <SecurityPlanEngine />
 }
 
 export default SAST

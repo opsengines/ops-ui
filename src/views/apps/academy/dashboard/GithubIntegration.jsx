@@ -83,7 +83,18 @@ const GithubIntegration = () => {
     <div>
       <div style={{ display: 'flex', marginLeft: '7%' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <WelcomeCard />
+          <div className='flex max-md:flex-col md:items-center gap-6 plb-5 ml-10 mt-10'>
+            <div>
+              <div className='flex items-baseline gap-1 mbe-2'>
+                <Typography variant='h4'>Hello There User,</Typography>
+              </div>
+              <div className='mbe-4'>
+                <Typography>To Start Performing Security Scans</Typography>
+                <Typography>please connect your github account</Typography>
+              </div>
+            </div>
+          </div>
+          {/* <WelcomeCard /> */}
           <Grid container spacing={2} justifyContent='center' className='ml-6'>
             {/* SCM Block */}
             <Grid item xs={4}>

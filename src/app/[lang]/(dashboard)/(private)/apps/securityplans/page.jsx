@@ -78,6 +78,7 @@ const SecurityPlans = async () => {
 
   return (
     <Grid container spacing={6}>
+      <Header />
       {cards.map((card, index) => {
         return (
           <Grid item xs={12} md={6} key={index}>

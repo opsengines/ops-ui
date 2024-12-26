@@ -9,7 +9,8 @@ const Header = () => {
   return (
     <Card
       sx={{
-        width: '100%',
+        width: '98%',
+        marginLeft: '2%',
         backgroundColor: '#322d4b',
         color: 'white',
         borderRadius: 2,
@@ -23,7 +24,7 @@ const Header = () => {
       <Box display={'flex'} flexDirection={'column'}>
         <Box>
           <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
-            Application Security Plan
+            Security Plans Engines
           </Typography>
           <Box display='flex' gap={1} mt={3}>
             <Typography
@@ -64,9 +65,9 @@ const Header = () => {
           </Typography>
         </Box>
         <Typography variant='body2' className='mt-5 mb-5' sx={{ color: '#B0B0C3' }}>
-          The Application Security Plan is designed as a foundational security guide for beginners, encompassing
-          essential tools like Static Application Security Testing (SAST), Software Composition Analysis (SCA), and
-          Secret Detection to establish a strong initial defense against common security vulnerabilities.{' '}
+          The Security Plans Engine is designed as a foundational security guide for beginners, encompassing essential
+          tools like Static Application Security Testing (SAST), Software Composition Analysis (SCA), and Secret
+          Detection to establish a strong initial defense against common security vulnerabilities.{' '}
           <Link href='#' underline='hover' sx={{ color: '#81A8FF', fontWeight: 'bold' }}>
             Learn More
           </Link>

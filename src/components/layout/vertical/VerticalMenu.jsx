@@ -77,11 +77,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         <MenuItem href={`/${locale}/dashboards/academy`} icon={<AssistantIcon />}>
           {dictionary['navigation'].academy}
         </MenuItem>
-        <SubMenu
-          label={dictionary['navigation'].dashboards}
-          icon={<i className='ri-home-smile-line' />}
-          suffix={<Chip label='5' size='small' color='error' />}
-        >
+        <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='ri-home-smile-line' />}>
           <MenuItem href={`/${locale}/dashboards/crm`}>{dictionary['navigation'].crm}</MenuItem>
           <MenuItem href={`/${locale}/apps/kanban`} icon={<i className='ri-drag-drop-line' />}>
             {dictionary['navigation'].kanban}
@@ -120,7 +116,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/securityengines/sbom`}>SBOM</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/dast`}>DAST</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/cicd`}>CI/CD Security</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/cloudsecurity`}>Cloud Security</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/ `}>Cloud Security</MenuItem>
           {/* <SubMenu label={dictionary['navigation'].products}>
             <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].add}</MenuItem>
             <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>
@@ -156,7 +152,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         <MenuItem href={`/${locale}/apps/ecommerce/products/list`} icon={<PolicyIcon />}>
           {dictionary['navigation'].list}
         </MenuItem>
-        <MenuItem href={`/${locale}/apps/ecommerce/products/list1`} icon={<AccountTreeIcon />}>
+        <MenuItem href={`/${locale}/apps/workflow`} icon={<AccountTreeIcon />}>
           Workflows
         </MenuItem>
         <MenuItem href={`/${locale}/apps/academy/my-courses`} icon={<IntegrationInstructionsIcon />}>

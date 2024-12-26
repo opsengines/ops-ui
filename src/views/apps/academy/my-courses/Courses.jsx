@@ -111,7 +111,7 @@ const Courses = props => {
                 <div className='border rounded w-[250px]'>
                   <div className='pli-2 pbs-2'>
                     <Link href={getLocalizedUrl('/apps/academy/course-details', locale)} className='flex'>
-                      <img src={item.tutorImg} alt={item.courseTitle} className='is-full' />
+                      <img src={item.tutorImg} alt={item.courseTitle} className='w-[150px] h-[100px] ml-[15%]' />
                     </Link>
                   </div>
                   <div className='flex flex-col gap-4 p-5'>

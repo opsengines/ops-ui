@@ -90,9 +90,6 @@ const VulnerabilityScanCard = ({ scan }) => {
           <Typography variant='body1' fontWeight='bold'>
             {scan.title}
           </Typography>
-          <Typography variant='body2' sx={{ color: '#B0B0C3', mt: 0.5 }}>
-            Security Tools: <strong>{scan.tools}</strong> | Last Evaluated <strong>33m ago</strong>
-          </Typography>
         </Box>
       </Box>
 
