@@ -25,7 +25,7 @@ const SecurityPlansHeader = ({ data }) => {
           <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
             {data?.title}
           </Typography>
-          <Box display='flex' gap={1} mt={3}>
+          {/* <Box display='flex' gap={1} mt={3}>
             <Typography
               sx={{
                 backgroundColor: '#2E2E3E',
@@ -52,7 +52,7 @@ const SecurityPlansHeader = ({ data }) => {
             >
               Beginner
             </Typography>
-          </Box>
+          </Box> */}
           <Typography
             sx={{
               color: '#B0B0C3',

@@ -78,7 +78,8 @@ const DashboardCRM = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={6} lg={4}>
+
+      {/* <Grid item xs={12} sm={6} lg={4}>
         <UpgradePlan />
       </Grid>
       <Grid item xs={12} sm={6} lg={4}>
@@ -86,7 +87,7 @@ const DashboardCRM = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={4}>
         <DeveloperMeetup />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

@@ -12,21 +12,21 @@ import CustomAvatar from '@core/components/mui/Avatar'
 // Vars
 const data = [
   {
-    stats: '1K',
-    title: 'Resolved Pre Production',
+    stats: '35',
+    title: 'Critical',
     color: 'primary',
     icon: 'ri-pie-chart-2-line'
   },
   {
-    stats: '3.5k',
-    title: 'PR With Findings',
+    stats: '22',
+    title: 'High',
     color: 'success',
     icon: 'ri-group-line'
   },
   {
-    stats: '$1.54k',
+    stats: '9',
     color: 'warning',
-    title: 'Developer Effeciency',
+    title: 'Medium',
     icon: 'ri-macbook-line'
   }
 ]

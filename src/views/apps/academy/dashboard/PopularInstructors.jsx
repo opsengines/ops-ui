@@ -11,40 +11,71 @@ import OptionMenu from '@core/components/option-menu'
 
 // Vars
 const data = [
-  { name: 'Jordan Stevenson', profession: 'Business Intelligence', totalCourses: 33, avatar: '/images/avatars/1.png' },
-  { name: 'Bentlee Emblin', profession: 'Digital Marketing', totalCourses: 52, avatar: '/images/avatars/2.png' },
-  { name: 'Benedetto Rossiter', profession: 'UI/UX Design', totalCourses: 12, avatar: '/images/avatars/3.png' },
-  { name: 'Beverlie Krabbe', profession: 'Vue', totalCourses: 8, avatar: '/images/avatars/4.png' }
+  {
+    name: 'ISO27001:2022',
+    profession: '',
+    totalCourses: 33,
+    avatar: '/images/avatars/1.png'
+  },
+  {
+    name: 'Identify insecure coding patterns',
+    profession: '',
+    totalCourses: 52,
+    avatar: '/images/avatars/2.png'
+  },
+  {
+    name: 'Scan for code vulnerabilities',
+    profession: '',
+    totalCourses: 12,
+    avatar: '/images/avatars/3.png'
+  },
+  {
+    name: 'Validate secure configurations for sensitive files',
+    profession: '',
+    totalCourses: 8,
+    avatar: '/images/avatars/4.png'
+  }
 ]
 
 const PopularInstructors = () => {
   return (
     <Card className='bs-full'>
       <CardHeader
-        title='Popular Instructors'
+        title='Compliance'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <Divider />
       <div className='flex justify-between plb-4 pli-5'>
-        <Typography variant='overline'>instructors</Typography>
-        <Typography variant='overline'>courses</Typography>
+        <Typography variant='overline'>Standard</Typography>
+        <Typography variant='overline'>Category</Typography>
+        <Typography variant='overline'>Control</Typography>
+        <Typography variant='overline'>Description</Typography>
       </div>
       <Divider />
       <CardContent className='flex flex-col gap-4'>
         {data.map((item, i) => (
-          <div key={i} className='flex items-center gap-4'>
-            <CustomAvatar size={34} src={item.avatar} />
-            <div className='flex justify-between items-center is-full gap-4'>
-              <div className='flex flex-col gap-1'>
+          <div key={i} className='flex justify-between items-center gap-4'>
+            <div className='flex items-center justify-between'>
+              <CustomAvatar size={34} src={item.avatar} />
+              <Typography variant='overline'>{item.name}</Typography>
+            </div>
+            <Typography variant='overline'>Category</Typography>
+            <Typography variant='overline'>Control</Typography>
+            <Typography variant='overline'>Description</Typography>
+            {/* <div className='flex justify-between items-center is-full gap-4'>
+              <div className='flex gap-1'>
                 <Typography className='font-medium' color='text.primary'>
                   {item.name}
+                </Typography>
+                <Typography className='font-medium' color='text.primary'>
+                  Control
                 </Typography>
                 <Typography variant='caption' color='text.secondary' className='font-normal'>
                   {item.profession}
                 </Typography>
               </div>
               <Typography color='text.primary'>{item.totalCourses}</Typography>
-            </div>
+            </div> */}
           </div>
         ))}
       </CardContent>

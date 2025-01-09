@@ -23,23 +23,21 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 // Vars
 const series = [
   {
-    data: [35, 20, 14, 12, 10, 9]
+    data: [35, 20, 14, 12]
   }
 ]
 
 const data1 = [
-  { title: 'UI Design', value: 35, colorClass: 'text-primary' },
-  { title: 'UX Design', value: 20, colorClass: 'text-info' },
-  { title: 'Music', value: 14, colorClass: 'text-success' }
+  { title: 'Critical', value: 35, colorClass: '#A31D1D' },
+  { title: 'Medium', value: 14, colorClass: 'text-success' }
 ]
 
 const data2 = [
-  { title: 'Animation', value: 12, colorClass: 'text-secondary' },
-  { title: 'React', value: 10, colorClass: 'text-error' },
-  { title: 'SEO', value: 9, colorClass: 'text-warning' }
+  { title: 'High', value: 20, colorClass: 'text-info' },
+  { title: 'Low', value: 12, colorClass: 'text-secondary' }
 ]
 
-const labels = ['UI Design', 'UX Design', 'Music', 'Animation', 'React', 'SEO']
+const labels = ['Critical ', 'High', 'Medium', 'Low']
 
 const InterestedTopics = () => {
   // Hooks
@@ -61,10 +59,10 @@ const InterestedTopics = () => {
       }
     },
     colors: [
-      'var(--mui-palette-primary-main)',
-      'var(--mui-palette-info-main)',
-      'var(--mui-palette-success-main)',
-      'var(--mui-palette-secondary-main)',
+      '#A31D1D',
+      '#F93827',
+      '#FFD65A',
+      '#577BC1',
       'var(--mui-palette-error-main)',
       'var(--mui-palette-warning-main)'
     ],
@@ -117,7 +115,7 @@ const InterestedTopics = () => {
     xaxis: {
       axisTicks: { show: false },
       axisBorder: { show: false },
-      categories: ['6', '5', '4', '3', '2', '1'],
+      categories: ['4', '3', '2', '1'],
       labels: {
         formatter: val => `${val}%`,
         style: {
@@ -142,7 +140,7 @@ const InterestedTopics = () => {
   return (
     <Card>
       <CardHeader
-        title='Topic you are interested in'
+        title='Summary'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <CardContent>
@@ -158,7 +156,7 @@ const InterestedTopics = () => {
                     <i className={classnames('ri-circle-fill text-xs m-[5px]', item.colorClass)} />
                     <div>
                       <Typography>{item.title}</Typography>
-                      <Typography variant='h5'>{`${item.value}%`}</Typography>
+                      <Typography variant='h5'>{`${item.value}`}</Typography>
                     </div>
                   </div>
                 ))}
@@ -169,7 +167,7 @@ const InterestedTopics = () => {
                     <i className={classnames('ri-circle-fill text-xs m-[5px]', item.colorClass)} />
                     <div>
                       <Typography>{item.title}</Typography>
-                      <Typography variant='h5'>{`${item.value}%`}</Typography>
+                      <Typography variant='h5'>{`${item.value}`}</Typography>
                     </div>
                   </div>
                 ))}

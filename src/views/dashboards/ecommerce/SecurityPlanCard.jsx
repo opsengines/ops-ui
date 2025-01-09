@@ -39,32 +39,6 @@ const SecurityCard = ({ cardInfo }) => {
         <Typography variant='h6' sx={{ mt: 2 }} color={'white'}>
           {cardInfo.title}
         </Typography>
-        <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
-          <Typography
-            sx={{
-              backgroundColor: `${cardInfo.colors[0]}`,
-              color: 'white',
-              borderRadius: 1,
-              px: 1,
-              py: 0.5,
-              fontSize: 12
-            }}
-          >
-            {cardInfo.tags[0]}
-          </Typography>
-          <Typography
-            sx={{
-              backgroundColor: `${cardInfo.colors[1]}`,
-              color: 'white',
-              borderRadius: 1,
-              px: 1,
-              py: 0.5,
-              fontSize: 12
-            }}
-          >
-            {cardInfo.tags[1]}
-          </Typography>
-        </Box>
         <Typography variant='body2' sx={{ mt: 2, color: '#B0B0C3' }}>
           {cardInfo.description}
         </Typography>

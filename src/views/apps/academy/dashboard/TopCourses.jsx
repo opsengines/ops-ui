@@ -22,21 +22,31 @@ const TopCourses = () => {
   return (
     <Card className='bs-full'>
       <CardHeader
-        title='Top courses'
+        title='CVE Context'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Last 28 Days', 'Last Month', 'Last Year']} />}
       />
       <CardContent className='flex flex-col gap-[1.625rem]'>
+        <div className='flex justify-around gap-4'>
+          <Typography variant='overline'>Vulnerability Id</Typography>
+          <Typography variant='overline' className='ml-12'>
+            Description
+          </Typography>
+          <Typography variant='overline'>Severity</Typography>
+        </div>
         {data.map((item, i) => (
-          <div key={i} className='flex items-center gap-4'>
-            <CustomAvatar variant='rounded' skin='light' color={item.color}>
-              <i className={item.icon} />
-            </CustomAvatar>
-            <div className='flex justify-between items-center gap-4 is-full flex-wrap'>
-              <Typography className='font-medium flex-1' color='text.primary'>
+          <div key={i} className='flex justify-between items-center gap-4'>
+            <div className='flex items-center w-[33%] justify-around'>
+              <CustomAvatar variant='rounded' skin='light' color={item.color}>
+                <i className={item.icon} />
+              </CustomAvatar>
+              <Typography className='font-medium flex-1 ml-4' color='text.primary'>
                 {item.title}
               </Typography>
-              <Chip label={`${item.views} Views`} variant='tonal' size='small' />
             </div>
+            <div className='flex justify-evenly'>
+              <Typography>Description</Typography>
+            </div>
+            <Chip label={`${item.views} Views`} variant='tonal' size='small' />
           </div>
         ))}
       </CardContent>

@@ -38,31 +38,31 @@ const SecurityPlans = async () => {
       title: 'Basic Security Plan',
       description:
         'The Application Security Plan is designed as a foundational security guide for beginners, encompassing essential tools like Static Application Security Testing (SAST), Software Composition Analysis (SCA).',
-      tags: ['AppSec', 'Beginner'],
+      tags: [],
       colors: ['#4c5e83', '#343453'],
       controls: '0 / 4',
       score: '10',
-      page: '/apps/ecommerce/applicationSecurity'
+      page: '/apps/securityplans/basic'
     },
     {
       title: 'FTR',
       description:
         'Jit will help your company on your journey of becoming an AWS partner. Jit accelerates AWS Foundational Technical Reviews by automating and guiding you through the process. By achieving an approved FTR.',
-      tags: ['Cloud Security', 'Cloud'],
+      tags: [],
       colors: ['#94a2eb', '#343453'],
       controls: '0 / 51',
       score: '20',
-      page: '/apps/ecommerce/cloudSecurity'
+      page: '/apps/securityplans/ftr'
     },
     {
       title: ' Intermediate Security Plan',
       description:
         'The Jit Max Security Plan offers the highest level of security across the entire SDLC, integrating all available controls to safeguard software development, deployment, and maintenance comprehensively.',
-      tags: ['AppSec', 'Advanced'],
+      tags: [],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 18',
       score: '10%',
-      page: '/apps/ecommerce/maxSecurity'
+      page: '/apps/securityplans/intermediate'
     },
     {
       title: 'Max Security Plan',
@@ -72,7 +72,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/ecommerce/applicationSecurity'
+      page: '/apps/securityplans/max'
     }
   ]
 

@@ -10,7 +10,8 @@ export const db = {
       qty: 665,
       status: 'Inactive',
       image: '/images/apps/ecommerce/product-1.png',
-      productBrand: 'Super Retina XDR display footnote Pro Motion technology'
+      productBrand:
+        'Policies involving development best practises, user access rights, least privilege and source control settings.'
     },
     {
       id: 2,
@@ -22,7 +23,7 @@ export const db = {
       qty: 827,
       status: 'Published',
       image: '/images/apps/ecommerce/product-2.png',
-      productBrand: 'Echo Dot Smart speaker with Alexa'
+      productBrand: 'Policies tied to SAST (Static Application Security Testing) issues found in code.'
     },
     {
       id: 3,
@@ -34,7 +35,7 @@ export const db = {
       qty: 804,
       status: 'Published',
       image: '/images/apps/ecommerce/product-3.png',
-      productBrand: 'Modern 10 Inch Battery Operated Wall Clocks'
+      productBrand: 'Policies identifying tokens/credentials that are exposed in code, containers, and cloud.'
     },
     {
       id: 4,
@@ -46,7 +47,7 @@ export const db = {
       qty: 528,
       status: 'Scheduled',
       image: '/images/apps/ecommerce/product-4.png',
-      productBrand: 'Lightweight Tennis Shoes Non Slip Gym Workout Shoes'
+      productBrand: 'Policies tied to dependency/SCA (Software Composition Analysis) issues found in code.'
     },
     {
       id: 5,
@@ -58,7 +59,8 @@ export const db = {
       qty: 851,
       status: 'Scheduled',
       image: '/images/apps/ecommerce/product-5.png',
-      productBrand: 'Starlight Aluminum Case with Starlight Sport Band.'
+      productBrand:
+        'Policies utilizing SBOM (Software Bill Of Materials) generated from code and artifacts to identify security issues.'
     },
     {
       id: 6,
@@ -70,7 +72,7 @@ export const db = {
       qty: 962,
       status: 'Scheduled',
       image: '/images/apps/ecommerce/product-6.png',
-      productBrand: 'Advanced All-In-One Virtual Reality Headset'
+      productBrand: 'Policies tied to IaC (Infrastructure as a Code) security issues found in code.'
     },
     {
       id: 7,
@@ -82,7 +84,7 @@ export const db = {
       qty: 965,
       status: 'Published',
       image: '/images/apps/ecommerce/product-7.png',
-      productBrand: 'Laptop M2 Pro chip with 12‑core CPU and 19‑core GPU'
+      productBrand: 'Policies identifying security issues in CI/CD builds, pipelines or systems.'
     },
     {
       id: 8,
@@ -94,7 +96,7 @@ export const db = {
       qty: 447,
       status: 'Published',
       image: '/images/apps/ecommerce/product-8.png',
-      productBrand: 'Android Smartphone, 256GB, 8K Camera'
+      productBrand: 'Policies about security tool coverage of pipelines from code to cloud.'
     },
     {
       id: 9,
@@ -106,7 +108,8 @@ export const db = {
       qty: 942,
       status: 'Inactive',
       image: '/images/apps/ecommerce/product-9.png',
-      productBrand: 'Air Jordan is a line of basketball shoes produced by Nike'
+      productBrand:
+        'Policies tied to scanning containers and artifacts for dependency, secret and misconfiguration issues'
     },
     {
       id: 10,
@@ -118,7 +121,8 @@ export const db = {
       qty: 133,
       status: 'Scheduled',
       image: '/images/apps/ecommerce/product-10.png',
-      productBrand: 'Armchair, Skartofta black/light grey'
+      productBrand:
+        'Dynamic Application Security Testing (DAST) is a testing process that assesses a web application from the outside'
     },
     {
       id: 11,
@@ -130,7 +134,7 @@ export const db = {
       qty: 870,
       status: 'Inactive',
       image: '/images/apps/ecommerce/product-11.png',
-      productBrand: 'TV Mode, Tabletop Mode, Handheld Mode'
+      productBrand: 'Policies validating the source and integriy of artifacts that are running in the cloud'
     },
     {
       id: 12,
@@ -142,7 +146,7 @@ export const db = {
       qty: 145,
       status: 'Scheduled',
       image: '/images/apps/ecommerce/product-12.png',
-      productBrand: 'Marvel at incredible graphics and experience'
+      productBrand: 'Policies identifying CSPM (Cloud Security Posture Management) issues'
     }
 
     // {
