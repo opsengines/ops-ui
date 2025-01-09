@@ -34,7 +34,7 @@ const ScanList = () => {
       findings: '0'
     },
     {
-      id: 'OE-003',
+      id: 'OE-004',
       title: 'Generate a Software Bill of Materials (SBOM)',
       tools: 'Syft',
       active: false,

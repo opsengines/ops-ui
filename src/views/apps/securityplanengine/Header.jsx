@@ -5,12 +5,11 @@ import React from 'react'
 
 import { Card, Typography, Box, Button, CircularProgress, Link } from '@mui/material'
 
-const Header = () => {
+const Header = ({ data }) => {
   return (
     <Card
       sx={{
-        width: '98%',
-        marginLeft: '2%',
+        width: '100%',
         backgroundColor: '#322d4b',
         color: 'white',
         borderRadius: 2,
@@ -24,45 +23,8 @@ const Header = () => {
       <Box display={'flex'} flexDirection={'column'}>
         <Box>
           <Typography variant='h4' sx={{ fontWeight: 'bold' }}>
-            Security Plans Engines
+            {data.title}
           </Typography>
-          {/* <Box display='flex' gap={1} mt={3}>
-            <Typography
-              sx={{
-                backgroundColor: '#2E2E3E',
-                color: '#81A8FF',
-                borderRadius: 1,
-                border: '1px solid #81A8FF',
-                px: 1,
-                py: 0.5,
-                fontSize: 12
-              }}
-            >
-              AppSec
-            </Typography>
-            <Typography
-              sx={{
-                backgroundColor: '#2E2E3E',
-                color: '#B580FF',
-                borderRadius: 1,
-                border: '1px solid #B580FF',
-                px: 1,
-                py: 0.5,
-                fontSize: 12
-              }}
-            >
-              Beginner
-            </Typography>
-          </Box> */}
-          {/* <Typography
-            sx={{
-              color: '#B0B0C3',
-              fontSize: 14,
-              marginTop: 1
-            }}
-          >
-            Version: <strong>0.1</strong>
-          </Typography> */}
         </Box>
         <Typography variant='body2' className='mt-5 mb-5' sx={{ color: '#B0B0C3' }}>
           The Security Plans Engine is designed as a foundational security guide for beginners, encompassing essential
@@ -135,8 +97,6 @@ const Header = () => {
             <Typography sx={{ color: '#B0B0C3', fontSize: 12 }}>{item.label}</Typography>
           </Box>
         ))}
-
-        {/* Logo */}
       </Box>
     </Card>
   )

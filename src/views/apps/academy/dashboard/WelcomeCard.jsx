@@ -158,8 +158,9 @@ const WelcomeCard = () => {
           <Typography variant='h4'>Felecia 👋🏻</Typography>
         </div>
         <div className='mbe-4'>
-          <Typography>Your progress this week is Awesome. let&apos;s keep it up</Typography>
-          <Typography>and get a lot of points reward!</Typography>
+          <Typography>
+            Your progress this week is Awesome. let&apos;s keep it up and get a lot of points reward!
+          </Typography>
         </div>
         <div className='flex flex-wrap max-md:flex-col justify-between gap-6'>
           {data.map((item, i) => (

@@ -130,7 +130,7 @@ const GithubIntegration = () => {
                 }}
                 onClick={() => handleSelect('Cloud')}
               >
-                <Typography variant='h6'>Cloud</Typography>
+                <Typography variant='h6'>Artifact</Typography>
               </Paper>
             </Grid>
 
@@ -149,7 +149,7 @@ const GithubIntegration = () => {
                 }}
                 onClick={() => handleSelect('IAC')}
               >
-                <Typography variant='h6'>IAC</Typography>
+                <Typography variant='h6'>Cloud</Typography>
               </Paper>
             </Grid>
           </Grid>

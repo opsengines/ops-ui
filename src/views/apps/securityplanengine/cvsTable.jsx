@@ -24,7 +24,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 import axios from 'axios'
 
-import { Box, Button, Drawer } from '@mui/material'
+import { Box, Button, Chip, Drawer } from '@mui/material'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -86,7 +86,7 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const CustomTable = ({ courseData, onClick = f => f }) => {
+const CVSTable = ({ courseData, onClick = f => f }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
@@ -124,81 +124,64 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
 
   const columns = useMemo(
     () => [
-      columnHelper.accessor('scanId', {
-        header: 'ID',
+      columnHelper.accessor('vulnerabilityId', {
+        header: 'Vulnerability ID',
         cell: ({ row }) => (
           <Typography className='font-medium' color='text.primary'>
-            {row.original.scanId}
+            {row.original.vulnerabilityId}
           </Typography>
         ),
         enableSorting: false
       }),
-      columnHelper.accessor('courseTitle', {
-        header: 'Scan Name',
-        cell: ({ row }) => (
-          <div className='flex items-center gap-4'>
-            <CustomAvatar variant='rounded' skin='light' color={row.original.color}>
-              <i className={classnames('text-[28px]', row.original.logo)} />
-            </CustomAvatar>
-            <div className='flex flex-col gap-0.5'>
-              <Typography
-                component={Link}
-                href={getLocalizedUrl('/apps/academy/course-details', locale)}
-                className='font-medium hover:text-primary'
-                color='text.primary'
-              >
-                {row.original.courseTitle}
-              </Typography>
-              <div className='flex items-center gap-2'>
-                <CustomAvatar src={row.original.image} size={22} />
-                <Typography variant='body2'>{row.original.user}</Typography>
-              </div>
-            </div>
-          </div>
-        )
-      }),
-      columnHelper.accessor('time', {
-        header: 'Last Run',
-        cell: ({ row }) => (
-          <Typography className='font-medium' color='text.primary'>
-            {row.original.time} ago
-          </Typography>
-        ),
-        enableSorting: false
-      }),
-      columnHelper.accessor('progressValue', {
-        header: 'Scans',
-        sortingFn: (rowA, rowB) => {
-          if (
-            !Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100) ||
-            !Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100)
-          )
-            return 0
 
-          return (
-            Number(Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100)) -
-            Number(Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100))
-          )
-        },
+      //   columnHelper.accessor('courseTitle', {
+      //     header: 'Scan Name',
+      //     cell: ({ row }) => (
+      //       <div className='flex items-center gap-4'>
+      //         <CustomAvatar variant='rounded' skin='light' color={row.original.color}>
+      //           <i className={classnames('text-[28px]', row.original.logo)} />
+      //         </CustomAvatar>
+      //         <div className='flex flex-col gap-0.5'>
+      //           <Typography
+      //             component={Link}
+      //             href={getLocalizedUrl('/apps/academy/course-details', locale)}
+      //             className='font-medium hover:text-primary'
+      //             color='text.primary'
+      //           >
+      //             {row.original.courseTitle}
+      //           </Typography>
+      //           <div className='flex items-center gap-2'>
+      //             <CustomAvatar src={row.original.image} size={22} />
+      //             <Typography variant='body2'>{row.original.user}</Typography>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     )
+      //   }),
+      columnHelper.accessor('description', {
+        header: 'Description',
         cell: ({ row }) => (
-          <div className='flex items-center gap-4 min-is-48'>
-            <Typography
-              className='font-medium'
-              color='text.primary'
-            >{`${Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}%`}</Typography>
-            <LinearProgress
-              color='primary'
-              value={Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}
-              variant='determinate'
-              className='is-full bs-2'
-            />
-            <Typography variant='body2'>{`${row.original.completedTasks}/${row.original.totalTasks}`}</Typography>
-          </div>
-        )
+          <Typography className='font-medium w-[500px] text-wrap' color='text.primary'>
+            {row.original.description}
+          </Typography>
+        ),
+        enableSorting: false
       }),
-      columnHelper.accessor('userCount', {
-        header: 'Scan',
-        cell: ({ row }) => <Button onClick={() => setIsOpen(true)}>Scan</Button>,
+      columnHelper.accessor('severity', {
+        header: 'Severity',
+        cell: ({ row }) => (
+          <Chip
+            label={row.original.severity}
+            sx={{
+              backgroundColor:
+                row?.original?.severity === 'High' ? 'red' : row?.original?.severity === 'Low' ? 'green' : 'orange',
+              color: 'white',
+              fontWeight: 'bold',
+              width: '80px',
+              fontSize: 12
+            }}
+          />
+        ),
         enableSorting: false
       })
     ],
@@ -238,7 +221,7 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   return (
     <Card>
       <CardHeader
-        title='Scans'
+        title='CVS List'
         action={
           <DebouncedInput
             value={globalFilter ?? ''}
@@ -518,4 +501,4 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   )
 }
 
-export default CustomTable
+export default CVSTable

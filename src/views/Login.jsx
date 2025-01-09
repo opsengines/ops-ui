@@ -25,6 +25,11 @@ import { valibotResolver } from '@hookform/resolvers/valibot'
 import { object, minLength, string, email, pipe, nonEmpty } from 'valibot'
 import classnames from 'classnames'
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+
+import { setUser } from '@/redux-store/slices/user'
+
 // Component Imports
 import Logo from '@components/layout/shared/Logo'
 import Illustrations from '@components/Illustrations'
@@ -38,9 +43,10 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
+import { login } from '@/api/auth'
 
 const schema = object({
-  email: pipe(string(), minLength(1, 'This field is required'), email('Please enter a valid email address')),
+  email: pipe(string(), minLength(1, 'This field is required')),
   password: pipe(
     string(),
     nonEmpty('This field is required'),
@@ -52,6 +58,10 @@ const Login = ({ mode }) => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
   const [errorState, setErrorState] = useState(null)
+
+  const dispatch = useDispatch()
+
+  const user = useSelector(state => state.userReducer)
 
   // Vars
   const darkImg = '/images/pages/auth-v2-mask-dark.png'
@@ -88,22 +98,39 @@ const Login = ({ mode }) => {
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 
   const onSubmit = async data => {
-    const res = await signIn('credentials', {
+    dispatch(
+      setUser({
+        username: 'new-username',
+        fullName: 'John Doe',
+        email: 'john.doe@example.com'
+      })
+    )
+
+    const response = await login({
       email: data.email,
-      password: data.password,
-      redirect: false
+      password: data.password
     })
 
-    if (res && res.ok && res.error === null) {
-      // Vars
-      const redirectURL = searchParams.get('redirectTo') ?? '/'
+    const access = response?.access_token ? true : false
 
-      router.replace(getLocalizedUrl(redirectURL, locale))
-    } else {
-      if (res?.error) {
-        const error = JSON.parse(res.error)
+    if (access) {
+      const res = await signIn('credentials', {
+        email: 'admin@admin.com',
+        password: 'P@ssw0rd@007',
+        redirect: false
+      })
 
-        setErrorState(error)
+      if (res && res.ok && res.error === null) {
+        // Vars
+        const redirectURL = searchParams.get('redirectTo') ?? '/'
+
+        router.replace(getLocalizedUrl(redirectURL, locale))
+      } else {
+        if (res?.error) {
+          const error = JSON.parse(res.error)
+
+          setErrorState(error)
+        }
       }
     }
   }

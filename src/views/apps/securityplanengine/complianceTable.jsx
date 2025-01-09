@@ -24,7 +24,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 import axios from 'axios'
 
-import { Box, Button, Drawer } from '@mui/material'
+import { Box, Button, Chip, Drawer } from '@mui/material'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -86,7 +86,7 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const CustomTable = ({ courseData, onClick = f => f }) => {
+const ComplianceTable = ({ courseData, onClick = f => f }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
@@ -124,17 +124,17 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
 
   const columns = useMemo(
     () => [
-      columnHelper.accessor('scanId', {
+      columnHelper.accessor('complianceId', {
         header: 'ID',
         cell: ({ row }) => (
           <Typography className='font-medium' color='text.primary'>
-            {row.original.scanId}
+            {row.original.complianceId}
           </Typography>
         ),
         enableSorting: false
       }),
       columnHelper.accessor('courseTitle', {
-        header: 'Scan Name',
+        header: 'Category',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             <CustomAvatar variant='rounded' skin='light' color={row.original.color}>
@@ -149,56 +149,33 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
               >
                 {row.original.courseTitle}
               </Typography>
-              <div className='flex items-center gap-2'>
-                <CustomAvatar src={row.original.image} size={22} />
-                <Typography variant='body2'>{row.original.user}</Typography>
-              </div>
             </div>
           </div>
         )
       }),
-      columnHelper.accessor('time', {
-        header: 'Last Run',
+      columnHelper.accessor('description', {
+        header: 'Description',
         cell: ({ row }) => (
-          <Typography className='font-medium' color='text.primary'>
-            {row.original.time} ago
+          <Typography className='font-small text-wrap' color='text.primary'>
+            {row.original.description}
           </Typography>
         ),
         enableSorting: false
       }),
-      columnHelper.accessor('progressValue', {
-        header: 'Scans',
-        sortingFn: (rowA, rowB) => {
-          if (
-            !Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100) ||
-            !Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100)
-          )
-            return 0
-
-          return (
-            Number(Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100)) -
-            Number(Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100))
-          )
-        },
+      columnHelper.accessor('control', {
+        header: 'Control',
         cell: ({ row }) => (
-          <div className='flex items-center gap-4 min-is-48'>
-            <Typography
-              className='font-medium'
-              color='text.primary'
-            >{`${Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}%`}</Typography>
-            <LinearProgress
-              color='primary'
-              value={Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}
-              variant='determinate'
-              className='is-full bs-2'
-            />
-            <Typography variant='body2'>{`${row.original.completedTasks}/${row.original.totalTasks}`}</Typography>
-          </div>
-        )
-      }),
-      columnHelper.accessor('userCount', {
-        header: 'Scan',
-        cell: ({ row }) => <Button onClick={() => setIsOpen(true)}>Scan</Button>,
+          <Chip
+            label={row.original.control}
+            sx={{
+              backgroundColor: 'blue',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: 12,
+              width: '80px'
+            }}
+          />
+        ),
         enableSorting: false
       })
     ],
@@ -238,7 +215,7 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   return (
     <Card>
       <CardHeader
-        title='Scans'
+        title='Compliance'
         action={
           <DebouncedInput
             value={globalFilter ?? ''}
@@ -518,4 +495,4 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   )
 }
 
-export default CustomTable
+export default ComplianceTable

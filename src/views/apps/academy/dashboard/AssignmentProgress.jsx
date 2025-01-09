@@ -12,17 +12,17 @@ import DirectionalIcon from '@components/DirectionalIcon'
 
 // Vars
 const data = [
-  { title: 'User Experience Design', tasks: 120, progress: 72, color: 'primary' },
-  { title: 'Basic fundamentals', tasks: 32, progress: 48, color: 'success' },
-  { title: 'React Native components', tasks: 182, progress: 15, color: 'error' },
-  { title: 'Basic of music theory', tasks: 56, progress: 24, color: 'info' }
+  { title: 'Critical', tasks: 120, progress: 35, color: 'primary' },
+  { title: 'High', tasks: 32, progress: 20, color: 'success' },
+  { title: 'Medium', tasks: 182, progress: 14, color: 'error' },
+  { title: 'Low', tasks: 56, progress: 12, color: 'info' }
 ]
 
 const AssignmentProgress = () => {
   return (
     <Card>
       <CardHeader
-        title='Assignment progress'
+        title='Total Vulnerable Items'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <CardContent className='flex flex-col gap-7 pbs-5'>
@@ -45,7 +45,7 @@ const AssignmentProgress = () => {
                 sx={{ '& .MuiCircularProgress-circle': { strokeLinecap: 'round' } }}
               />
               <Typography className='absolute font-medium' color='text.primary'>
-                {`${item.progress}%`}
+                {`${item.progress}`}
               </Typography>
             </div>
             <div className='flex justify-between items-center is-full gap-4'>
@@ -53,7 +53,7 @@ const AssignmentProgress = () => {
                 <Typography className='font-medium' color='text.primary'>
                   {item.title}
                 </Typography>
-                <Typography variant='body2'>{`${item.tasks} Tasks`}</Typography>
+                <Typography variant='body2'></Typography>
               </div>
               <CustomIconButton variant='outlined' color='secondary' className='min-is-fit'>
                 <DirectionalIcon ltrIconClass='ri-arrow-right-s-line' rtlIconClass='ri-arrow-left-s-line' />
