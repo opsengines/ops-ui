@@ -24,7 +24,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 import axios from 'axios'
 
-import { Box, Button, Drawer } from '@mui/material'
+import { Box, Button, Chip, Drawer } from '@mui/material'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -50,6 +50,7 @@ import tableStyles from '@core/styles/table.module.css'
 
 // Components Imports
 import CustomAvatar from '@core/components/mui/Avatar'
+import { semgrepscan } from '@/api/ApiConstanst'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -106,6 +107,23 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   const [success, setSuccess] = useState(null)
   const [response, setResponse] = useState('')
 
+  const scanSemgrep = async () => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await axios.post(`${semgrepscan}`, formData)
+
+      setResponse(response.data.results.results)
+      setSuccess(true)
+    } catch (err) {
+      console.error('Error:', err)
+      setError(err.message || 'Something went wrong.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const handleInputChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -117,9 +135,9 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
 
   const handleSubmit = () => {
     console.log('Submitted')
+    scanSemgrep()
   }
 
-  // Hooks
   const { lang: locale } = useParams()
 
   const columns = useMemo(
@@ -149,10 +167,6 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
               >
                 {row.original.courseTitle}
               </Typography>
-              <div className='flex items-center gap-2'>
-                <CustomAvatar src={row.original.image} size={22} />
-                <Typography variant='body2'>{row.original.user}</Typography>
-              </div>
             </div>
           </div>
         )
@@ -161,44 +175,18 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
         header: 'Last Run',
         cell: ({ row }) => (
           <Typography className='font-medium' color='text.primary'>
-            {row.original.time} ago
+            {row.original.time} {row.original.time ? 'ago' : null}
           </Typography>
         ),
         enableSorting: false
       }),
       columnHelper.accessor('progressValue', {
-        header: 'Scans',
-        sortingFn: (rowA, rowB) => {
-          if (
-            !Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100) ||
-            !Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100)
-          )
-            return 0
-
-          return (
-            Number(Math.floor((rowA.original.completedTasks / rowA.original.totalTasks) * 100)) -
-            Number(Math.floor((rowB.original.completedTasks / rowB.original.totalTasks) * 100))
-          )
-        },
-        cell: ({ row }) => (
-          <div className='flex items-center gap-4 min-is-48'>
-            <Typography
-              className='font-medium'
-              color='text.primary'
-            >{`${Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}%`}</Typography>
-            <LinearProgress
-              color='primary'
-              value={Math.floor((row.original.completedTasks / row.original.totalTasks) * 100)}
-              variant='determinate'
-              className='is-full bs-2'
-            />
-            <Typography variant='body2'>{`${row.original.completedTasks}/${row.original.totalTasks}`}</Typography>
-          </div>
-        )
+        header: 'Last Scan Status',
+        cell: ({ row }) => <Chip label='Passed' sx={{ backgroundColor: 'green', marginLeft: '20px' }} />
       }),
       columnHelper.accessor('userCount', {
-        header: 'Scan',
-        cell: ({ row }) => <Button onClick={() => setIsOpen(true)}>Scan</Button>,
+        header: 'Trigger',
+        cell: ({ row }) => <Button onClick={() => setIsOpen(true)}>{row.original.active ? 'Scan' : 'Activate'}</Button>,
         enableSorting: false
       })
     ],
@@ -240,11 +228,16 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
       <CardHeader
         title='Scans'
         action={
-          <DebouncedInput
-            value={globalFilter ?? ''}
-            onChange={value => setGlobalFilter(String(value))}
-            placeholder='Search'
-          />
+          <div className='flex gap-6'>
+            <DebouncedInput
+              value={globalFilter ?? ''}
+              onChange={value => setGlobalFilter(String(value))}
+              placeholder='Search'
+            />
+            <Button variant='outlined'>
+              <a href='/en/apps/securityengines/scm/results'>View Results</a>
+            </Button>
+          </div>
         }
         className='flex-wrap gap-4'
       />
@@ -502,11 +495,8 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
                     textAlign: 'center'
                   }}
                 >
-                  <Typography variant='body1' fontWeight='bold'>
-                    Grid Item 4
-                  </Typography>
                   <Typography variant='body2' sx={{ color: '#B0B0C3' }}>
-                    Content for the fourth grid item.
+                    Repository Scan Failed, Please Try Again Later
                   </Typography>
                 </Box>
               </Grid>

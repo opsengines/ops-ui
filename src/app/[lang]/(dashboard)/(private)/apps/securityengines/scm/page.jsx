@@ -5,6 +5,7 @@ import SecurityPlansHeader from '@/views/apps/securityplans/Header'
 import ScanList from '@/views/apps/securityplans/Scan'
 import SecurityCard from '@/views/dashboards/ecommerce/SecurityPlanCard'
 import ComingSoon from '@/views/pages/misc/ComingSoon'
+import Scm from '@/views/apps/securityplanengine/SCM'
 
 /**
  * If you need data using an API call, uncomment the below API code,
@@ -34,46 +35,52 @@ const SCM = async () => {
 
   const scans = [
     {
-      id: 'SCM-001',
-      title: 'Scan code dependencies for known vulnerabilities',
+      scanId: 'SCM-001',
+      courseTitle: 'Scan code dependencies for known vulnerabilities',
       tools: 'Semgrep',
       active: true,
       findings: '3',
-      status: 'Success'
+      status: true,
+      time: '17h 34m',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     },
     {
-      id: 'SCM-002',
-      title: 'Identify license compliance issues',
+      scanId: 'SCM-002',
+      courseTitle: 'Identify license compliance issues',
       tools: 'Gitleaks',
       active: false,
-      findings: '0'
+      findings: '0',
+      status: false,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     },
     {
-      id: 'SCM-003',
-      title: 'Detect outdated or deprecated libraries.',
+      scanId: 'SCM-003',
+      courseTitle: 'Detect outdated or deprecated libraries.',
       tools: 'Semgrep, Trivy, npm-audit',
       active: false,
-      findings: '0'
+      findings: '0',
+      status: false,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     },
     {
-      id: 'SCM-004',
-      title: 'Map dependency trees to identify risky transitive dependencies.',
+      scanId: 'SCM-004',
+      courseTitle: 'Map dependency trees to identify risky transitive dependencies.',
       tools: 'Syft',
       active: false,
-      findings: '0'
+      findings: '0',
+      status: false,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     }
   ]
 
-  return (
-    <Grid container spacing={6}>
-      <Grid item xs={12} md={12} className='self-end'>
-        <SecurityPlansHeader data={headerData} />
-      </Grid>
-      <Grid item xs={12} md={12}>
-        <ScanList data={scans} />
-      </Grid>
-    </Grid>
-  )
+  return <Scm scans={scans} />
 }
 
 export default SCM

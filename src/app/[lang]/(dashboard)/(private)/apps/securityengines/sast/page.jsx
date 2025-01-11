@@ -6,6 +6,7 @@ import ScanList from '@/views/apps/securityplans/Scan'
 import SecurityCard from '@/views/dashboards/ecommerce/SecurityPlanCard'
 import ComingSoon from '@/views/pages/misc/ComingSoon'
 import SecurityPlanEngine from '@/views/apps/securityplanengine/SecurityPlanEngine'
+import Sast from '@/views/apps/securityplanengine/SAST'
 
 /**
  * If you need data using an API call, uncomment the below API code,
@@ -65,7 +66,7 @@ const SAST = async () => {
     }
   ]
 
-  return <SecurityPlanEngine />
+  return <Sast />
 }
 
 export default SAST
