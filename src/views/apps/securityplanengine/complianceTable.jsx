@@ -136,7 +136,7 @@ const ComplianceTable = ({ courseData, onClick = f => f }) => {
       columnHelper.accessor('courseTitle', {
         header: 'Category',
         cell: ({ row }) => (
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-4 text-wrap w-[300px]'>
             <CustomAvatar variant='rounded' skin='light' color={row.original.color}>
               <i className={classnames('text-[28px]', row.original.logo)} />
             </CustomAvatar>
@@ -156,7 +156,7 @@ const ComplianceTable = ({ courseData, onClick = f => f }) => {
       columnHelper.accessor('description', {
         header: 'Description',
         cell: ({ row }) => (
-          <Typography className='font-small text-wrap' color='text.primary'>
+          <Typography className='font-small text-wrap w-[300px]' color='text.primary'>
             {row.original.description}
           </Typography>
         ),

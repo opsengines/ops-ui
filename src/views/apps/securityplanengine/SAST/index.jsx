@@ -8,11 +8,14 @@ import AssignmentProgress from '@views/apps/academy/dashboard/AssignmentProgress
 
 // Data Imports
 import { getAcademyData } from '@/app/server/actions'
-import CustomTable from '../academy/dashboard/CustomTable'
-import CVSTable from './cvsTable'
-import ComplianceTable from './complianceTable'
 
-const SecurityPlanEngine = async () => {
+//import CustomTable from '../academy/dashboard/CustomTable'
+import CustomTable from '../../academy/dashboard/CustomTable'
+import CVSTable from '../cvsTable'
+import ComplianceTable from '../complianceTable'
+import HeaderComponent from '../HeaderComponent'
+
+const Sast = async () => {
   // Vars
   const data = await getAcademyData()
 
@@ -210,7 +213,7 @@ const SecurityPlanEngine = async () => {
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
-        <WelcomeCard />
+        <HeaderComponent />
       </Grid>
       <Grid item xs={12}>
         <CustomTable courseData={data?.SAST} />
@@ -222,11 +225,11 @@ const SecurityPlanEngine = async () => {
         <AssignmentProgress />
       </Grid>
 
-      <Grid item xs={12}>
+      <Grid item xs={12} md={4}>
         {/* <TopCourses /> */}
         <CVSTable courseData={cvsList} />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} md={8}>
         {/* <PopularInstructors /> */}
         <ComplianceTable courseData={complianceList} />
       </Grid>
@@ -234,4 +237,4 @@ const SecurityPlanEngine = async () => {
   )
 }
 
-export default SecurityPlanEngine
+export default Sast

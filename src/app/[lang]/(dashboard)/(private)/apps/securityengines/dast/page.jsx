@@ -5,6 +5,7 @@ import SecurityPlansHeader from '@/views/apps/securityplans/Header'
 import ScanList from '@/views/apps/securityplans/Scan'
 import SecurityCard from '@/views/dashboards/ecommerce/SecurityPlanCard'
 import ComingSoon from '@/views/pages/misc/ComingSoon'
+import DASTPage from '@/views/apps/securityplanengine/DAST'
 
 /**
  * If you need data using an API call, uncomment the below API code,
@@ -27,53 +28,56 @@ import ComingSoon from '@/views/pages/misc/ComingSoon'
 // }
 
 const SAST = async () => {
-  // Vars
-  const headerData = {
-    title: 'DAST'
-  }
+  //Start
 
   const scans = [
     {
-      id: 'DAST-001',
-      title: 'Perform web application security tests ',
+      scanId: 'DAST-001',
+      courseTitle: 'Perform web application security tests ',
       tools: 'Semgrep',
       active: true,
       findings: '3',
-      status: 'Success'
+      status: true,
+      time: '17h 34m',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     },
     {
-      id: 'DAST-002',
-      title: 'Scan APIs for vulnerabilities',
+      scanId: 'DAST-002',
+      courseTitle: 'Scan APIs for vulnerabilities',
       tools: 'Gitleaks',
       active: false,
-      findings: '0'
+      findings: '0',
+      status: false,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     },
     {
-      id: 'DAST-003',
-      title: 'Detect misconfigurations in web servers or frameworks.',
+      scanId: 'DAST-003',
+      courseTitle: 'Detect misconfigurations in web servers or frameworks',
       tools: 'Semgrep, Trivy, npm-audit',
       active: false,
-      findings: '0'
+      findings: '0',
+      status: false,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     },
     {
-      id: 'DAST-004',
-      title: 'Validate application endpoints for unauthorized access.',
+      scanId: 'DAST-004',
+      courseTitle: 'Validate application endpoints for unauthorized access',
       tools: 'Syft',
       active: false,
-      findings: '0'
+      findings: '0',
+      status: false,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error'
     }
   ]
 
-  return (
-    <Grid container spacing={6}>
-      <Grid item xs={12} md={12} className='self-end'>
-        <SecurityPlansHeader data={headerData} />
-      </Grid>
-      <Grid item xs={12} md={12}>
-        <ScanList data={scans} />
-      </Grid>
-    </Grid>
-  )
+  return <DASTPage scans={scans} />
 }
 
 export default SAST

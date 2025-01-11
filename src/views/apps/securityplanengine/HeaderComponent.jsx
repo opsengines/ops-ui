@@ -82,7 +82,7 @@ const data = [
   }
 ]
 
-const WelcomeCard = () => {
+const HeaderComponent = () => {
   // Hooks
   const theme = useTheme()
   const belowMdScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -195,4 +195,4 @@ const WelcomeCard = () => {
   )
 }
 
-export default WelcomeCard
+export default HeaderComponent

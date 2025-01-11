@@ -18,7 +18,9 @@ export const db = {
       desc: 'Introductory course for Angular and framework basics with TypeScript',
       tags: 'Web',
       rating: 4.4,
-      ratingCount: 8
+      ratingCount: 8,
+      active: true,
+      status: true
     },
     {
       id: 2,
@@ -38,7 +40,9 @@ export const db = {
       desc: 'Introductory course for Angular and framework basics with TypeScript',
       tags: 'Web',
       rating: 4.4,
-      ratingCount: 8
+      ratingCount: 8,
+      active: true,
+      status: true
     },
     {
       id: 3,
@@ -51,18 +55,20 @@ export const db = {
       userCount: 18,
       note: 20,
       view: 83,
-      time: '17h 34m',
+      time: '',
       logo: 'ri-angularjs-line',
       color: 'error',
       courseTitle: 'Identify insecure coding patterns',
       desc: 'Introductory course for Angular and framework basics with TypeScript',
       tags: 'Web',
       rating: 4.4,
-      ratingCount: 8
+      ratingCount: 8,
+      active: false,
+      status: false
     },
     {
       id: 4,
-      scanId: 'SAST-003',
+      scanId: 'SAST-004',
       user: 'Karen Coie',
       image: '/images/avatars/1.png',
       tutorImg: '/images/apps/academy/1.png',
@@ -71,14 +77,16 @@ export const db = {
       userCount: 18,
       note: 20,
       view: 83,
-      time: '17h 34m',
+      time: '',
       logo: 'ri-angularjs-line',
       color: 'error',
       courseTitle: 'Validate secure configurations for sensitive files',
       desc: 'Introductory course for Angular and framework basics with TypeScript',
       tags: 'Web',
       rating: 4.4,
-      ratingCount: 8
+      ratingCount: 8,
+      active: false,
+      status: false
     }
   ],
   courses: [

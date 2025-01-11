@@ -127,8 +127,8 @@ const CVSTable = ({ courseData, onClick = f => f }) => {
       columnHelper.accessor('vulnerabilityId', {
         header: 'Vulnerability ID',
         cell: ({ row }) => (
-          <Typography className='font-medium' color='text.primary'>
-            {row.original.vulnerabilityId}
+          <Typography className='font-medium underline' color='text.primary'>
+            <a href='#'>{row.original.vulnerabilityId}</a>
           </Typography>
         ),
         enableSorting: false
@@ -158,15 +158,15 @@ const CVSTable = ({ courseData, onClick = f => f }) => {
       //       </div>
       //     )
       //   }),
-      columnHelper.accessor('description', {
-        header: 'Description',
-        cell: ({ row }) => (
-          <Typography className='font-medium w-[500px] text-wrap' color='text.primary'>
-            {row.original.description}
-          </Typography>
-        ),
-        enableSorting: false
-      }),
+      //   columnHelper.accessor('description', {
+      //     header: 'Description',
+      //     cell: ({ row }) => (
+      //       <Typography className='font-medium w-[500px] text-wrap' color='text.primary'>
+      //         {row.original.description}
+      //       </Typography>
+      //     ),
+      //     enableSorting: false
+      //   }),
       columnHelper.accessor('severity', {
         header: 'Severity',
         cell: ({ row }) => (
@@ -219,7 +219,7 @@ const CVSTable = ({ courseData, onClick = f => f }) => {
   })
 
   return (
-    <Card>
+    <Card className='h-[460px]'>
       <CardHeader
         title='CVS List'
         action={
