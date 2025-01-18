@@ -98,20 +98,12 @@ const Login = ({ mode }) => {
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 
   const onSubmit = async data => {
-    dispatch(
-      setUser({
-        username: 'new-username',
-        fullName: 'John Doe',
-        email: 'john.doe@example.com'
-      })
-    )
+    const response = await login({
+      email: data.email,
+      password: data.password
+    })
 
-    // const response = await login({
-    //   email: data.email,
-    //   password: data.password
-    // })
-
-    const access = true
+    const access = response?.access_token ? true : false
 
     if (access) {
       const res = await signIn('credentials', {
@@ -119,6 +111,15 @@ const Login = ({ mode }) => {
         password: 'P@ssw0rd@007',
         redirect: false
       })
+
+      dispatch(
+        setUser({
+          token: response.access_token,
+          email: data?.email
+        })
+      )
+
+      localStorage.setItem('authToken', response?.access_token)
 
       if (res && res.ok && res.error === null) {
         // Vars

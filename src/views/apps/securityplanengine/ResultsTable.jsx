@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Table,
@@ -15,11 +15,13 @@ import {
   Drawer,
   Box,
   Button,
-  Divider
+  Divider,
+  Skeleton
 } from '@mui/material'
 
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import { semgrepScanInfo } from '@/api/sast'
 
 const data = [
   {
@@ -60,94 +62,132 @@ const data = [
   }
 ]
 
-const ResultsTable = () => {
+const ResultsTable = ({ type }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedRow, setSelectedRow] = useState(null)
-
-  const handleRowClick = row => {
-    setSelectedRow(row)
-    setDrawerOpen(true)
-  }
+  const [data, setData] = useState([])
+  const [pageLoading, setPageLaoding] = useState(true)
+  const [drawerLoading, setDrawerLoading] = useState(true)
 
   const closeDrawer = () => {
+    setDrawerLoading(true)
     setDrawerOpen(false)
     setSelectedRow(null)
   }
 
+  const authToken = localStorage.getItem('authToken')
+  const getScanResults = async () => {
+    let params = { scan_category: type }
+    try {
+      const res = await semgrepScanInfo(params, authToken)
+      setPageLaoding(false)
+      setData(res?.data?.scans)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getScanDetails = async params => {
+    try {
+      const res = await semgrepScanInfo(params, authToken)
+      setDrawerLoading(false)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleRowClick = row => {
+    let params = {
+      scan_category: type,
+      scan_id: [row.scan_id]
+    }
+    getScanDetails(params)
+    setSelectedRow(row)
+    setDrawerOpen(true)
+  }
+
+  useEffect(() => {
+    getScanResults()
+  }, [])
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <Typography variant='subtitle1' fontWeight='bold'>
-                  Location
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant='subtitle1' fontWeight='bold'>
-                  Name
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant='subtitle1' fontWeight='bold'>
-                  First Detected
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant='subtitle1' fontWeight='bold'>
-                  Status
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant='subtitle1' fontWeight='bold'>
-                  Type
-                </Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant='subtitle1' fontWeight='bold'>
-                  Severity
-                </Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, index) => (
-              <TableRow
-                key={index}
-                onClick={() => handleRowClick(row)}
-                sx={{
-                  '&:hover': {
-                    border: '2px solid #1976d2',
-                    cursor: 'pointer'
-                  },
-                  transition: 'border 0.2s ease-in-out'
-                }}
-              >
-                <TableCell>{row.location}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.firstDetected}</TableCell>
+      {pageLoading ? (
+        <Skeleton variant='rounded' width={'79vw'} height={'90vh'} />
+      ) : (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
                 <TableCell>
-                  <Chip label={row.status} color='error' variant='outlined' style={{ fontWeight: 'bold' }} />
+                  <Typography variant='subtitle1' fontWeight='bold'>
+                    Repo Name
+                  </Typography>
                 </TableCell>
-                <TableCell>{row.type}</TableCell>
                 <TableCell>
-                  <Chip
-                    label={row.severity}
-                    color='error'
-                    style={{
-                      fontWeight: 'bold',
-                      backgroundColor: '#f44336',
-                      color: 'white'
-                    }}
-                  />
+                  <Typography variant='subtitle1' fontWeight='bold'>
+                    Scan Id
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant='subtitle1' fontWeight='bold'>
+                    Status
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant='subtitle1' fontWeight='bold'>
+                    Scan Date
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant='subtitle1' fontWeight='bold'>
+                    Severity
+                  </Typography>
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {data.map((row, index) => (
+                <TableRow
+                  key={index}
+                  onClick={() => handleRowClick(row)}
+                  sx={{
+                    '&:hover': {
+                      border: '2px solid #1976d2',
+                      cursor: 'pointer'
+                    },
+                    transition: 'border 0.2s ease-in-out'
+                  }}
+                >
+                  <TableCell>{row.repository.split('github.com')[1]}</TableCell>
+                  <TableCell>{row.scan_subcategory}</TableCell>
+                  <TableCell>
+                    <Chip
+                      label={row.status === 'completed' ? 'Completed' : 'Ongoing'}
+                      color={row.status === 'completed' ? 'success' : 'error'}
+                      variant='outlined'
+                      style={{ fontWeight: 'bold' }}
+                    />
+                  </TableCell>
+                  <TableCell>code</TableCell>
+                  <TableCell>
+                    <Chip
+                      label={'High'}
+                      color='error'
+                      style={{
+                        fontWeight: 'bold',
+                        backgroundColor: '#f44336',
+                        color: 'white'
+                      }}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+      {data?.length < 1 && <Typography variant='h6'>No Data Available</Typography>}
 
       <Drawer anchor='right' open={drawerOpen} onClose={closeDrawer} PaperProps={{ sx: { width: '50vw', padding: 3 } }}>
         <Box

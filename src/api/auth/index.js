@@ -28,3 +28,19 @@ export const login = async ({ email, password }) => {
     throw error // Re-throw the error for the caller to handle
   }
 }
+
+export const userInfo = async token => {
+  const url = 'https://api.opsengines.io/users/me/'
+
+  const headers = {
+    Authorization: `Bearer ${token}`
+  }
+
+  try {
+    const response = await axios.get(url, { headers }) // Pass headers inside the config object
+    return response.data // Return the response data
+  } catch (error) {
+    console.error('Error:', error.response?.data || error.message)
+    throw error // Re-throw the error for the caller to handle
+  }
+}

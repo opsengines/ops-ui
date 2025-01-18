@@ -10,13 +10,25 @@ import { useParams } from 'next/navigation'
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
-import Checkbox from '@mui/material/Checkbox'
 import LinearProgress from '@mui/material/LinearProgress'
 import TablePagination from '@mui/material/TablePagination'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import Grid from '@mui/material/Grid'
+import {
+  CardContent,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Checkbox
+} from '@mui/material'
 
 import CloseIcon from '@mui/icons-material/Close'
 import GitHubIcon from '@mui/icons-material/GitHub'
@@ -51,6 +63,10 @@ import tableStyles from '@core/styles/table.module.css'
 // Components Imports
 import CustomAvatar from '@core/components/mui/Avatar'
 import { semgrepscan } from '@/api/ApiConstanst'
+
+import { useSelector } from 'react-redux'
+import { getGitInfo } from '@/api/github'
+import { semgrepScanner } from '@/api/sast'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -93,51 +109,93 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
 
   const [data, setData] = useState(...[courseData])
   const [globalFilter, setGlobalFilter] = useState('')
+  const [gitRepos, setGitRepos] = useState([])
+
+  const token = localStorage.getItem('authToken')
 
   const [isOpen, setIsOpen] = useState(false)
-
-  const [formData, setFormData] = useState({
-    github_username: '',
-    github_token: '',
-    github_url: ''
-  })
-
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [response, setResponse] = useState('')
+  const [selectedOption, setSelectedOption] = useState('All')
+  const [selectedRepos, setSelectedRepos] = useState(gitRepos.map(repo => repo.url))
+  const [githubUserName, setGithubUserName] = useState('')
+  const [githubToken, setGithubtoken] = useState('')
 
-  const scanSemgrep = async () => {
-    setLoading(true)
-    setError(null)
+  const handleRadioChange = event => {
+    setSelectedOption(event.target.value)
+  }
 
+  const handleCheckboxChange = (event, repoId) => {
+    setSelectedRepos(prevSelectedRepos => {
+      if (prevSelectedRepos.includes(repoId)) {
+        return prevSelectedRepos.filter(id => id !== repoId)
+      } else {
+        return [...prevSelectedRepos, repoId]
+      }
+    })
+  }
+
+  const getGithubInformation = async () => {
     try {
-      const response = await axios.post(`${semgrepscan}`, formData)
+      const data = await getGitInfo(token)
+      const links = data[0]?.GitHubLink
+      const transformedUrls = links.map((url, index) => {
+        // Extract the path from the URL (everything after 'github.com')
+        const path = url.split('github.com')[1]
 
-      setResponse(response.data.results.results)
-      setSuccess(true)
-    } catch (err) {
-      console.error('Error:', err)
-      setError(err.message || 'Something went wrong.')
-    } finally {
-      setLoading(false)
+        return {
+          id: index + 1,
+          name: path,
+          url: url
+        }
+      })
+      setGitRepos(transformedUrls)
+      setGithubUserName(data[0].GitHubUsername)
+      setGithubtoken(data[0].GitHubToken)
+    } catch (error) {
+      console.log(error)
     }
   }
 
-  const handleInputChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  const startSempgrepScan = async data => {
+    try {
+      const response = await semgrepScanner(data, token)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const toggleDrawer = open => () => {
     console.log('table drawer triggered')
+    setSelectedRepos(gitRepos.map(repo => repo.url))
     setIsOpen(open)
   }
 
-  const handleSubmit = () => {
-    console.log('Submitted')
-    scanSemgrep()
+  const handleCustomRepos = () => {
+    const data = {
+      github_url: selectedRepos,
+      github_username: githubUserName,
+      github_token: githubToken
+    }
+    startSempgrepScan(data)
   }
 
+  const handleSelectAll = () => {
+    const repoList = gitRepos.map(repo => repo.url)
+    const data = {
+      github_url: repoList,
+      github_username: githubUserName,
+      github_token: githubToken
+    }
+    startSempgrepScan(data)
+    setSelectedRepos(gitRepos.map(repo => repo.url)) // Select all repositories when 'All' is clicked
+  }
+
+  useEffect(() => {
+    getGithubInformation()
+  }, [])
   const { lang: locale } = useParams()
 
   const columns = useMemo(
@@ -235,7 +293,7 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
               placeholder='Search'
             />
             <Button variant='outlined'>
-              <a href='/en/apps/securityengines/scm/results'>View Results</a>
+              <a href='/en/apps/securityengines/sast/results'>View Results</a>
             </Button>
           </div>
         }
@@ -360,110 +418,79 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} sm={12}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 2,
-                  alignItems: 'center',
-                  justifyContent: 'space-around',
-                  backgroundColor: '#2E2E3E',
-                  padding: '16px',
-                  borderRadius: '8px'
-                }}
-              >
-                {/* First Box with GitHub Icon */}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#1C1C2B',
-                    borderRadius: '50%',
-                    width: 90,
-                    height: 60
-                  }}
-                >
-                  <GitHubIcon sx={{ color: 'white', fontSize: 30 }} />
-                </Box>
 
-                {/* Second Box with Input Fields */}
-                <Box width={'60%'}>
-                  <TextField
-                    fullWidth
-                    size='small'
-                    label='Username'
-                    name='github_username'
-                    variant='outlined'
-                    value={formData.github_username}
-                    onChange={handleInputChange}
-                    sx={{
-                      mb: 1,
-                      '& .MuiInputBase-root': {
-                        backgroundColor: '#1C1C2B',
-                        color: 'white'
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: '#B0B0C3'
-                      }
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    size='small'
-                    label='Token'
-                    name='github_token'
-                    variant='outlined'
-                    type='password'
-                    value={formData.github_token}
-                    onChange={handleInputChange}
-                    sx={{
-                      mb: 1,
-                      '& .MuiInputBase-root': {
-                        backgroundColor: '#1C1C2B',
-                        color: 'white'
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: '#B0B0C3'
-                      }
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    size='small'
-                    label='Repository URL'
-                    name='github_url'
-                    variant='outlined'
-                    value={formData.github_url}
-                    onChange={handleInputChange}
-                    sx={{
-                      mb: 1,
-                      '& .MuiInputBase-root': {
-                        backgroundColor: '#1C1C2B',
-                        color: 'white'
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: '#B0B0C3'
-                      }
-                    }}
-                  />
-                  <Button
-                    fullWidth
-                    variant='contained'
-                    onClick={handleSubmit}
-                    sx={{
-                      backgroundColor: '#4B4BFF',
-                      color: 'white',
-                      textTransform: 'none',
-                      fontWeight: 'bold',
-                      mt: 1
-                    }}
-                  >
-                    {loading ? 'Scanning In Progress..' : 'Scan'}
-                  </Button>
-                </Box>
-              </Box>
-            </Grid>
+            <Card
+              style={{
+                width: '98%',
+                margin: '20px auto',
+                borderRadius: 8,
+                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              <CardContent>
+                <Typography variant='h6' gutterBottom>
+                  Select Repositories
+                </Typography>
+
+                <RadioGroup value={selectedOption} onChange={handleRadioChange} row>
+                  <FormControlLabel value='All' control={<Radio />} label='All' />
+                  <FormControlLabel value='Custom' control={<Radio />} label='Custom' />
+                </RadioGroup>
+
+                {selectedOption === 'All' ? (
+                  <>
+                    <Typography variant='h6' style={{ marginTop: '20px', marginBottom: '20px' }}>
+                      This Action Will Run This Scan On All Configured Repositories. To change this you can select the
+                      custom repositories option.
+                    </Typography>
+                    <Button variant='contained' color='primary' onClick={handleSelectAll} style={{ marginTop: '10px' }}>
+                      Scan All Repositories
+                    </Button>
+                  </>
+                ) : (
+                  <Box style={{ marginTop: '20px' }}>
+                    <TableContainer>
+                      <Table>
+                        <TableHead>
+                          <TableRow>
+                            <TableCell padding='checkbox'></TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>URL</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {gitRepos.map(repo => (
+                            <TableRow key={repo.id}>
+                              <TableCell padding='checkbox'>
+                                <Checkbox
+                                  checked={selectedRepos.includes(repo.url)}
+                                  onChange={event => handleCheckboxChange(event, repo.url)}
+                                />
+                              </TableCell>
+                              <TableCell>{repo.name}</TableCell>
+                              <TableCell>
+                                <a href={repo.url} target='_blank' rel='noopener noreferrer'>
+                                  {repo.url}
+                                </a>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      onClick={() => handleCustomRepos()}
+                      style={{ marginTop: '10px' }}
+                    >
+                      Scan Repositories
+                    </Button>
+                  </Box>
+                )}
+              </CardContent>
+            </Card>
+
             {success && (
               <Grid item xs={12} sm={12}>
                 <Box

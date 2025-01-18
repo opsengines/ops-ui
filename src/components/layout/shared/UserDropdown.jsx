@@ -1,7 +1,7 @@
 'use client'
 
 // React Imports
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Next Imports
 import { useParams, useRouter } from 'next/navigation'
@@ -28,6 +28,7 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
+import { userInfo } from '@/api/auth'
 
 // Styled component for badge content
 const BadgeContentSpan = styled('span')({
@@ -52,6 +53,9 @@ const UserDropdown = () => {
   const { settings } = useSettings()
   const { lang: locale } = useParams()
 
+  const authToken = localStorage.getItem('authToken')
+  const [userInformation, setUserInformation] = useState({})
+
   const handleDropdownOpen = () => {
     !open ? setOpen(true) : setOpen(false)
   }
@@ -71,14 +75,28 @@ const UserDropdown = () => {
   const handleUserLogout = async () => {
     try {
       // Sign out from the app
-      await signOut({ callbackUrl: process.env.NEXT_PUBLIC_APP_URL })
+      await signOut({ callbackUrl: '/en/login' })
+      localStorage.setItem('authToken', undefined)
     } catch (error) {
       console.error(error)
-
-      // Show above error in a toast like following
-      // toastService.error((err as Error).message)
     }
   }
+
+  const getUserInfo = async () => {
+    try {
+      const userData = await userInfo(authToken) // Await the promise
+      setUserInformation(userData)
+    } catch (error) {
+      handleUserLogout()
+    }
+  }
+
+  useEffect(() => {
+    getUserInfo()
+    if (!authToken) {
+      handleUserLogout()
+    }
+  }, [authToken])
 
   return (
     <>
@@ -91,7 +109,7 @@ const UserDropdown = () => {
       >
         <Avatar
           ref={anchorRef}
-          alt={session?.user?.name || ''}
+          alt={userInformation?.full_name || ''}
           src={session?.user?.image || ''}
           onClick={handleDropdownOpen}
           className='cursor-pointer bs-[38px] is-[38px]'
@@ -116,12 +134,12 @@ const UserDropdown = () => {
               <ClickAwayListener onClickAway={e => handleDropdownClose(e)}>
                 <MenuList>
                   <div className='flex items-center plb-2 pli-4 gap-2' tabIndex={-1}>
-                    <Avatar alt={session?.user?.name || ''} src={session?.user?.image || ''} />
+                    <Avatar alt={userInformation?.full_name || ''} src={session?.user?.image || ''} />
                     <div className='flex items-start flex-col'>
                       <Typography className='font-medium' color='text.primary'>
-                        {session?.user?.name || ''}
+                        {userInformation?.full_name || ''}
                       </Typography>
-                      <Typography variant='caption'>{session?.user?.email || ''}</Typography>
+                      <Typography variant='caption'>{userInformation?.email || ''}</Typography>
                     </div>
                   </div>
                   <Divider className='mlb-1' />

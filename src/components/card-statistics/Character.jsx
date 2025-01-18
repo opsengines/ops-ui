@@ -1,8 +1,12 @@
+'use client'
+
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
+import { useEffect, useState } from 'react'
+import OnboardingModal from '@/views/apps/user/onboarding'
 
 const CardStatWithImage = props => {
   // Props
@@ -23,6 +27,7 @@ const CardStatWithImage = props => {
         <Chip label={chipText} color={chipColor} variant='tonal' size='small' />
         <img src={src} alt={title} className='absolute block-end-0 inline-end-4 bs-44' />
       </CardContent>
+      <OnboardingModal />
     </Card>
   )
 }

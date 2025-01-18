@@ -45,9 +45,8 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/basic'
     },
     {
-      title: 'FTR',
-      description:
-        'Jit will help your company on your journey of becoming an AWS partner. Jit accelerates AWS Foundational Technical Reviews by automating and guiding you through the process. By achieving an approved FTR.',
+      title: 'Cloud Security Plan',
+      description: 'OE will help your company on your journey for cloud security.',
       tags: [],
       colors: ['#94a2eb', '#343453'],
       controls: '0 / 51',
@@ -57,7 +56,7 @@ const SecurityPlans = async () => {
     {
       title: ' Intermediate Security Plan',
       description:
-        'The Jit Max Security Plan offers the highest level of security across the entire SDLC, integrating all available controls to safeguard software development, deployment, and maintenance comprehensively.',
+        'This Plan offers the highest level of security across the entire SDLC, integrating all available controls to safeguard software development, deployment, and maintenance comprehensively.',
       tags: [],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 18',

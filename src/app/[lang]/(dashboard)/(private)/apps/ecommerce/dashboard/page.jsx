@@ -55,7 +55,7 @@ const DashboardECommerce = async () => {
       page: '/apps/ecommerce/applicationSecurity'
     },
     {
-      title: 'FTR',
+      title: 'Cloud Security Plan',
       description:
         'Jit will help your company on your journey of becoming an AWS partner. Jit accelerates AWS Foundational Technical Reviews by automating and guiding you through the process. By achieving an approved FTR.',
       tags: ['Cloud Security', 'Cloud'],
