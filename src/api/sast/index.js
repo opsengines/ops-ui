@@ -12,6 +12,7 @@ export const semgrepScanner = async (data, token) => {
 
   try {
     const response = await axios.post(url, data, { headers })
+
     return response.data
   } catch (error) {
     console.error(error)
@@ -31,6 +32,7 @@ export const semgrepScanInfo = async (data, token) => {
 
   try {
     const response = await axios.post(url, data, { headers })
+
     return response
   } catch (error) {
     console.error(error)

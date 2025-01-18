@@ -5,7 +5,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
-import { useEffect, useState } from 'react'
+
 import OnboardingModal from '@/views/apps/user/onboarding'
 
 const CardStatWithImage = props => {

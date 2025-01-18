@@ -85,6 +85,7 @@ const UserDropdown = () => {
   const getUserInfo = async () => {
     try {
       const userData = await userInfo(authToken) // Await the promise
+
       setUserInformation(userData)
     } catch (error) {
       handleUserLogout()
@@ -93,6 +94,7 @@ const UserDropdown = () => {
 
   useEffect(() => {
     getUserInfo()
+
     if (!authToken) {
       handleUserLogout()
     }

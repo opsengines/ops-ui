@@ -38,6 +38,7 @@ export const userInfo = async token => {
 
   try {
     const response = await axios.get(url, { headers }) // Pass headers inside the config object
+
     return response.data // Return the response data
   } catch (error) {
     console.error('Error:', error.response?.data || error.message)

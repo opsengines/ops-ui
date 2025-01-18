@@ -20,7 +20,9 @@ import {
 } from '@mui/material'
 
 import IconButton from '@mui/material/IconButton'
+
 import CloseIcon from '@mui/icons-material/Close'
+
 import { semgrepScanInfo } from '@/api/sast'
 
 const data = [
@@ -76,10 +78,13 @@ const ResultsTable = ({ type }) => {
   }
 
   const authToken = localStorage.getItem('authToken')
+
   const getScanResults = async () => {
     let params = { scan_category: type }
+
     try {
       const res = await semgrepScanInfo(params, authToken)
+
       setPageLaoding(false)
       setData(res?.data?.scans)
     } catch (error) {
@@ -90,6 +95,7 @@ const ResultsTable = ({ type }) => {
   const getScanDetails = async params => {
     try {
       const res = await semgrepScanInfo(params, authToken)
+
       setDrawerLoading(false)
       console.log(res)
     } catch (error) {
@@ -102,6 +108,7 @@ const ResultsTable = ({ type }) => {
       scan_category: type,
       scan_id: [row.scan_id]
     }
+
     getScanDetails(params)
     setSelectedRow(row)
     setDrawerOpen(true)
@@ -110,6 +117,7 @@ const ResultsTable = ({ type }) => {
   useEffect(() => {
     getScanResults()
   }, [])
+
   return (
     <>
       {pageLoading ? (
