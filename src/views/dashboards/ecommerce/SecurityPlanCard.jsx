@@ -42,7 +42,6 @@ const SecurityCard = ({ cardInfo }) => {
         <Typography variant='body2' sx={{ mt: 2, color: '#B0B0C3' }}>
           {cardInfo.description}
         </Typography>
-        <Typography sx={{ mt: 2, color: '#B0B0C3', fontSize: 14 }}>Controls Activated: {cardInfo.controls}</Typography>
         <Button
           variant='contained'
           href={`/${locale}/${cardInfo.page}`}

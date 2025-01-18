@@ -77,12 +77,23 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const CourseTable = ({ courseData }) => {
+const CourseTable = ({ courseData, selectedRows, setSelectedRows }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
   const [data, setData] = useState(...[courseData])
   const [globalFilter, setGlobalFilter] = useState('')
+
+  useEffect(() => {
+    setData(courseData)
+  }, [courseData])
+
+  useEffect(() => {
+    const selectedData = Object.keys(rowSelection)
+      .filter(key => rowSelection[key]) // Ensure it's a selected row
+      .map(key => courseData[parseInt(key)].url) // Access the courseData using the key
+    setSelectedRows(selectedData)
+  }, [rowSelection])
 
   // Hooks
   const { lang: locale } = useParams()
