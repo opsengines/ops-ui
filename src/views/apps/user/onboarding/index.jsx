@@ -1,11 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+
 import { Modal, Box, Typography, Button, TextField, Stepper, Step, StepLabel, Card, CardContent } from '@mui/material'
+
 import { Cloud, GitHub, Security } from '@mui/icons-material'
+
 import CourseTable from '../../academy/dashboard/CourseTable'
-import { storeGithubInfo } from '@/api/github'
-import { getGitInfo } from '@/api/github'
+
+import { storeGithubInfo, getGitInfo } from '@/api/github'
 
 const OnboardingModal = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -27,6 +30,7 @@ const OnboardingModal = () => {
   const handleBack = () => {
     setActiveStep(prev => prev - 1)
   }
+
   const handleClose = () => {
     setOpen(false)
   }
@@ -53,6 +57,7 @@ const OnboardingModal = () => {
 
       if (!response.ok) {
         const data = await response.json()
+
         throw new Error(data.message || 'Failed to fetch repositories')
       }
 
@@ -68,6 +73,7 @@ const OnboardingModal = () => {
         owner: repo.owner.login,
         avatar: repo.owner.avatar_url
       }))
+
       setRepos(formattedRepos)
       setShowTable(true)
     } catch (err) {
@@ -82,6 +88,7 @@ const OnboardingModal = () => {
   const getGithubInformation = async () => {
     try {
       const data = await getGitInfo(authToken)
+
       if (data[0]?.GitHubLink?.length <= 0 || data?.length === 0) {
         setOpen(true)
       } else {
@@ -98,6 +105,7 @@ const OnboardingModal = () => {
       github_token: scmDetails?.token,
       github_links: selectedRows
     }
+
     try {
       await storeGithubInfo(githubData, authToken)
       setComplete(true)
@@ -111,12 +119,15 @@ const OnboardingModal = () => {
     if (activeStep === 1 && selectedOption === 'SCM') {
       await handleFetchRepos()
     }
+
     if (activeStep === 2 && selectedOption === 'SCM' && selectedRows.length > 0) {
       storeGithubata()
     }
+
     if (activeStep === 3 && complete) {
       setOpen(false)
     }
+
     setActiveStep(prev => prev + 1)
   }
 
@@ -285,7 +296,6 @@ const OnboardingModal = () => {
             </Box>
           )}
 
-          {/* Step 4: Start */}
           {showNotification && (
             <Box
               sx={{
@@ -307,7 +317,6 @@ const OnboardingModal = () => {
             </Box>
           )}
           {activeStep === 3 && (
-            // <Box display='flex' flexWrap={'nowrap'} gap={4} justifyContent='center'>
             <div>
               <Card sx={{ width: '100%', cursor: 'pointer' }}>
                 <CardContent>

@@ -27,7 +27,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Checkbox
+  Checkbox,
+  Box,
+  Button,
+  Chip,
+  Drawer
 } from '@mui/material'
 
 import CloseIcon from '@mui/icons-material/Close'
@@ -35,8 +39,6 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
 import axios from 'axios'
-
-import { Box, Button, Chip, Drawer } from '@mui/material'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -62,10 +64,9 @@ import tableStyles from '@core/styles/table.module.css'
 
 // Components Imports
 import CustomAvatar from '@core/components/mui/Avatar'
-import { semgrepscan } from '@/api/ApiConstanst'
 
-import { useSelector } from 'react-redux'
 import { getGitInfo } from '@/api/github'
+
 import { semgrepScanner } from '@/api/sast'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
@@ -140,9 +141,10 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   const getGithubInformation = async () => {
     try {
       const data = await getGitInfo(token)
+
       const links = data[0]?.GitHubLink
+
       const transformedUrls = links.map((url, index) => {
-        // Extract the path from the URL (everything after 'github.com')
         const path = url.split('github.com')[1]
 
         return {
@@ -151,6 +153,7 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
           url: url
         }
       })
+
       setGitRepos(transformedUrls)
       setGithubUserName(data[0].GitHubUsername)
       setGithubtoken(data[0].GitHubToken)
@@ -179,16 +182,19 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
       github_username: githubUserName,
       github_token: githubToken
     }
+
     startSempgrepScan(data)
   }
 
   const handleSelectAll = () => {
     const repoList = gitRepos.map(repo => repo.url)
+
     const data = {
       github_url: repoList,
       github_username: githubUserName,
       github_token: githubToken
     }
+
     startSempgrepScan(data)
     setSelectedRepos(gitRepos.map(repo => repo.url)) // Select all repositories when 'All' is clicked
   }

@@ -92,6 +92,7 @@ const CourseTable = ({ courseData, selectedRows, setSelectedRows }) => {
     const selectedData = Object.keys(rowSelection)
       .filter(key => rowSelection[key]) // Ensure it's a selected row
       .map(key => courseData[parseInt(key)].url) // Access the courseData using the key
+
     setSelectedRows(selectedData)
   }, [rowSelection])
 
