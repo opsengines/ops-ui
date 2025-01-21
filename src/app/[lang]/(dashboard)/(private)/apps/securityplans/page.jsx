@@ -73,7 +73,7 @@ const SecurityPlans = async () => {
     {
       title: 'Security Lead Visibility Scan Plan',
       description: 'Provide insights into vulnerabilities and risk management across teams',
-      tags: ['Threat & Vulnerability Management', 'CSPM', 'API'],
+      tags: ['Threat', 'CSPM', 'API'],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',

@@ -34,11 +34,7 @@ const CardStatVertical = props => {
           </Typography>
           <div className='flex gap-x-2 gap-y-0.5 items-center flex-wrap'>
             <Typography variant='h4'>{stats}</Typography>
-            <Typography color={trend === 'negative' ? 'error.main' : 'success.main'}>
-              {`${trend === 'negative' ? '-' : '+'}${trendNumber}`}
-            </Typography>
           </div>
-          <Typography variant='body2'>{subtitle}</Typography>
         </div>
       </CardContent>
     </Card>

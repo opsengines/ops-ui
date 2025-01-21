@@ -29,7 +29,7 @@ const Timeline = styled(MuiTimeline)({
 const ActivityTimeline = () => {
   return (
     <Card>
-      <CardHeader title='Activity Timeline' />
+      <CardHeader title='Activities' />
       <CardContent>
         <Timeline>
           <TimelineItem>
@@ -61,20 +61,19 @@ const ActivityTimeline = () => {
             <TimelineContent>
               <div className='flex flex-wrap items-center justify-between gap-x-2 mbe-2.5'>
                 <Typography className='font-medium' color='text.primary'>
-                  Client Meeting
+                  Repo Scan
                 </Typography>
                 <Typography variant='caption' color='text.disabled'>
                   45 min ago
                 </Typography>
               </div>
-              <Typography className='mbe-2.5'>Project meeting with john @10:15am</Typography>
+              <Typography className='mbe-2.5'>frontEnd-prod branch scanned</Typography>
               <div className='flex items-center gap-2.5'>
                 <Avatar src='/images/avatars/1.png' className='bs-8 is-8' />
                 <div className='flex flex-col flex-wrap gap-0.5'>
                   <Typography variant='body2' className='font-medium'>
-                    Lester McCarthy (Client)
+                    Ravi Sharma
                   </Typography>
-                  <Typography variant='body2'>CEO of ThemeSelection</Typography>
                 </div>
               </div>
             </TimelineContent>
@@ -93,7 +92,7 @@ const ActivityTimeline = () => {
                   2 Day Ago
                 </Typography>
               </div>
-              <Typography>1K+ Findings Since Last Week</Typography>
+              <Typography>Findings for Last Week (15/01 - 21/01)</Typography>
             </TimelineContent>
           </TimelineItem>
         </Timeline>

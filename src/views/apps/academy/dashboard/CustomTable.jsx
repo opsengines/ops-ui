@@ -246,7 +246,8 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
       }),
       columnHelper.accessor('progressValue', {
         header: 'Last Scan Status',
-        cell: ({ row }) => <Chip label='Passed' sx={{ backgroundColor: 'green', marginLeft: '20px' }} />
+        cell: ({ row }) =>
+          row.original.status ? <Chip label='Passed' sx={{ backgroundColor: 'green', marginLeft: '20px' }} /> : null
       }),
       columnHelper.accessor('userCount', {
         header: 'Trigger',
