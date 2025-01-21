@@ -155,7 +155,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         <MenuItem href={`/${locale}/apps/workflow`} icon={<AccountTreeIcon />}>
           Workflows
         </MenuItem>
-        <MenuItem href={`/${locale}/apps/academy/my-courses`} icon={<IntegrationInstructionsIcon />}>
+        <MenuItem href={`/${locale}/apps/connectors`} icon={<IntegrationInstructionsIcon />}>
           {dictionary['navigation'].myCourses}
         </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].academy} icon={<i className='ri-graduation-cap-line' />}>

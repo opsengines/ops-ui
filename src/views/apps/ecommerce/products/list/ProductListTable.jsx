@@ -146,47 +146,52 @@ const ProductListTable = ({ productData }) => {
           </div>
         )
       }),
-      columnHelper.accessor('category', {
-        header: 'Category',
-        cell: ({ row }) => (
-          <div className='flex items-center gap-4'>
-            <CustomAvatar skin='light' color={productCategoryObj[row.original.category].color} size={30}>
-              <i className={classnames(productCategoryObj[row.original.category].icon, 'text-lg')} />
-            </CustomAvatar>
-            <Typography color='text.primary'>{row.original.category}</Typography>
-          </div>
-        )
-      }),
+
+      // columnHelper.accessor('category', {
+      //   header: 'Category',
+      //   cell: ({ row }) => (
+      //     <div className='flex items-center gap-4'>
+      //       <CustomAvatar skin='light' color={productCategoryObj[row.original.category].color} size={30}>
+      //         <i className={classnames(productCategoryObj[row.original.category].icon, 'text-lg')} />
+      //       </CustomAvatar>
+      //       <Typography color='text.primary'>{row.original.category}</Typography>
+      //     </div>
+      //   )
+      // }),
+
       columnHelper.accessor('stock', {
-        header: 'Stock',
+        header: 'Active',
         cell: ({ row }) => <Switch defaultChecked={row.original.stock} />,
         enableSorting: false
       }),
-      columnHelper.accessor('sku', {
-        header: 'SKU',
-        cell: ({ row }) => <Typography>{row.original.sku}</Typography>
-      }),
-      columnHelper.accessor('price', {
-        header: 'Price',
-        cell: ({ row }) => <Typography>{row.original.price}</Typography>
-      }),
-      columnHelper.accessor('qty', {
-        header: 'QTY',
-        cell: ({ row }) => <Typography>{row.original.qty}</Typography>
-      }),
-      columnHelper.accessor('status', {
-        header: 'Status',
-        cell: ({ row }) => (
-          <div className='flex items-center gap-3'>
-            <Chip
-              label={productStatusObj[row.original.status].title}
-              variant='tonal'
-              color={productStatusObj[row.original.status].color}
-              size='small'
-            />
-          </div>
-        )
-      }),
+
+      // columnHelper.accessor('sku', {
+      //   header: 'SKU',
+      //   cell: ({ row }) => <Typography>{row.original.sku}</Typography>
+      // }),
+      // columnHelper.accessor('price', {
+      //   header: 'Price',
+      //   cell: ({ row }) => <Typography>{row.original.price}</Typography>
+      // }),
+      // columnHelper.accessor('qty', {
+      //   header: 'QTY',
+      //   cell: ({ row }) => <Typography>{row.original.qty}</Typography>
+      // }),
+
+      // columnHelper.accessor('status', {
+      //   header: 'Status',
+      //   cell: ({ row }) => (
+      //     <div className='flex items-center gap-3'>
+      //       <Chip
+      //         label={productStatusObj[row.original.status].title}
+      //         variant='tonal'
+      //         color={productStatusObj[row.original.status].color}
+      //         size='small'
+      //       />
+      //     </div>
+      //   )
+      // }),
+
       columnHelper.accessor('actions', {
         header: 'Actions',
         cell: ({ row }) => (
@@ -251,14 +256,14 @@ const ProductListTable = ({ productData }) => {
   return (
     <>
       <Card>
-        <CardHeader title='Select Profile' className='pbe-4' />
+        <CardHeader title='Filters' className='pbe-4' />
         <TableFilters setData={setFilteredData} productData={data} />
         <Divider />
         <div className='flex justify-between flex-col items-start sm:flex-row sm:items-center gap-y-4 p-5'>
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={value => setGlobalFilter(String(value))}
-            placeholder='Search Product'
+            placeholder='Search Policy'
           />
           <div className='flex gap-x-4'>
             <Button color='secondary' variant='outlined' startIcon={<i className='ri-upload-2-line' />}>
@@ -270,7 +275,7 @@ const ProductListTable = ({ productData }) => {
               href={getLocalizedUrl('/apps/ecommerce/products/add', locale)}
               startIcon={<i className='ri-add-line' />}
             >
-              Add Product
+              Add Policy
             </Button>
           </div>
         </div>

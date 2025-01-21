@@ -42,7 +42,7 @@ const TableFilters = ({ setData, productData }) => {
       <Grid container spacing={6}>
         <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
-            <InputLabel id='status-select'>Select Profile</InputLabel>
+            <InputLabel id='status-select'>Policy Status</InputLabel>
             <Select
               fullWidth
               id='select-status'
@@ -60,7 +60,7 @@ const TableFilters = ({ setData, productData }) => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
-            <InputLabel id='category-select'>Category</InputLabel>
+            <InputLabel id='category-select'>Priority</InputLabel>
             <Select
               fullWidth
               id='select-category'
@@ -79,7 +79,8 @@ const TableFilters = ({ setData, productData }) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={4}>
+
+        {/* <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <InputLabel id='stock-select'>Stock</InputLabel>
             <Select
@@ -95,7 +96,7 @@ const TableFilters = ({ setData, productData }) => {
               <MenuItem value='Out of Stock'>Out of Stock</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
+        </Grid> */}
       </Grid>
     </CardContent>
   )

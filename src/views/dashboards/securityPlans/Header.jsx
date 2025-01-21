@@ -11,8 +11,6 @@ const Header = () => {
       sx={{
         width: '98%',
         marginLeft: '2%',
-        backgroundColor: '#322d4b',
-        color: 'white',
         borderRadius: 2,
         p: 3,
         display: 'flex',
@@ -64,7 +62,7 @@ const Header = () => {
             Version: <strong>0.1</strong>
           </Typography> */}
         </Box>
-        <Typography variant='body2' className='mt-5 mb-5' sx={{ color: '#B0B0C3' }}>
+        <Typography variant='body2' className='mt-5 mb-5'>
           The Security Plans Engine is designed as a foundational security guide for beginners, encompassing essential
           tools like Static Application Security Testing (SAST), Software Composition Analysis (SCA), and Secret
           Detection to establish a strong initial defense against common security vulnerabilities.{' '}
@@ -84,7 +82,7 @@ const Header = () => {
           }}
         >
           <Box position='relative' display='inline-flex'>
-            <CircularProgress variant='determinate' value={0} sx={{ color: '#4B4BFF', width: 50, height: 50 }} />
+            <CircularProgress variant='determinate' value={0} sx={{ width: 50, height: 50 }} />
             <Box
               sx={{
                 position: 'absolute',
@@ -100,7 +98,6 @@ const Header = () => {
           </Box>
           <Typography
             sx={{
-              color: '#B0B0C3',
               fontSize: 12,
               marginTop: 1
             }}
@@ -125,14 +122,13 @@ const Header = () => {
               textAlign: 'center',
               padding: '10px 0',
               width: '100px',
-              backgroundColor: '#2E2E3E',
               borderRadius: 2
             }}
           >
             <Typography variant='h6' fontWeight='bold' sx={{ color: item.color || 'white' }}>
               {item.value}
             </Typography>
-            <Typography sx={{ color: '#B0B0C3', fontSize: 12 }}>{item.label}</Typography>
+            <Typography sx={{ fontSize: 12 }}>{item.label}</Typography>
           </Box>
         ))}
 

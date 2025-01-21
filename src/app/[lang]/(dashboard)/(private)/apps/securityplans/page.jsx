@@ -35,39 +35,72 @@ const SecurityPlans = async () => {
 
   const cards = [
     {
-      title: 'Basic Security Plan',
-      description:
-        'The Application Security Plan is designed as a foundational security guide for beginners, encompassing essential tools like Static Application Security Testing (SAST), Software Composition Analysis (SCA).',
-      tags: [],
+      title: 'Developer Scan Plan',
+      description: 'Secure code and APIs during the development phase',
+      tags: ['SAST', 'SCA', 'API'],
       colors: ['#4c5e83', '#343453'],
       controls: '0 / 4',
       score: '10',
       page: '/apps/securityplans/basic'
     },
     {
-      title: 'Cloud Security Plan',
+      title: 'DevOps Scan Plan',
       description: 'OE will help your company on your journey for cloud security.',
-      tags: [],
+      tags: ['CI/CD', 'IAC', 'Container'],
       colors: ['#94a2eb', '#343453'],
       controls: '0 / 51',
       score: '20',
       page: '/apps/securityplans/ftr'
     },
     {
-      title: ' Intermediate Security Plan',
-      description:
-        'This Plan offers the highest level of security across the entire SDLC, integrating all available controls to safeguard software development, deployment, and maintenance comprehensively.',
-      tags: [],
+      title: 'Enterprise Comprehensive Scan Plan',
+      description: 'Full visibility and protection across the SDLC and infrastructure',
+      tags: ['SCA', 'SCM', 'SBOM', '+ 6'],
       colors: ['#4c5e83', '#b76e79'],
-      controls: '0 / 18',
-      score: '10%',
-      page: '/apps/securityplans/intermediate'
+      controls: '0 / 2',
+      score: '27',
+      page: '/apps/securityplans/max'
     },
     {
-      title: 'Max Security Plan',
-      description:
-        'The Dynamic Application Security Testing Plan leverages a DAST tool to identify and mitigate vulnerabilities in real-time for both web applications and APIs.',
-      tags: ['AppSec', 'Advanced'],
+      title: 'Cloud-Native Security Scan Plan',
+      description: 'Secure cloud-native applications, environments, and APIs',
+      tags: ['Container', 'CSPM', 'API'],
+      colors: ['#4c5e83', '#b76e79'],
+      controls: '0 / 2',
+      score: '27',
+      page: '/apps/securityplans/max'
+    },
+    {
+      title: 'Security Lead Visibility Scan Plan',
+      description: 'Provide insights into vulnerabilities and risk management across teams',
+      tags: ['Threat & Vulnerability Management', 'CSPM', 'API'],
+      colors: ['#4c5e83', '#b76e79'],
+      controls: '0 / 2',
+      score: '27',
+      page: '/apps/securityplans/max'
+    },
+    {
+      title: 'CISO Compliance and Governance Scan Plan',
+      description: 'Secure cloud-native applications, environments, and APIs.',
+      tags: ['Compliance', 'CSPM', 'Monitoring'],
+      colors: ['#4c5e83', '#b76e79'],
+      controls: '0 / 2',
+      score: '27',
+      page: '/apps/securityplans/max'
+    },
+    {
+      title: 'CTO Strategic Insights Scan Plan',
+      description: 'Align security practices with product strategy and innovation',
+      tags: ['Compliance', 'CSPM', 'Monitoring'],
+      colors: ['#4c5e83', '#b76e79'],
+      controls: '0 / 2',
+      score: '27',
+      page: '/apps/securityplans/max'
+    },
+    {
+      title: 'Engineering Manager Productivity Scan Plan',
+      description: 'Improve team productivity and integrate security seamlessly into development workflows',
+      tags: ['Compliance', 'CSPM', 'Monitoring'],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
@@ -80,7 +113,7 @@ const SecurityPlans = async () => {
       <Header />
       {cards.map((card, index) => {
         return (
-          <Grid item xs={12} md={6} key={index}>
+          <Grid item xs={12} md={4} key={index}>
             <SecurityCard cardInfo={card} />
           </Grid>
         )
