@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 
 //MUI Imports
-import { Card, CardContent, Typography, Box, Button, CircularProgress } from '@mui/material'
+import { Card, CardContent, Typography, Box, Button, CircularProgress, Chip } from '@mui/material'
 
 import RadialBarChart from './RadialBarChart'
 
@@ -15,8 +15,7 @@ const SecurityCard = ({ cardInfo }) => {
     <Card
       sx={{
         width: '100%',
-        height: '300px',
-        backgroundColor: '#1C1C2B',
+        height: '250px',
         color: 'white',
         borderRadius: 2,
         display: 'flex',
@@ -25,7 +24,7 @@ const SecurityCard = ({ cardInfo }) => {
         p: 2
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -34,19 +33,19 @@ const SecurityCard = ({ cardInfo }) => {
         }}
       >
         <RadialBarChart />
-      </Box>
-      <CardContent sx={{ p: 0 }} style={{ width: '60%', marginLeft: '10%' }}>
-        <Typography variant='h6' sx={{ mt: 2 }} color={'white'}>
+      </Box> */}
+      <CardContent sx={{ p: 0 }} style={{ width: '90%', marginLeft: '5%' }}>
+        <Typography variant='h6' sx={{ mt: 2, textAlign: 'center' }}>
           {cardInfo.title}
         </Typography>
-        <Typography variant='body2' sx={{ mt: 2, color: '#B0B0C3' }}>
+        <Typography variant='body2' sx={{ mt: 2 }}>
           {cardInfo.description}
         </Typography>
         <Button
           variant='contained'
           href={`/${locale}/${cardInfo.page}`}
           sx={{
-            mt: 2,
+            mt: 10,
             backgroundColor: '#4B4BFF',
             textTransform: 'none',
             width: '100%',
@@ -55,6 +54,11 @@ const SecurityCard = ({ cardInfo }) => {
         >
           View Plan
         </Button>
+        <div style={{ marginTop: '10px' }}>
+          {cardInfo?.tags.map((tag, index) => (
+            <Chip key={index} label={tag} sx={{ padding: '1px', marginTop: '5px', marginRight: '3px' }} />
+          ))}
+        </div>
       </CardContent>
     </Card>
   )

@@ -16,7 +16,8 @@ import {
   Box,
   Button,
   Divider,
-  Skeleton
+  Skeleton,
+  Tooltip
 } from '@mui/material'
 
 import IconButton from '@mui/material/IconButton'
@@ -24,45 +25,6 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
 import { semgrepScanInfo } from '@/api/sast'
-
-const data = [
-  {
-    location: 'RahilGandhi/blog-app-client',
-    name: 'Insecure HTTP Requests in React',
-    firstDetected: 'Dec 22, 2024',
-    status: 'Open',
-    type: 'Code',
-    severity: 'H',
-    details: {
-      issue: 'Unencrypted request over HTTP detected.',
-      securityTool: 'Semgrep',
-      organization: 'RahilGandhi',
-      repository: 'blog-app-client',
-      branch: 'main',
-      assetType: 'Repository',
-      learnMore: 'Link 1',
-      location: 'src/services.js'
-    }
-  },
-  {
-    location: 'RahilGandhi/blog-app-client',
-    name: 'Insecure HTTP Requests in React',
-    firstDetected: 'Dec 22, 2024',
-    status: 'Open',
-    type: 'Code',
-    severity: 'H',
-    details: {
-      issue: 'Unencrypted request over HTTP detected.',
-      securityTool: 'Semgrep',
-      organization: 'RahilGandhi',
-      repository: 'blog-app-client',
-      branch: 'main',
-      assetType: 'Repository',
-      learnMore: 'Link 1',
-      location: 'src/services.js'
-    }
-  }
-]
 
 const ResultsTable = ({ type }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -79,14 +41,49 @@ const ResultsTable = ({ type }) => {
 
   const authToken = localStorage.getItem('authToken')
 
+  function combineResultsWithMetadata(data) {
+    let combinedResults = []
+
+    data.forEach(item => {
+      item.results.forEach(result => {
+        const enrichedResult = {
+          ...result,
+          scan_category: item.scan_category,
+          scan_subcategory: item.scan_subcategory,
+          scan_date: item.scan_date,
+          repository: item.repository,
+          status: item.status
+        }
+
+        combinedResults.push(enrichedResult)
+      })
+    })
+
+    return combinedResults
+  }
+
+  function generateGitHubLineLink(repoUrl, filename, lineNumber) {
+    if (!repoUrl || !filename || !lineNumber) {
+      return
+    }
+
+    // Ensure the repo URL ends with a trailing slash
+    const formattedRepoUrl = repoUrl.endsWith('/') ? repoUrl : `${repoUrl}/`
+
+    const filePath = `blob/main/${filename}#L${lineNumber}`
+
+    return `${formattedRepoUrl}${filePath}`
+  }
+
   const getScanResults = async () => {
     let params = { scan_category: type }
 
     try {
       const res = await semgrepScanInfo(params, authToken)
+      const combData = combineResultsWithMetadata(res?.data?.scans)
 
       setPageLaoding(false)
-      setData(res?.data?.scans)
+      setData(combData)
     } catch (error) {
       console.log(error)
     }
@@ -97,19 +94,12 @@ const ResultsTable = ({ type }) => {
       const res = await semgrepScanInfo(params, authToken)
 
       setDrawerLoading(false)
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
   }
 
   const handleRowClick = row => {
-    let params = {
-      scan_category: type,
-      scan_id: [row.scan_id]
-    }
-
-    getScanDetails(params)
     setSelectedRow(row)
     setDrawerOpen(true)
   }
@@ -130,6 +120,11 @@ const ResultsTable = ({ type }) => {
                 <TableCell>
                   <Typography variant='subtitle1' fontWeight='bold'>
                     Repo Name
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant='subtitle1' fontWeight='bold'>
+                    Vulnerability
                   </Typography>
                 </TableCell>
                 <TableCell>
@@ -168,6 +163,12 @@ const ResultsTable = ({ type }) => {
                   }}
                 >
                   <TableCell>{row.repository.split('github.com')[1]}</TableCell>
+                  <Tooltip title={row.extra.message}>
+                    <TableCell>
+                      {row.extra.message.split(' ').slice(0, 10).join(' ') +
+                        (row.extra.message.split(' ').length > 10 ? '...' : '')}
+                    </TableCell>
+                  </Tooltip>
                   <TableCell>{row.scan_subcategory}</TableCell>
                   <TableCell>
                     <Chip
@@ -177,14 +178,26 @@ const ResultsTable = ({ type }) => {
                       style={{ fontWeight: 'bold' }}
                     />
                   </TableCell>
-                  <TableCell>code</TableCell>
+                  <TableCell>{row.scan_date.split('T')[0]}</TableCell>
                   <TableCell>
                     <Chip
-                      label={'High'}
-                      color='error'
+                      label={row.extra.metadata.confidence}
+                      color={
+                        row.extra.metadata.confidence === 'MEDIUM'
+                          ? 'warning'
+                          : row.extra.metadata.confidence === 'LOW'
+                            ? 'info'
+                            : 'secondary'
+                      }
                       style={{
                         fontWeight: 'bold',
-                        backgroundColor: '#f44336',
+                        backgroundColor: `${
+                          row.extra.metadata.confidence === 'MEDIUM'
+                            ? '#ffc300'
+                            : row.extra.metadata.confidence === 'LOW'
+                              ? 'green'
+                              : 'red'
+                        }`,
                         color: 'white'
                       }}
                     />
@@ -224,22 +237,23 @@ const ResultsTable = ({ type }) => {
           }}
         >
           <div className='flex items-center justify-between'>
+            {/* <img src='/images/apps/connectors/GithubIcon.png' alt='GitHub Icon' w/>{' '} */}
             <Typography variant='body1' fontWeight='bold' color={'white'}>
               Finding Info
             </Typography>
             <div className='flex flex-row gap-3'>
-              <Chip label='Open' sx={{ backgroundColor: '#1976d2' }} />
-              <Chip label='High' sx={{ backgroundColor: 'red' }} />
+              <Chip label={selectedRow?.scan_category} sx={{ backgroundColor: '#1976d2' }} />
+              <Chip label={selectedRow?.extra?.metadata.confidence} sx={{ backgroundColor: 'red' }} />
             </div>
           </div>
           <Typography variant='h6' className='mt-7' sx={{ color: 'white' }}>
             <span className='border p-1 bg-gray-800' style={{ borderRadius: '10px' }}>
-              CVE-2098:300
+              {selectedRow?.extra?.metadata?.cwe[0]?.split(':')[0]}
             </span>{' '}
-            Insecure HTTP Requests In React With Axios
+            {selectedRow?.extra?.message}
           </Typography>
           <Typography variant='body1' className='mt-4'>
-            Unencrypted request over HTTP detected.
+            {selectedRow?.check_id}
           </Typography>
           <div className='flex flex-row gap-2'>
             <Button variant='outlined' className='mt-10 p-2' style={{ color: 'gray', borderColor: 'gray' }}>
@@ -332,8 +346,27 @@ const ResultsTable = ({ type }) => {
           </div>
 
           <div className='flex flex-row mt-5 gap-5'>
-            <Typography variant='body1'>File Name : </Typography>
-            <p style={{ color: '#1976d2' }}>./index.js</p>
+            <Typography variant='body1'>File Path : </Typography>
+            <a
+              href={generateGitHubLineLink(
+                selectedRow?.repository,
+                selectedRow?.path.split('/').slice(8).join('/'),
+                selectedRow?.start?.line
+              )}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <p style={{ color: '#1976d2', textDecoration: 'underline' }}>
+                {selectedRow?.path.split('/').slice(7).join('/')}
+              </p>
+            </a>
+          </div>
+
+          <div className='flex flex-row mt-5 gap-5'>
+            <Typography variant='body1'>Line : </Typography>
+            <p style={{ color: '#1976d2' }}>
+              {selectedRow?.start?.line}:{selectedRow?.start?.col}
+            </p>
           </div>
         </Box>
       </Drawer>

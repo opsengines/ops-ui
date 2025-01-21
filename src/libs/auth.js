@@ -86,7 +86,7 @@ export const authOptions = {
     strategy: 'jwt',
 
     // ** Seconds - How long until an idle session expires and is no longer valid
-    maxAge: 30 * 24 * 60 * 60 // ** 30 days
+    maxAge: 1 * 24 * 60 * 60 // ** 1 days
   },
 
   // ** Please refer to https://next-auth.js.org/configuration/options#pages for more `pages` options
