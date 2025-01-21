@@ -27,9 +27,7 @@ const ComingSoon = ({ mode }) => {
           <div className='is-[90vw] sm:is-[unset]'>
             <div className='flex flex-col gap-2'>
               <Typography variant='h4'>We are launching soon 🚀</Typography>
-              <Typography className='mbe-10'>
-                Our website is opening soon. Please register to get notified when it&#39;s ready!
-              </Typography>
+              <Typography className='mbe-10'>Please register to get notified when it&#39;s ready!</Typography>
             </div>
             <Form noValidate autoComplete='off'>
               <div className='flex justify-center gap-4'>

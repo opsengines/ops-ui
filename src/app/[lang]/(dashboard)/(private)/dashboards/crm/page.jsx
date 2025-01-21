@@ -65,10 +65,10 @@ const DashboardCRM = () => {
               </Grid>
               <Grid item xs={6} sm={12}>
                 <CardStatVertical
-                  stats='862'
+                  stats='6'
                   trend='negative'
                   trendNumber='18%'
-                  title='Test Repository'
+                  title='Connectors'
                   subtitle='Yearly Project'
                   avatarColor='primary'
                   avatarIcon='ri-file-word-2-line'

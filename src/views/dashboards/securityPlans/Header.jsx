@@ -71,44 +71,9 @@ const Header = () => {
 
       {/* Statistics Section */}
       <Box display='flex' justifyContent='space-between' alignItems='center' mt={2} gap={2}>
-        {/* Score Metric */}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-            width: '100px'
-          }}
-        >
-          <Box position='relative' display='inline-flex'>
-            <CircularProgress variant='determinate' value={0} sx={{ width: 50, height: 50 }} />
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)'
-              }}
-            >
-              <Typography variant='caption' component='div' fontWeight='bold'>
-                0%
-              </Typography>
-            </Box>
-          </Box>
-          <Typography
-            sx={{
-              fontSize: 12,
-              marginTop: 1
-            }}
-          >
-            Score
-          </Typography>
-        </Box>
-
         {/* Other Metrics */}
+
         {[
-          { label: 'Controls', value: 4 },
           { label: 'Activated', value: 1 },
           { label: 'Passed', value: 0, color: '#81FF81' },
           { label: 'Failed', value: 0, color: '#FF8181' }

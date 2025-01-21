@@ -15,7 +15,7 @@ const SecurityCard = ({ cardInfo }) => {
     <Card
       sx={{
         width: '100%',
-        height: '250px',
+        height: '270px',
         color: 'white',
         borderRadius: 2,
         display: 'flex',
@@ -35,7 +35,7 @@ const SecurityCard = ({ cardInfo }) => {
         <RadialBarChart />
       </Box> */}
       <CardContent sx={{ p: 0 }} style={{ width: '90%', marginLeft: '5%' }}>
-        <Typography variant='h6' sx={{ mt: 2, textAlign: 'center' }}>
+        <Typography variant='h6' sx={{ mt: 5, textAlign: 'center' }}>
           {cardInfo.title}
         </Typography>
         <Typography variant='body2' sx={{ mt: 2 }}>
