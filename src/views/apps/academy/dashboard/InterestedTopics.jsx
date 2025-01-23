@@ -155,7 +155,9 @@ const InterestedTopics = () => {
                   <div key={i} className='flex gap-2'>
                     <i className={classnames('ri-circle-fill text-xs m-[5px]', item.colorClass)} />
                     <div>
-                      <Typography>{item.title}</Typography>
+                      <Typography className='underline'>
+                        <a href='#'>{item.title}</a>
+                      </Typography>
                       <Typography variant='h5'>{`${item.value}`}</Typography>
                     </div>
                   </div>
@@ -166,7 +168,9 @@ const InterestedTopics = () => {
                   <div key={i} className='flex gap-2'>
                     <i className={classnames('ri-circle-fill text-xs m-[5px]', item.colorClass)} />
                     <div>
-                      <Typography>{item.title}</Typography>
+                      <Typography className='underline'>
+                        <a href='#'>{item.title}</a>
+                      </Typography>
                       <Typography variant='h5'>{`${item.value}`}</Typography>
                     </div>
                   </div>

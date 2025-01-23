@@ -14,6 +14,7 @@ import CustomTable from '../../academy/dashboard/CustomTable'
 import CVSTable from '../cvsTable'
 import ComplianceTable from '../complianceTable'
 import HeaderComponent from '../HeaderComponent'
+import WeeklyOverview from '@/views/pages/widget-examples/charts/WeeklyOverview'
 
 const Sast = async () => {
   // Vars
@@ -40,7 +41,8 @@ const Sast = async () => {
       tags: 'Web',
       rating: 4.4,
       ratingCount: 8,
-      severity: 'High'
+      severity: 'High',
+      count: 10
     },
     {
       id: 2,
@@ -63,7 +65,8 @@ const Sast = async () => {
       tags: 'Web',
       rating: 4.4,
       ratingCount: 8,
-      severity: 'High'
+      severity: 'High',
+      count: 8
     },
     {
       id: 3,
@@ -86,7 +89,8 @@ const Sast = async () => {
       tags: 'Web',
       rating: 4.4,
       ratingCount: 8,
-      severity: 'Low'
+      severity: 'Low',
+      count: 3
     },
     {
       id: 4,
@@ -109,7 +113,8 @@ const Sast = async () => {
       tags: 'Web',
       rating: 4.4,
       ratingCount: 8,
-      severity: 'Medium'
+      severity: 'Medium',
+      count: 5
     }
   ]
 
@@ -222,7 +227,7 @@ const Sast = async () => {
         <InterestedTopics />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <AssignmentProgress />
+        <WeeklyOverview />
       </Grid>
 
       <Grid item xs={12} md={4}>

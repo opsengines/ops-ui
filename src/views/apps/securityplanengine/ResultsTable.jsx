@@ -17,7 +17,13 @@ import {
   Button,
   Divider,
   Skeleton,
-  Tooltip
+  Tooltip,
+  Grid,
+  Select,
+  TextField,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@mui/material'
 
 import IconButton from '@mui/material/IconButton'
@@ -32,6 +38,14 @@ const ResultsTable = ({ type }) => {
   const [data, setData] = useState([])
   const [pageLoading, setPageLaoding] = useState(true)
   const [drawerLoading, setDrawerLoading] = useState(true)
+  const [filterActive, setFilterActive] = useState(false)
+
+  const [filters, setFilters] = useState({
+    repoName: '',
+    scanId: '',
+    status: '',
+    severity: ''
+  })
 
   const closeDrawer = () => {
     setDrawerLoading(true)
@@ -40,6 +54,11 @@ const ResultsTable = ({ type }) => {
   }
 
   const authToken = localStorage.getItem('authToken')
+
+  const handleFilterChange = (key, value) => {
+    setFilters(prev => ({ ...prev, [key]: value }))
+    const matchedItems = data.filter(item => item.repository.includes(filters.repoName))
+  }
 
   function combineResultsWithMetadata(data) {
     let combinedResults = []
@@ -89,16 +108,6 @@ const ResultsTable = ({ type }) => {
     }
   }
 
-  const getScanDetails = async params => {
-    try {
-      const res = await semgrepScanInfo(params, authToken)
-
-      setDrawerLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleRowClick = row => {
     setSelectedRow(row)
     setDrawerOpen(true)
@@ -113,100 +122,161 @@ const ResultsTable = ({ type }) => {
       {pageLoading ? (
         <Skeleton variant='rounded' width={'79vw'} height={'90vh'} />
       ) : (
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Typography variant='subtitle1' fontWeight='bold'>
-                    Repo Name
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant='subtitle1' fontWeight='bold'>
-                    Vulnerability
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant='subtitle1' fontWeight='bold'>
-                    Scan Id
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant='subtitle1' fontWeight='bold'>
-                    Status
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant='subtitle1' fontWeight='bold'>
-                    Scan Date
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant='subtitle1' fontWeight='bold'>
-                    Severity
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((row, index) => (
-                <TableRow
-                  key={index}
-                  onClick={() => handleRowClick(row)}
-                  sx={{
-                    '&:hover': {
-                      border: '2px solid #1976d2',
-                      cursor: 'pointer'
-                    },
-                    transition: 'border 0.2s ease-in-out'
-                  }}
+        <div>
+          <Grid container spacing={2} style={{ marginBottom: '16px' }}>
+            <Grid item xs={12} sm={3} md={3}>
+              <TextField
+                fullWidth
+                label='Repository Name'
+                variant='outlined'
+                value={filters.repoName}
+                onChange={e => handleFilterChange('repoName', e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={2} md={3}>
+              <FormControl fullWidth>
+                <InputLabel id='scan-id-label'>Scan ID</InputLabel>
+                <Select
+                  labelId='scan-id-label'
+                  value={filters.scanId}
+                  onChange={e => handleFilterChange('scanId', e.target.value)}
+                  label='Scan ID'
                 >
-                  <TableCell>{row.repository.split('github.com')[1]}</TableCell>
-                  <Tooltip title={row.extra.message}>
-                    <TableCell>
-                      {row.extra.message.split(' ').slice(0, 10).join(' ') +
-                        (row.extra.message.split(' ').length > 10 ? '...' : '')}
-                    </TableCell>
-                  </Tooltip>
-                  <TableCell>{row.scan_subcategory}</TableCell>
+                  <MenuItem value=''>None</MenuItem>
+                  <MenuItem value='SAST-001'>SAST-001</MenuItem>
+                  <MenuItem value='SAST-002'>SAST-002</MenuItem>
+                  <MenuItem value='SAST-003'>SAST-003</MenuItem>
+                  <MenuItem value='SAST-004'>SAST-004</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={2} md={3}>
+              <FormControl fullWidth>
+                <InputLabel id='status-label'>Status</InputLabel>
+                <Select
+                  labelId='status-label'
+                  value={filters.status}
+                  onChange={e => handleFilterChange('status', e.target.value)}
+                  label='Status'
+                >
+                  <MenuItem value=''>None</MenuItem>
+                  <MenuItem value='Completed'>Completed</MenuItem>
+                  <MenuItem value='In Progress'>In Progress</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={2} md={3}>
+              <FormControl fullWidth>
+                <InputLabel id='severity-label'>Severity</InputLabel>
+                <Select
+                  labelId='severity-label'
+                  value={filters.severity}
+                  onChange={e => handleFilterChange('severity', e.target.value)}
+                  label='Severity'
+                >
+                  <MenuItem value=''>None</MenuItem>
+                  <MenuItem value='LOW'>Low</MenuItem>
+                  <MenuItem value='MEDIUM'>Medium</MenuItem>
+                  <MenuItem value='HIGH'>High</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
                   <TableCell>
-                    <Chip
-                      label={row.status === 'completed' ? 'Completed' : 'Ongoing'}
-                      color={row.status === 'completed' ? 'success' : 'error'}
-                      variant='outlined'
-                      style={{ fontWeight: 'bold' }}
-                    />
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Repo Name
+                    </Typography>
                   </TableCell>
-                  <TableCell>{row.scan_date.split('T')[0]}</TableCell>
                   <TableCell>
-                    <Chip
-                      label={row.extra.metadata.confidence}
-                      color={
-                        row.extra.metadata.confidence === 'MEDIUM'
-                          ? 'warning'
-                          : row.extra.metadata.confidence === 'LOW'
-                            ? 'info'
-                            : 'secondary'
-                      }
-                      style={{
-                        fontWeight: 'bold',
-                        backgroundColor: `${
-                          row.extra.metadata.confidence === 'MEDIUM'
-                            ? '#ffc300'
-                            : row.extra.metadata.confidence === 'LOW'
-                              ? 'green'
-                              : 'red'
-                        }`,
-                        color: 'white'
-                      }}
-                    />
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Vulnerability
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Scan Id
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Status
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Scan Date
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Severity
+                    </Typography>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {data.map((row, index) => (
+                  <TableRow
+                    key={index}
+                    onClick={() => handleRowClick(row)}
+                    sx={{
+                      '&:hover': {
+                        border: '2px solid #1976d2',
+                        cursor: 'pointer'
+                      },
+                      transition: 'border 0.2s ease-in-out'
+                    }}
+                  >
+                    <TableCell>{row.repository.split('github.com')[1]}</TableCell>
+                    <Tooltip title={row.extra.message}>
+                      <TableCell>
+                        {row.extra.message.split(' ').slice(0, 10).join(' ') +
+                          (row.extra.message.split(' ').length > 10 ? '...' : '')}
+                      </TableCell>
+                    </Tooltip>
+                    <TableCell>{row.scan_subcategory}</TableCell>
+                    <TableCell>
+                      <Chip
+                        label={row.status === 'completed' ? 'Completed' : 'Ongoing'}
+                        color={row.status === 'completed' ? 'success' : 'error'}
+                        variant='outlined'
+                        style={{ fontWeight: 'bold' }}
+                      />
+                    </TableCell>
+                    <TableCell>{row.scan_date.split('T')[0]}</TableCell>
+                    <TableCell>
+                      <Chip
+                        label={row.extra.metadata.confidence}
+                        color={
+                          row.extra.metadata.confidence === 'MEDIUM'
+                            ? 'warning'
+                            : row.extra.metadata.confidence === 'LOW'
+                              ? 'info'
+                              : 'secondary'
+                        }
+                        style={{
+                          fontWeight: 'bold',
+                          backgroundColor: `${
+                            row.extra.metadata.confidence === 'MEDIUM'
+                              ? '#ffc300'
+                              : row.extra.metadata.confidence === 'LOW'
+                                ? 'green'
+                                : 'red'
+                          }`,
+                          color: 'white'
+                        }}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       )}
       {data?.length < 1 && <Typography variant='h6'>No Data Available</Typography>}
 

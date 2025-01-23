@@ -13,20 +13,20 @@ import CustomAvatar from '@core/components/mui/Avatar'
 const data = [
   {
     stats: '35',
-    title: 'Critical',
+    title: 'Developer',
     color: 'primary',
     icon: 'ri-pie-chart-2-line'
   },
   {
     stats: '22',
-    title: 'High',
+    title: 'Security Lead',
     color: 'success',
     icon: 'ri-group-line'
   },
   {
     stats: '9',
     color: 'warning',
-    title: 'Medium',
+    title: 'CISO',
     icon: 'ri-macbook-line'
   }
 ]
@@ -35,12 +35,11 @@ const Transactions = () => {
   return (
     <Card>
       <CardHeader
-        title='Resolution'
+        title='Custom Dashboard'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Share', 'Update']} />}
         subheader={
           <>
-            <span className='font-medium text-textPrimary'>Total 48.5% Growth 😎</span>{' '}
-            <span className='text-textSecondary'>this month</span>
+            <span className='font-medium text-textPrimary'>View Custom Dashboard</span>
           </>
         }
       />
@@ -54,7 +53,6 @@ const Transactions = () => {
                 </CustomAvatar>
                 <div>
                   <Typography>{item.title}</Typography>
-                  <Typography variant='h5'>{item.stats}</Typography>
                 </div>
               </div>
             </Grid>

@@ -109,11 +109,17 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         </SubMenu> */}
         <SubMenu label={dictionary['navigation'].eCommerce} icon={<i className='ri-shopping-bag-3-line' />}>
           <MenuItem href={`/${locale}/apps/securityengines/sast`}>SAST</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/scm`}>{dictionary['navigation'].dashboard}</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/scm`}>SCA</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/sbom`}>SBOM</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/dast`}>DAST</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/cicd`}>CI/CD Security</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/ `}>Cloud Security</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/api`}>API</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/cicd`}>CI/CD</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/cloudsecurity`}>CSPM</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/aiml`}>AI/ML Model</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/privacy`}>Privacy & Security</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/compliance`}>Compliance</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/idesecurity`}>IDE Security Extensions</MenuItem>
+
           {/* <SubMenu label={dictionary['navigation'].products}>
             <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].add}</MenuItem>
             <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>

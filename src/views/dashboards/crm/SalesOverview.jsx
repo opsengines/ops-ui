@@ -47,7 +47,7 @@ const CardWidgetsSalesOverview = () => {
     legend: { show: false },
     tooltip: { theme: 'false' },
     dataLabels: { enabled: false },
-    labels: ['Critical', 'High', 'Average', 'Low'],
+    labels: ['Critical', 'High', 'Medium', 'Low'],
     states: {
       hover: {
         filter: { type: 'none' }
@@ -120,7 +120,7 @@ const CardWidgetsSalesOverview = () => {
               </CustomAvatar>
               <div className='flex flex-col'>
                 <Typography>Total Vulnerabilities</Typography>
-                <Typography variant='h5'>100K</Typography>
+                <Typography variant='h5'>100</Typography>
               </div>
             </div>
             <Divider className='mlb-6' />
@@ -132,7 +132,7 @@ const CardWidgetsSalesOverview = () => {
                   </div>
                   <Typography>Critical</Typography>
                 </div>
-                <Typography className='font-medium'>12K</Typography>
+                <Typography className='font-medium'>12</Typography>
               </Grid>
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
@@ -141,16 +141,16 @@ const CardWidgetsSalesOverview = () => {
                   </div>
                   <Typography>High</Typography>
                 </div>
-                <Typography className='font-medium'>25K</Typography>
+                <Typography className='font-medium'>25</Typography>
               </Grid>
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
                   <div>
                     <i className='ri-circle-fill text-[10px] text-primary' />
                   </div>
-                  <Typography>Average</Typography>
+                  <Typography>Medium</Typography>
                 </div>
-                <Typography className='font-medium'>13K</Typography>
+                <Typography className='font-medium'>13</Typography>
               </Grid>
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
@@ -159,7 +159,7 @@ const CardWidgetsSalesOverview = () => {
                   </div>
                   <Typography>Low</Typography>
                 </div>
-                <Typography className='font-medium'>50K</Typography>
+                <Typography className='font-medium'>50</Typography>
               </Grid>
             </Grid>
           </Grid>

@@ -183,6 +183,15 @@ const CVSTable = ({ courseData, onClick = f => f }) => {
           />
         ),
         enableSorting: false
+      }),
+      columnHelper.accessor('count', {
+        header: 'Count',
+        cell: ({ row }) => (
+          <Typography className='font-medium underline' color='text.primary'>
+            <a href='#'>{row.original.count}</a>
+          </Typography>
+        ),
+        enableSorting: false
       })
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps

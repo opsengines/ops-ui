@@ -23,7 +23,7 @@ const TotalRevenue = () => {
     chart: {
       sparkline: { enabled: true }
     },
-    labels: ['Returning', 'New Users', 'Referrals'],
+    labels: ['Reccuring', 'New', 'Fixed'],
     legend: { show: false },
     stroke: { lineCap: 'round' },
     colors: ['var(--mui-palette-primary-main)', 'var(--mui-palette-success-main)', 'var(--mui-palette-warning-main)'],
@@ -66,7 +66,7 @@ const TotalRevenue = () => {
             color: textSecondaryColor,
             label: `${new Date().getFullYear()}`,
             formatter(value) {
-              return `${value.globals.seriesTotals.reduce((total, num) => total + num)}k`
+              return `${value.globals.seriesTotals.reduce((total, num) => total + num)}`
             }
           }
         }
@@ -77,11 +77,11 @@ const TotalRevenue = () => {
   return (
     <Card>
       <CardHeader
-        title='Total Revenue'
+        title='Summary'
         action={<OptionsMenu options={['Last 28 Days', 'Last Month', 'Last Year']} iconClassName='text-textPrimary' />}
       />
       <CardContent>
-        <AppReactApexCharts type='radialBar' height={250} width='100%' series={[71, 78, 86]} options={options} />
+        <AppReactApexCharts type='radialBar' height={160} width='100%' series={[71, 78, 86]} options={options} />
         <div className='flex justify-around'>
           <div className='flex items-center flex-col justify-center gap-1'>
             <div className='flex items-center justify-center gap-2'>
@@ -90,7 +90,7 @@ const TotalRevenue = () => {
                 856
               </Typography>
             </div>
-            <Typography>New User</Typography>
+            <Typography>New</Typography>
           </div>
           <Divider orientation='vertical' className='bs-auto' />
           <div className='flex items-center flex-col justify-center gap-1'>
@@ -100,7 +100,7 @@ const TotalRevenue = () => {
                 345
               </Typography>
             </div>
-            <Typography>Returning</Typography>
+            <Typography>Reccuring</Typography>
           </div>
           <Divider orientation='vertical' className='bs-auto' />
           <div className='flex items-center flex-col justify-center gap-1'>
@@ -110,7 +110,7 @@ const TotalRevenue = () => {
                 258
               </Typography>
             </div>
-            <Typography>Referrals</Typography>
+            <Typography>Fixed</Typography>
           </div>
         </div>
       </CardContent>
