@@ -158,7 +158,7 @@ const HeaderComponent = () => {
           <Typography variant='h4'>Felecia 👋🏻</Typography>
         </div>
         <div className='mbe-4'>
-          <Typography>View and manage the security findings detected in your product.</Typography>
+          <Typography>View and manage the security findings detected</Typography>
         </div>
         <div className='flex flex-wrap max-md:flex-col justify-between gap-6'>
           {data.map((item, i) => (

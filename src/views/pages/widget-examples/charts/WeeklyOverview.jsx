@@ -51,11 +51,11 @@ const WeeklyOverview = () => {
     dataLabels: { enabled: false },
     colors: [
       'var(--mui-palette-customColors-trackBg)',
-      'var(--mui-palette-customColors-trackBg)',
+      'var(--mui-palette-primary-main)',
       'var(--mui-palette-customColors-trackBg)',
       'var(--mui-palette-primary-main)',
       'var(--mui-palette-customColors-trackBg)',
-      'var(--mui-palette-customColors-trackBg)'
+      'var(--mui-palette-primary-main)'
     ],
     states: {
       hover: {
@@ -68,7 +68,12 @@ const WeeklyOverview = () => {
     xaxis: {
       categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       tickPlacement: 'on',
-      labels: { show: false },
+      labels: {
+        show: true,
+        style: {
+          colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white']
+        }
+      },
       axisTicks: { show: false },
       axisBorder: { show: false }
     },
@@ -79,7 +84,7 @@ const WeeklyOverview = () => {
         offsetY: 2,
         offsetX: -17,
         style: { colors: disabled, fontSize: theme.typography.body2.fontSize },
-        formatter: value => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}k`
+        formatter: value => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}`
       }
     },
     responsive: [
@@ -100,7 +105,7 @@ const WeeklyOverview = () => {
   }
 
   return (
-    <Card>
+    <Card sx={{ height: '400px' }}>
       <CardHeader
         title='Weekly Overview'
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Delete']} />}
@@ -108,18 +113,19 @@ const WeeklyOverview = () => {
       <CardContent sx={{ '& .apexcharts-xcrosshairs.apexcharts-active': { opacity: 0 } }}>
         <AppReactApexCharts
           type='bar'
-          height={201}
+          height={320}
           width='100%'
-          series={[{ name: 'Sales', data: [37, 57, 45, 75, 57, 40, 65] }]}
+          series={[{ name: 'Vulnerabilities', data: [37, 57, 45, 75, 57, 40, 65] }]}
           options={options}
         />
-        <div className='flex items-center mbe-4 gap-4'>
+
+        {/* <div className='flex items-center mbe-4 gap-4'>
           <Typography variant='h4'>45%</Typography>
           <Typography>Your sales performance is 45% 😎 better compared to last month</Typography>
         </div>
         <Button fullWidth variant='contained'>
           Details
-        </Button>
+        </Button> */}
       </CardContent>
     </Card>
   )
