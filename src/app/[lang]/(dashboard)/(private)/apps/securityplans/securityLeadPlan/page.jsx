@@ -12,16 +12,16 @@ import VulnerabilityScanCard from '@/views/dashboards/securityPlans/scan'
 import Header from '@/views/apps/securityplanengine/Header'
 import ScanList from '@/views/apps/securityplanengine/ScanList'
 
-const BasicSecurityPlan = async () => {
+const SecurityLeadPlan = async () => {
   // Vars
   const data = await getInvoiceData()
 
   const scans = [
     {
       id: 'OE-001',
-      title: 'Scan your code for vulnerabilities (SAST)',
+      title: 'Automate remediation suggestions ',
       tools: 'Semgrep',
-      category: 'SAST',
+      category: 'Threat',
       active: true,
       color: 'green',
       findings: '3',
@@ -29,52 +29,70 @@ const BasicSecurityPlan = async () => {
     },
     {
       id: 'OE-002',
-      title: 'Scan code for hard-coded secrets',
+      title: 'Prioritize vulnerabilities based on risk context (exploitability, impact)',
       tools: 'Gitleaks',
-      category: 'SAST',
+      category: 'Threat',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-003',
-      title: 'Validate secure configurations for sensitive files',
+      title: 'Discover exposed assets and endpoints ',
       tools: 'Semgrep, Trivy, npm-audit',
-      category: 'SAST',
+      category: 'ASM',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-004',
-      title: 'Scan dependencies for vulnerabilities',
+      title: ' Monitor shadow IT resources ',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'ASM',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-005',
-      title: ' Identify license compliance issues',
+      title: 'Assess external attack vectors',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'ASM',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-006',
-      title: 'Map risky transitive dependencies',
+      title: 'Track third-party dependencies ',
       tools: 'Syft',
       color: 'blue',
-      category: 'SCA',
+      category: 'Repository',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-007',
-      title: 'Scan APIs for injection attacks ',
+      title: 'Monitor supply chain risks ',
+      tools: 'Syft',
+      color: 'purple',
+      category: 'Repository',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-008',
+      title: 'Generate SBOM reports',
+      tools: 'Syft',
+      category: 'Repository',
+      color: 'purple',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-009',
+      title: 'Identify data exposure risks',
       tools: 'Syft',
       color: 'purple',
       category: 'API',
@@ -82,27 +100,27 @@ const BasicSecurityPlan = async () => {
       findings: '0'
     },
     {
-      id: 'OE-008',
-      title: 'Detect authentication flaws',
+      id: 'OE-010',
+      title: 'Enforce security standards ',
       tools: 'Syft',
-      category: 'API',
-      color: 'purple',
+      category: 'Compliance',
+      color: 'green',
       active: false,
       findings: '0'
     },
     {
-      id: 'OE-008',
-      title: ' Validate authorization mechanisms',
+      id: 'OE-011',
+      title: 'Ensure adherence to industry-specific regulations',
       tools: 'Syft',
-      color: 'purple',
-      category: 'API',
+      color: 'green',
+      category: 'Compliance',
       active: false,
       findings: '0'
     }
   ]
 
   const headerContent = {
-    title: 'Developer Scan Plan'
+    title: 'Security Lead Scan Plan'
   }
 
   return (
@@ -110,7 +128,7 @@ const BasicSecurityPlan = async () => {
       <Grid item xs={12} md={12} className='self-end'>
         <Header data={headerContent} />
       </Grid>
-      <div className='ml-[84%] mt-[20px] gap-5'>
+      <div className='ml-[80%] mt-[20px] gap-4 flex'>
         <Button variant='outlined'>View Results</Button>
         <Button className='ml-5' variant='outlined'>
           Scan
@@ -123,4 +141,4 @@ const BasicSecurityPlan = async () => {
   )
 }
 
-export default BasicSecurityPlan
+export default SecurityLeadPlan

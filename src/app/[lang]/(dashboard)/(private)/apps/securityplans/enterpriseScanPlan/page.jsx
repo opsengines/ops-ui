@@ -12,16 +12,16 @@ import VulnerabilityScanCard from '@/views/dashboards/securityPlans/scan'
 import Header from '@/views/apps/securityplanengine/Header'
 import ScanList from '@/views/apps/securityplanengine/ScanList'
 
-const BasicSecurityPlan = async () => {
+const EnterpriseScanPLan = async () => {
   // Vars
   const data = await getInvoiceData()
 
   const scans = [
     {
       id: 'OE-001',
-      title: 'Scan your code for vulnerabilities (SAST)',
+      title: 'Code-level security scans ',
       tools: 'Semgrep',
-      category: 'SAST',
+      category: 'Repository',
       active: true,
       color: 'green',
       findings: '3',
@@ -29,80 +29,125 @@ const BasicSecurityPlan = async () => {
     },
     {
       id: 'OE-002',
-      title: 'Scan code for hard-coded secrets',
+      title: 'Supply chain monitoring ',
       tools: 'Gitleaks',
-      category: 'SAST',
+      category: 'Repository',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-003',
-      title: 'Validate secure configurations for sensitive files',
+      title: 'Software inventory generation',
       tools: 'Semgrep, Trivy, npm-audit',
-      category: 'SAST',
+      category: 'Repository',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-004',
-      title: 'Scan dependencies for vulnerabilities',
+      title: 'Analyze running applications for real-world vulnerabilities ',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'DAST',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-005',
-      title: ' Identify license compliance issues',
+      title: 'Validate web application security',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'DAST',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-006',
-      title: 'Map risky transitive dependencies',
+      title: 'Scan APIs for misconfigurations',
       tools: 'Syft',
       color: 'blue',
-      category: 'SCA',
+      category: 'DAST',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-007',
-      title: 'Scan APIs for injection attacks ',
+      title: 'Audit cloud environments for compliance gaps ',
       tools: 'Syft',
       color: 'purple',
-      category: 'API',
+      category: 'CSPM',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-008',
-      title: 'Detect authentication flaws',
+      title: ' Detect runtime misconfigurations ',
       tools: 'Syft',
-      category: 'API',
+      category: 'CSPM',
       color: 'purple',
       active: false,
       findings: '0'
     },
     {
-      id: 'OE-008',
-      title: ' Validate authorization mechanisms',
+      id: 'OE-009',
+      title: 'Validate Kubernetes configurations',
       tools: 'Syft',
       color: 'purple',
+      category: 'CSPM',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-010',
+      title: 'Secure pipelines and container registries ',
+      tools: 'Syft',
+      color: 'green',
+      category: 'CI/CD',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-011',
+      title: 'Validate deployment practices',
+      tools: 'Syft',
+      category: 'CI/CD',
+      color: 'green',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-012',
+      title: 'Protect APIs with runtime monitoring ',
+      tools: 'Syft',
+      color: 'blue',
       category: 'API',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-013',
+      title: 'Detect runtime vulnerabilities',
+      tools: 'Syft',
+      color: 'blue',
+      category: 'API',
+      active: false,
+      findings: '0'
+    },
+    {
+      id: 'OE-014',
+      title: 'Generate audit-ready reports for GDPR, PCI-DSS, and HIPAA',
+      tools: 'Syft',
+      category: 'Compliance',
+      color: 'purple',
       active: false,
       findings: '0'
     }
   ]
 
   const headerContent = {
-    title: 'Developer Scan Plan'
+    title: 'Enterprise Comprehensive Scan Plan'
   }
 
   return (
@@ -110,7 +155,7 @@ const BasicSecurityPlan = async () => {
       <Grid item xs={12} md={12} className='self-end'>
         <Header data={headerContent} />
       </Grid>
-      <div className='ml-[84%] mt-[20px] gap-5'>
+      <div className='ml-[80%] mt-[20px] gap-4 flex'>
         <Button variant='outlined'>View Results</Button>
         <Button className='ml-5' variant='outlined'>
           Scan
@@ -123,4 +168,4 @@ const BasicSecurityPlan = async () => {
   )
 }
 
-export default BasicSecurityPlan
+export default EnterpriseScanPLan

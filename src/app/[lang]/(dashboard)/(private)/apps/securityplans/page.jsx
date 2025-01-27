@@ -1,8 +1,11 @@
 // MUI Imports
 import Grid from '@mui/material/Grid'
 
+import { CloudCircle } from '@mui/icons-material'
+
 // Data Imports
 import { getInvoiceData } from '@/app/server/actions'
+
 import ComingSoon from '@/views/pages/misc/ComingSoon'
 import SecurityCard from '@/views/dashboards/ecommerce/SecurityPlanCard'
 import Header from '@/views/dashboards/securityPlans/Header'
@@ -36,12 +39,12 @@ const SecurityPlans = async () => {
   const cards = [
     {
       title: 'Developer Scan Plan',
-      description: 'Secure code and APIs during the development phase',
+      description: 'Secure code and APIs during the development phase for developers',
       tags: ['SAST', 'SCA', 'API'],
       colors: ['#4c5e83', '#343453'],
       controls: '0 / 4',
       score: '10',
-      page: '/apps/securityplans/basic'
+      page: '/apps/securityplans/developerScanPlan'
     },
     {
       title: 'DevOps Scan Plan',
@@ -50,7 +53,7 @@ const SecurityPlans = async () => {
       colors: ['#94a2eb', '#343453'],
       controls: '0 / 51',
       score: '20',
-      page: '/apps/securityplans/ftr'
+      page: '/apps/securityplans/devopsScanPlan'
     },
     {
       title: 'Enterprise Comprehensive Scan Plan',
@@ -59,7 +62,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/securityplans/max'
+      page: '/apps/securityplans/enterpriseScanPlan'
     },
     {
       title: 'Cloud-Native Security Scan Plan',
@@ -68,7 +71,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/securityplans/max'
+      page: '/apps/securityplans/cloudNativeScanPlan'
     },
     {
       title: 'Security Lead Visibility Scan Plan',
@@ -77,7 +80,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/securityplans/max'
+      page: '/apps/securityplans/securityLeadPlan'
     },
     {
       title: 'CISO Compliance and Governance Scan Plan',
@@ -86,7 +89,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/securityplans/max'
+      page: '/apps/securityplans/cisoScanPlan'
     },
     {
       title: 'CTO Strategic Insights Scan Plan',
@@ -95,7 +98,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/securityplans/max'
+      page: '/apps/securityplans/ctoScanPlan'
     },
     {
       title: 'Engineering Manager Productivity Scan Plan',
@@ -104,7 +107,7 @@ const SecurityPlans = async () => {
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
-      page: '/apps/securityplans/max'
+      page: '/apps/securityplans/emScanPlan'
     }
   ]
 
