@@ -12,16 +12,16 @@ import VulnerabilityScanCard from '@/views/dashboards/securityPlans/scan'
 import Header from '@/views/apps/securityplanengine/Header'
 import ScanList from '@/views/apps/securityplanengine/ScanList'
 
-const BasicSecurityPlan = async () => {
+const CtoScanPlan = async () => {
   // Vars
   const data = await getInvoiceData()
 
   const scans = [
     {
       id: 'OE-001',
-      title: 'Scan your code for vulnerabilities (SAST)',
+      title: 'Provide real-time insights into security incidents ',
       tools: 'Semgrep',
-      category: 'SAST',
+      category: 'Monitoring',
       active: true,
       color: 'green',
       findings: '3',
@@ -29,80 +29,62 @@ const BasicSecurityPlan = async () => {
     },
     {
       id: 'OE-002',
-      title: 'Scan code for hard-coded secrets',
+      title: 'Monitor application behavior for anomalies',
       tools: 'Gitleaks',
-      category: 'SAST',
+      category: 'Monitoring',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-003',
-      title: 'Validate secure configurations for sensitive files',
+      title: 'Automate risk prioritization ',
       tools: 'Semgrep, Trivy, npm-audit',
-      category: 'SAST',
-      color: 'green',
+      category: 'Threat',
+      color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-004',
-      title: 'Scan dependencies for vulnerabilities',
+      title: 'Track vulnerability trends',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'Threat',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-005',
-      title: ' Identify license compliance issues',
+      title: 'Monitor risks from third-party libraries and registries ',
       tools: 'Syft',
-      category: 'SCA',
-      color: 'blue',
+      category: 'Supply Chain',
+      color: 'purple',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-006',
-      title: 'Map risky transitive dependencies',
+      title: 'Prevent supply chain tampering',
       tools: 'Syft',
-      color: 'blue',
-      category: 'SCA',
+      color: 'purple',
+      category: 'Supply Chain',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-007',
-      title: 'Scan APIs for injection attacks ',
+      title: ' Integrate findings into Jira, Slack, or GitHub workflows',
       tools: 'Syft',
-      color: 'purple',
-      category: 'API',
-      active: false,
-      findings: '0'
-    },
-    {
-      id: 'OE-008',
-      title: 'Detect authentication flaws',
-      tools: 'Syft',
-      category: 'API',
-      color: 'purple',
-      active: false,
-      findings: '0'
-    },
-    {
-      id: 'OE-008',
-      title: ' Validate authorization mechanisms',
-      tools: 'Syft',
-      color: 'purple',
-      category: 'API',
+      color: 'green',
+      category: 'Collaboration',
       active: false,
       findings: '0'
     }
   ]
 
   const headerContent = {
-    title: 'Developer Scan Plan'
+    title: 'CTO Strategic Insights Scan Plan'
   }
 
   return (
@@ -110,7 +92,7 @@ const BasicSecurityPlan = async () => {
       <Grid item xs={12} md={12} className='self-end'>
         <Header data={headerContent} />
       </Grid>
-      <div className='ml-[84%] mt-[20px] gap-5'>
+      <div className='ml-[80%] mt-[20px] gap-4 flex'>
         <Button variant='outlined'>View Results</Button>
         <Button className='ml-5' variant='outlined'>
           Scan
@@ -123,4 +105,4 @@ const BasicSecurityPlan = async () => {
   )
 }
 
-export default BasicSecurityPlan
+export default CtoScanPlan

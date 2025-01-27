@@ -12,14 +12,14 @@ import VulnerabilityScanCard from '@/views/dashboards/securityPlans/scan'
 import Header from '@/views/apps/securityplanengine/Header'
 import ScanList from '@/views/apps/securityplanengine/ScanList'
 
-const BasicSecurityPlan = async () => {
+const DeveloperScanPlan = async () => {
   // Vars
   const data = await getInvoiceData()
 
   const scans = [
     {
       id: 'OE-001',
-      title: 'Scan your code for vulnerabilities (SAST)',
+      title: 'Scan your code for vulnerabilities',
       tools: 'Semgrep',
       category: 'SAST',
       active: true,
@@ -110,8 +110,10 @@ const BasicSecurityPlan = async () => {
       <Grid item xs={12} md={12} className='self-end'>
         <Header data={headerContent} />
       </Grid>
-      <div className='ml-[84%] mt-[20px] gap-5'>
-        <Button variant='outlined'>View Results</Button>
+      <div className='ml-[80%] mt-[20px] gap-4 flex'>
+        <Button variant='outlined' className='w-[140px]'>
+          View Results
+        </Button>
         <Button className='ml-5' variant='outlined'>
           Scan
         </Button>
@@ -123,4 +125,4 @@ const BasicSecurityPlan = async () => {
   )
 }
 
-export default BasicSecurityPlan
+export default DeveloperScanPlan

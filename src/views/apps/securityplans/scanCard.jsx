@@ -61,9 +61,8 @@ const VulnerabilityScanCard = ({ scan }) => {
     <Box
       sx={{
         width: '100%',
-        backgroundColor: '#1C1C2B',
-        color: 'white',
-        borderRadius: 2,
+        borderRadius: 1,
+        boxShadow: 2,
         p: 2,
         display: 'flex',
         alignItems: 'center',
@@ -78,8 +77,6 @@ const VulnerabilityScanCard = ({ scan }) => {
         <Chip
           label={`${scan.id}`}
           sx={{
-            backgroundColor: '#2E2E3E',
-            color: 'white',
             fontWeight: 'bold',
             fontSize: 12
           }}
@@ -93,22 +90,8 @@ const VulnerabilityScanCard = ({ scan }) => {
         </Box>
       </Box>
 
-      {/* Right Section */}
       <Box display='flex' alignItems='center' gap={2}>
-        {/* Findings */}
-        <Box display='flex' alignItems='center' gap={0.5}>
-          <Typography variant='body2' fontWeight='bold' sx={{ color: '#B0B0C3' }}>
-            {scan.findings} findings
-          </Typography>
-        </Box>
-
-        {/* Activation Status */}
-        {scan?.active && (
-          <Typography variant='body2' fontWeight='bold' sx={{ color: '#81FF81' }}>
-            Activated
-          </Typography>
-        )}
-        <Button onClick={toggleDrawer(true)}>Scan</Button>
+        <Chip label={scan?.category} sx={{ backgroundColor: `${scan.color}` }} />
       </Box>
 
       <Drawer

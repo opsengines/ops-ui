@@ -12,16 +12,16 @@ import VulnerabilityScanCard from '@/views/dashboards/securityPlans/scan'
 import Header from '@/views/apps/securityplanengine/Header'
 import ScanList from '@/views/apps/securityplanengine/ScanList'
 
-const BasicSecurityPlan = async () => {
+const CloudNativeScanPlan = async () => {
   // Vars
   const data = await getInvoiceData()
 
   const scans = [
     {
       id: 'OE-001',
-      title: 'Scan your code for vulnerabilities (SAST)',
+      title: 'Scan Docker and Kubernetes containers for vulnerabilities ',
       tools: 'Semgrep',
-      category: 'SAST',
+      category: 'Container',
       active: true,
       color: 'green',
       findings: '3',
@@ -29,52 +29,52 @@ const BasicSecurityPlan = async () => {
     },
     {
       id: 'OE-002',
-      title: 'Scan code for hard-coded secrets',
+      title: ' Audit container compliance ',
       tools: 'Gitleaks',
-      category: 'SAST',
+      category: 'Container',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-003',
-      title: 'Validate secure configurations for sensitive files',
+      title: 'Analyze runtime misconfigurations',
       tools: 'Semgrep, Trivy, npm-audit',
-      category: 'SAST',
+      category: 'Container',
       color: 'green',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-004',
-      title: 'Scan dependencies for vulnerabilities',
+      title: 'Audit cloud configurations ',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'CSPM',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-005',
-      title: ' Identify license compliance issues',
+      title: 'Verify IAM policies ',
       tools: 'Syft',
-      category: 'SCA',
+      category: 'CSPM',
       color: 'blue',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-006',
-      title: 'Map risky transitive dependencies',
+      title: 'Analyze IaC files for compliance gaps',
       tools: 'Syft',
       color: 'blue',
-      category: 'SCA',
+      category: 'CSPM',
       active: false,
       findings: '0'
     },
     {
       id: 'OE-007',
-      title: 'Scan APIs for injection attacks ',
+      title: 'Protect APIs from injection attacks ',
       tools: 'Syft',
       color: 'purple',
       category: 'API',
@@ -83,7 +83,7 @@ const BasicSecurityPlan = async () => {
     },
     {
       id: 'OE-008',
-      title: 'Detect authentication flaws',
+      title: ' Detect unauthorized access',
       tools: 'Syft',
       category: 'API',
       color: 'purple',
@@ -92,7 +92,7 @@ const BasicSecurityPlan = async () => {
     },
     {
       id: 'OE-008',
-      title: ' Validate authorization mechanisms',
+      title: 'Identify data exposure risks',
       tools: 'Syft',
       color: 'purple',
       category: 'API',
@@ -102,7 +102,7 @@ const BasicSecurityPlan = async () => {
   ]
 
   const headerContent = {
-    title: 'Developer Scan Plan'
+    title: 'Cloud Native Scan Plan'
   }
 
   return (
@@ -110,7 +110,7 @@ const BasicSecurityPlan = async () => {
       <Grid item xs={12} md={12} className='self-end'>
         <Header data={headerContent} />
       </Grid>
-      <div className='ml-[84%] mt-[20px] gap-5'>
+      <div className='ml-[80%] mt-[20px] gap-4 flex'>
         <Button variant='outlined'>View Results</Button>
         <Button className='ml-5' variant='outlined'>
           Scan
@@ -123,4 +123,4 @@ const BasicSecurityPlan = async () => {
   )
 }
 
-export default BasicSecurityPlan
+export default CloudNativeScanPlan

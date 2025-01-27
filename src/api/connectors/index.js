@@ -19,7 +19,7 @@ export const getConnectorStatus = async token => {
 }
 
 export const configureAwsCredentials = async (token, data) => {
-  const url = 'https://api.opsengines.io/api/store-aws-credentials/'
+  const url = 'https://api.opsengines.io/api/cloud/store-aws-credentials'
 
   const headers = {
     Authorization: `Bearer ${token}`,
