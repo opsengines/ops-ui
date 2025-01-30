@@ -22,7 +22,7 @@ const LogoText = styled.span`
   line-height: 1.2;
   font-weight: 600;
   letter-spacing: 0.15px;
-  text-transform: uppercase;
+  margin-left:'-10px'
   transition: ${({ transitionDuration }) =>
     `margin-inline-start ${transitionDuration}ms ease-in-out, opacity ${transitionDuration}ms ease-in-out`};
 
@@ -57,7 +57,7 @@ const Logo = ({ color }) => {
   }, [isHovered, layout])
 
   return (
-    <div className='flex items-center min-bs-[24px]'>
+    <div className='flex items-center min-bs-[22px]'>
       <MaterioLogo className='text-[18px] text-primary' />
       <LogoText
         color={color}
@@ -66,7 +66,7 @@ const Logo = ({ color }) => {
         isCollapsed={layout === 'collapsed'}
         transitionDuration={transitionDuration}
       >
-        <span style={{ marginLeft: '-10px' }}>{themeConfig.templateName}</span>
+        <span style={{ marginLeft: '-23px' }}>{themeConfig.templateName}</span>
       </LogoText>
     </div>
   )

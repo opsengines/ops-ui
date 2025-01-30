@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Box, Modal, Typography, TextField, Button, Tab, Tabs, IconButton, Divider, CardMedia } from '@mui/material'
 
@@ -13,6 +13,7 @@ import { Save } from '@mui/icons-material'
 import { configureAwsCredentials } from '@/api/connectors'
 
 import Notification from '@/views/components/Notification'
+import { userInfo } from '@/api/auth'
 
 const AwsConnector = ({ open, onClose }) => {
   const [tabValue, setTabValue] = useState(0)
@@ -22,6 +23,7 @@ const AwsConnector = ({ open, onClose }) => {
   const [region, setRegion] = useState('')
   const [token, setToken] = useState('')
   const [openNotification, setOpenNotification] = useState(false)
+  const [userInformation, setUserInformation] = useState()
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue)
@@ -33,10 +35,11 @@ const AwsConnector = ({ open, onClose }) => {
     try {
       const res = await configureAwsCredentials(authToken, data)
 
-      res?.message && setOpenNotification(true)
+      res?.ok && setOpenNotification(true)
 
       setTimeout(() => {
         setOpenNotification(false)
+        res?.ok && onClose()
       }, 1000)
     } catch (error) {
       console.log(error)
@@ -45,7 +48,6 @@ const AwsConnector = ({ open, onClose }) => {
 
   const handleSave = () => {
     const reqData = {
-      user_id: username,
       aws_access_key_id: accessKeyId,
       aws_secret_access_key: secret,
       region: region
@@ -125,14 +127,6 @@ const AwsConnector = ({ open, onClose }) => {
             </Box>
           )}
           <Box>
-            <TextField
-              fullWidth
-              label='User Id'
-              variant='outlined'
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              sx={{ mb: 2 }}
-            />
             <TextField
               fullWidth
               label='AWS Access Key Id'

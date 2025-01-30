@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const getConnectorStatus = async token => {
-  const url = 'https://api.opsengines.io/api/utils/connectors'
+export const getCspmScanResult = async (data, token) => {
+  const url = 'https://api.opsengines.io/api/cloud/aws_scan_status/'
 
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -9,27 +9,23 @@ export const getConnectorStatus = async token => {
   }
 
   try {
-    const response = await axios.get(url, { headers })
+    const response = await axios.post(url, data, { headers })
 
     return response.data
   } catch (error) {
-    console.error(error)
+    console.error('Error:', error.response?.data || error.message)
     throw error
   }
 }
 
-export const configureAwsCredentials = async (token, data) => {
+export const prowlerCloudScan = async token => {
   const myHeaders = new Headers()
 
   myHeaders.append('accept', 'application/json')
   myHeaders.append('Authorization', `Bearer ${token}`)
   myHeaders.append('Content-Type', 'application/json')
 
-  const raw = JSON.stringify({
-    aws_access_key_id: 'dedededed',
-    aws_secret_access_key: 'sedeefrrgrgtring',
-    region: 'gthhhyhyjyjyj'
-  })
+  const raw = JSON.stringify(['string'])
 
   const requestOptions = {
     method: 'POST',
@@ -38,7 +34,7 @@ export const configureAwsCredentials = async (token, data) => {
     redirect: 'follow'
   }
 
-  const response = await fetch('https://api.opsengines.io/api/cloud/store-aws-credentials/', requestOptions)
+  const response = await fetch('https://api.opsengines.io/api/cloud/scan-cloud-prowler-aws/', requestOptions)
     .then(response => response)
     .then(result => result)
     .catch(error => console.error(error))

@@ -14,13 +14,11 @@ import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '
 
 import classnames from 'classnames'
 
-// Style Imports
-import styles from '@core/styles/table.module.css'
-import CustomAvatar from '@/@core/components/mui/Avatar'
+import { useSelector } from 'react-redux'
 
 import AWSValidationModal from './awsScanModal'
 
-// Data Imports
+import styles from '@core/styles/table.module.css'
 
 // Column Definitions
 const columnHelper = createColumnHelper()
@@ -135,9 +133,11 @@ const RowSelection = ({ dataset }) => {
       <CardHeader
         title='Scans'
         action={
-          <Button type='primary' variant='outlined'>
-            View Results
-          </Button>
+          <a href='/en/apps/securityengines/cloudsecurity/results'>
+            <Button type='primary' variant='outlined'>
+              View Results
+            </Button>
+          </a>
         }
       />
       <div className='overflow-x-auto'>

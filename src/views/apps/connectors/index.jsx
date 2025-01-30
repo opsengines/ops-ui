@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { Typography, Grid, Skeleton } from '@mui/material'
+import { Typography, Grid, Skeleton, Modal } from '@mui/material'
 
 import GithubModal from './GithubConnector'
 
@@ -11,12 +11,14 @@ import ConnectorCard from './ConnectorCard'
 import { getConnectorStatus } from '@/api/connectors'
 
 import AwsConnector from './AwsConnector'
+import SecurityReport from '@/views/components/AIFix'
 
 const ConnectorsView = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [connectorData, setConnectorData] = useState()
   const [loading, setLoading] = useState(true)
   const [awsModal, setAwsModal] = useState(false)
+  const [aiModal, setAiModal] = useState(true)
 
   const handleOpenModal = () => setModalOpen(true)
 
@@ -279,7 +281,7 @@ const ConnectorsView = () => {
       id: 1,
       name: 'AWS',
       image: '/images/apps/connectors/Aws.png',
-      connected: false,
+      connected: connectorData?.isAWSConnected,
       handleClick: openAwsModal
     },
     {
@@ -333,6 +335,7 @@ const ConnectorsView = () => {
             Source Control
           </Typography>
           <GithubModal open={modalOpen} onClose={handleCloseModal} />
+          <SecurityReport open={aiModal} handleClose={() => setAiModal(false)} />
           <Grid container spacing={2} sx={{ padding: 2 }}>
             {scmConnectors.map(connector => (
               <Grid item xs={12} sm={6} md={2} key={connector.id}>
