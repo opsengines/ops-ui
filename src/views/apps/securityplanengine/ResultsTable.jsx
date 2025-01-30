@@ -31,6 +31,7 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
 import { semgrepScanInfo } from '@/api/sast'
+import SecurityReport from '@/views/components/AIFix'
 
 const ResultsTable = ({ type }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -38,7 +39,7 @@ const ResultsTable = ({ type }) => {
   const [data, setData] = useState([])
   const [pageLoading, setPageLaoding] = useState(true)
   const [drawerLoading, setDrawerLoading] = useState(true)
-  const [filterActive, setFilterActive] = useState(false)
+  const [aiFixModal, setAiFixModal] = useState(false)
 
   const [filters, setFilters] = useState({
     repoName: '',
@@ -109,6 +110,7 @@ const ResultsTable = ({ type }) => {
   }
 
   const handleRowClick = row => {
+    console.log(row)
     setSelectedRow(row)
     setDrawerOpen(true)
   }
@@ -279,7 +281,7 @@ const ResultsTable = ({ type }) => {
         </div>
       )}
       {data?.length < 1 && <Typography variant='h6'>No Data Available</Typography>}
-
+      <SecurityReport open={aiFixModal} handleClose={() => setAiFixModal(false)} data={selectedRow} />
       <Drawer anchor='right' open={drawerOpen} onClose={closeDrawer} PaperProps={{ sx: { width: '50vw', padding: 3 } }}>
         <Box
           sx={{
@@ -293,14 +295,13 @@ const ResultsTable = ({ type }) => {
           <Typography variant='h6' fontWeight='bold'>
             Findings Details
           </Typography>
-          <IconButton onClick={closeDrawer} sx={{ color: 'white' }}>
+          <IconButton onClick={closeDrawer}>
             <CloseIcon />
           </IconButton>
         </Box>
 
         <Box
           sx={{
-            backgroundColor: '#2E2E3E',
             padding: '16px',
             borderRadius: '8px',
             marginTop: '10px'
@@ -308,7 +309,7 @@ const ResultsTable = ({ type }) => {
         >
           <div className='flex items-center justify-between'>
             {/* <img src='/images/apps/connectors/GithubIcon.png' alt='GitHub Icon' w/>{' '} */}
-            <Typography variant='body1' fontWeight='bold' color={'white'}>
+            <Typography variant='body1' fontWeight='bold'>
               Finding Info
             </Typography>
             <div className='flex flex-row gap-3'>
@@ -316,8 +317,8 @@ const ResultsTable = ({ type }) => {
               <Chip label={selectedRow?.extra?.metadata.confidence} sx={{ backgroundColor: 'red' }} />
             </div>
           </div>
-          <Typography variant='h6' className='mt-7' sx={{ color: 'white' }}>
-            <span className='border p-1 bg-gray-800' style={{ borderRadius: '10px' }}>
+          <Typography variant='h6' className='mt-7'>
+            <span className='border p-1' style={{ borderRadius: '10px' }}>
               {selectedRow?.extra?.metadata?.cwe[0]?.split(':')[0]}
             </span>{' '}
             {selectedRow?.extra?.message}
@@ -332,7 +333,13 @@ const ResultsTable = ({ type }) => {
             <Button variant='outlined' className='mt-10 p-2' style={{ color: '#959bee', borderColor: '#959bee' }}>
               Mark As Ignored
             </Button>
-            <Button variant='outlined' className='mt-10 p-2'>
+            <Button
+              variant='outlined'
+              className='mt-10 p-2'
+              onClick={() => {
+                setAiFixModal(true)
+              }}
+            >
               AI Fix
             </Button>
           </div>
@@ -341,13 +348,12 @@ const ResultsTable = ({ type }) => {
         <Divider className='mt-2 mb-2' />
         <Box
           sx={{
-            backgroundColor: '#2E2E3E',
             padding: '16px',
             borderRadius: '8px'
           }}
         >
           <div className='flex items-center justify-between'>
-            <Typography variant='body1' fontWeight='bold' color={'white'}>
+            <Typography variant='body1' fontWeight='bold'>
               General Info
             </Typography>
           </div>
@@ -355,25 +361,25 @@ const ResultsTable = ({ type }) => {
           <div className='mt-8 flex justify-between w-[100%]'>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>Developers</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 2
               </Typography>
             </div>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>File Count</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 60
               </Typography>
             </div>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>Repository Size</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 600.33Kb
               </Typography>
             </div>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>Branch</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 Main
               </Typography>
             </div>
@@ -382,19 +388,19 @@ const ResultsTable = ({ type }) => {
           <div className='mt-8 flex justify-between w-[70%]'>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>Last Code Changes</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 12 Months Ago
               </Typography>
             </div>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>Creation Date</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 12 Months Ago
               </Typography>
             </div>
             <div className='flex flex-col items-center'>
               <Typography variant='body2'>Access Level</Typography>
-              <Typography variant='body1' className='mt-2' style={{ color: 'white' }}>
+              <Typography variant='body1' className='mt-2'>
                 Public
               </Typography>
             </div>
@@ -403,14 +409,13 @@ const ResultsTable = ({ type }) => {
 
         <Box
           sx={{
-            backgroundColor: '#2E2E3E',
             padding: '16px',
             borderRadius: '8px',
             marginTop: '10px'
           }}
         >
           <div className='flex items-center justify-between'>
-            <Typography variant='body1' fontWeight='bold' color={'white'}>
+            <Typography variant='body1' fontWeight='bold'>
               About This Issue
             </Typography>
           </div>

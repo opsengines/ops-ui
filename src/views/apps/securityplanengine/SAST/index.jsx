@@ -1,4 +1,8 @@
+'use client'
+
 // MUI Imports
+import { useEffect } from 'react'
+
 import Grid from '@mui/material/Grid'
 
 // Component Imports
@@ -14,11 +18,120 @@ import CustomTable from '../../academy/dashboard/CustomTable'
 import CVSTable from '../cvsTable'
 import ComplianceTable from '../complianceTable'
 import HeaderComponent from '../HeaderComponent'
+
 import WeeklyOverview from '@/views/pages/widget-examples/charts/WeeklyOverview'
 
-const Sast = async () => {
+import { getSASTDashboard } from '@/api/dashboard/sast'
+
+const Sast = () => {
   // Vars
-  const data = await getAcademyData()
+
+  const data = [
+    {
+      id: 1,
+      scanId: 'SAST-001',
+      user: 'James Coie',
+      image: '/images/avatars/1.png',
+      tutorImg: '/images/apps/academy/1.png',
+      completedTasks: 19,
+      totalTasks: 25,
+      userCount: 18,
+      note: 20,
+      view: 83,
+      time: '17h 34m',
+      logo: 'ri-angularjs-line',
+      color: 'error',
+      courseTitle: 'Scan for code vulnerabilities',
+      desc: 'Introductory course for Angular and framework basics with TypeScript',
+      tags: 'Web',
+      rating: 4.4,
+      ratingCount: 8,
+      active: true,
+      status: true
+    },
+    {
+      id: 2,
+      scanId: 'SAST-002',
+      user: 'Jeremy Lane',
+      image: '/images/avatars/1.png',
+      tutorImg: '/images/apps/academy/1.png',
+      completedTasks: 19,
+      totalTasks: 25,
+      userCount: 18,
+      note: 20,
+      view: 83,
+      time: '17h 34m',
+      logo: 'ri-angularjs-line',
+      color: 'error',
+      courseTitle: 'Detect hard-coded secrets',
+      desc: 'Introductory course for Angular and framework basics with TypeScript',
+      tags: 'Web',
+      rating: 4.4,
+      ratingCount: 8,
+      active: true,
+      status: true
+    },
+    {
+      id: 3,
+      scanId: 'SAST-003',
+      user: 'Lauretta Coie',
+      image: '/images/avatars/1.png',
+      tutorImg: '/images/apps/academy/1.png',
+      completedTasks: 19,
+      totalTasks: 25,
+      userCount: 18,
+      note: 20,
+      view: 83,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error',
+      courseTitle: 'Identify insecure coding patterns',
+      desc: 'Introductory course for Angular and framework basics with TypeScript',
+      tags: 'Web',
+      rating: 4.4,
+      ratingCount: 8,
+      active: false,
+      status: false
+    },
+    {
+      id: 4,
+      scanId: 'SAST-004',
+      user: 'Karen Coie',
+      image: '/images/avatars/1.png',
+      tutorImg: '/images/apps/academy/1.png',
+      completedTasks: 19,
+      totalTasks: 25,
+      userCount: 18,
+      note: 20,
+      view: 83,
+      time: '',
+      logo: 'ri-angularjs-line',
+      color: 'error',
+      courseTitle: 'Validate secure configurations for sensitive files',
+      desc: 'Introductory course for Angular and framework basics with TypeScript',
+      tags: 'Web',
+      rating: 4.4,
+      ratingCount: 8,
+      active: false,
+      status: false
+    }
+  ]
+
+  const token = localStorage.getItem('authToken')
+
+  const getDashboard = async () => {
+    try {
+      const data = await getSASTDashboard(token)
+
+      return data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getDashboard()
+  }, [])
 
   const cvsList = [
     {
@@ -221,7 +334,7 @@ const Sast = async () => {
         <HeaderComponent />
       </Grid>
       <Grid item xs={12}>
-        <CustomTable courseData={data?.SAST} />
+        <CustomTable courseData={data} />
       </Grid>
       <Grid item xs={12} md={8}>
         <InterestedTopics />
