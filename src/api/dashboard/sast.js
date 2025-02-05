@@ -12,10 +12,17 @@ export const getSASTDashboard = async token => {
     redirect: 'follow'
   }
 
-  const response = await fetch('https://api.opsengines.io/scan-stats?scan_category=SAST', requestOptions)
-    .then(response => response)
-    .then(result => result)
-    .catch(error => console.error(error))
+  try {
+    const response = await fetch('https://api.opsengines.io/scan-stats?scan_category=SAST', requestOptions)
 
-  return response
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const jsonResponse = await response.json() // ✅ Convert response to JSON
+
+    return jsonResponse
+  } catch (error) {
+    return null
+  }
 }

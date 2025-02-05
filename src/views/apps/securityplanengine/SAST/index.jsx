@@ -1,9 +1,10 @@
 'use client'
 
 // MUI Imports
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import Grid from '@mui/material/Grid'
+import { Skeleton } from '@mui/material'
 
 // Component Imports
 import WelcomeCard from '@views/apps/academy/dashboard/WelcomeCard'
@@ -24,7 +25,8 @@ import WeeklyOverview from '@/views/pages/widget-examples/charts/WeeklyOverview'
 import { getSASTDashboard } from '@/api/dashboard/sast'
 
 const Sast = () => {
-  // Vars
+  const [dashboard, setDashboard] = useState({})
+  const [loading, setLoading] = useState(true)
 
   const data = [
     {
@@ -122,6 +124,9 @@ const Sast = () => {
   const getDashboard = async () => {
     try {
       const data = await getSASTDashboard(token)
+
+      setDashboard(data)
+      setLoading(false)
 
       return data
     } catch (error) {
@@ -330,27 +335,33 @@ const Sast = () => {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <HeaderComponent />
-      </Grid>
-      <Grid item xs={12}>
-        <CustomTable courseData={data} />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <InterestedTopics />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <WeeklyOverview />
-      </Grid>
+      {loading ? (
+        <Skeleton variant='rounded' width={'100vw'} height={'90vh'} />
+      ) : (
+        <>
+          <Grid item xs={12}>
+            <HeaderComponent dashboardData={dashboard} />
+          </Grid>
+          <Grid item xs={12}>
+            <CustomTable courseData={data} refetch={getDashboard} />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <InterestedTopics dashboardData={dashboard} />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <WeeklyOverview dashboardData={dashboard} />
+          </Grid>
 
-      <Grid item xs={12} md={4}>
-        {/* <TopCourses /> */}
-        <CVSTable courseData={cvsList} />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        {/* <PopularInstructors /> */}
-        <ComplianceTable courseData={complianceList} />
-      </Grid>
+          <Grid item xs={12} md={4}>
+            {/* <TopCourses /> */}
+            <CVSTable courseData={cvsList} />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            {/* <PopularInstructors /> */}
+            <ComplianceTable courseData={complianceList} />
+          </Grid>
+        </>
+      )}
     </Grid>
   )
 }

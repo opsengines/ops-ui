@@ -17,7 +17,7 @@ import OptionsMenu from '@core/components/option-menu'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const WeeklyOverview = () => {
+const WeeklyOverview = ({ dashboardData = {} }) => {
   // Hooks
   const theme = useTheme()
 
@@ -66,7 +66,7 @@ const WeeklyOverview = () => {
       }
     },
     xaxis: {
-      categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      categories: Object?.keys(dashboardData?.weeklyScans).map(day => day?.slice(0, 3)),
       tickPlacement: 'on',
       labels: {
         show: true,
@@ -115,7 +115,7 @@ const WeeklyOverview = () => {
           type='bar'
           height={320}
           width='100%'
-          series={[{ name: 'Vulnerabilities', data: [37, 57, 45, 75, 57, 40, 65] }]}
+          series={[{ name: 'Vulnerabilities', data: Object.values(dashboardData?.weeklyScans) }]}
           options={options}
         />
 
