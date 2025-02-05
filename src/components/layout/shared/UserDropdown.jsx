@@ -75,7 +75,7 @@ const UserDropdown = () => {
   const handleUserLogout = async () => {
     try {
       // Sign out from the app
-      await signOut({ callbackUrl: 'https://console.opsengines.io/en/login' })
+      await signOut({ callbackUrl: 'https://console.opsengines.io/en/login', redirect: true })
       localStorage.setItem('authToken', undefined)
     } catch (error) {
       console.error(error)

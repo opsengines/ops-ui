@@ -53,6 +53,8 @@ const AwsConnector = ({ open, onClose }) => {
       region: region
     }
 
+    console.log(reqData)
+
     storeAwsCredentials(reqData)
   }
 

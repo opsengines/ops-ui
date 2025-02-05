@@ -18,7 +18,7 @@ const ConnectorsView = () => {
   const [connectorData, setConnectorData] = useState()
   const [loading, setLoading] = useState(true)
   const [awsModal, setAwsModal] = useState(false)
-  const [aiModal, setAiModal] = useState(true)
+  const [aiModal, setAiModal] = useState(false)
 
   const handleOpenModal = () => setModalOpen(true)
 
@@ -335,7 +335,6 @@ const ConnectorsView = () => {
             Source Control
           </Typography>
           <GithubModal open={modalOpen} onClose={handleCloseModal} />
-          <SecurityReport open={aiModal} handleClose={() => setAiModal(false)} />
           <Grid container spacing={2} sx={{ padding: 2 }}>
             {scmConnectors.map(connector => (
               <Grid item xs={12} sm={6} md={2} key={connector.id}>

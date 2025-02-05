@@ -21,27 +21,32 @@ import OptionMenu from '@core/components/option-menu'
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
 // Vars
-const series = [
-  {
-    data: [35, 20, 14, 12]
-  }
-]
-
-const data1 = [
-  { title: 'Critical', value: 35, colorClass: '#A31D1D' },
-  { title: 'Medium', value: 14, colorClass: 'text-success' }
-]
-
-const data2 = [
-  { title: 'High', value: 20, colorClass: 'text-info' },
-  { title: 'Low', value: 12, colorClass: 'text-secondary' }
-]
 
 const labels = ['Critical ', 'High', 'Medium', 'Low']
 
-const InterestedTopics = () => {
-  // Hooks
+const InterestedTopics = ({ dashboardData }) => {
   const theme = useTheme()
+
+  const data1 = [
+    { title: 'Critical', value: dashboardData?.severityCounts?.CRITICAL || 0, colorClass: '#A31D1D' },
+    { title: 'Medium', value: dashboardData?.severityCounts?.MEDIUM || 0, colorClass: 'text-success' }
+  ]
+
+  const data2 = [
+    { title: 'High', value: dashboardData?.severityCounts?.HIGH || 0, colorClass: 'text-info' },
+    { title: 'Low', value: dashboardData?.severityCounts?.LOW || 0, colorClass: 'text-secondary' }
+  ]
+
+  const series = [
+    {
+      data: [
+        dashboardData?.severityCounts?.CRITICAL || 0,
+        dashboardData?.severityCounts?.MEDIUM || 0,
+        dashboardData?.severityCounts?.HIGH || 0,
+        dashboardData?.severityCounts?.LOW || 0
+      ]
+    }
+  ]
 
   // Vars
   const options = {

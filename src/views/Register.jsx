@@ -87,7 +87,7 @@ const RegisterV2 = ({ mode }) => {
       name: '',
       email: '',
       reason: '',
-      role: ''
+      password: ''
     })
   }
 
@@ -134,32 +134,23 @@ const RegisterV2 = ({ mode }) => {
               fullWidth
               label='Full Name'
               value={formData?.name}
-              onChange={event => setFormData(prev => ({ ...prev, name: event.target.value }))}
+              onChange={event => setFormData(prev => ({ ...prev, full_name: event.target.value }))}
             />
             <TextField
               required
               fullWidth
               label='Email'
               value={formData?.email}
-              onChange={event => setFormData(prev => ({ ...prev, email: event.target.value }))}
+              onChange={event =>
+                setFormData(prev => ({ ...prev, email: event.target.value, username: event.target.value }))
+              }
             />
             <TextField
-              fullWidth
-              label='Company / Role'
-              value={formData?.role}
-              onChange={event => setFormData(prev => ({ ...prev, role: event.target.value }))}
-            />
-            <TextField
-              fullWidth
-              label='Reason For Interest'
-              value={formData?.reason}
-              onChange={event => setFormData(prev => ({ ...prev, reason: event.target.value }))}
-            />
-
-            {/* <TextField
+              required
               fullWidth
               label='Password'
               type={isPasswordShown ? 'text' : 'password'}
+              onChange={event => setFormData(prev => ({ ...prev, password: event.target.value }))}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position='end'>
@@ -174,7 +165,7 @@ const RegisterV2 = ({ mode }) => {
                   </InputAdornment>
                 )
               }}
-            /> */}
+            />
             {/* <div className='flex justify-between items-center gap-3'>
               <FormControlLabel
                 control={<Checkbox />}
@@ -189,7 +180,7 @@ const RegisterV2 = ({ mode }) => {
               />
             </div> */}
             <Button fullWidth variant='contained' type='submit'>
-              Apply For Early Access
+              Register
             </Button>
 
             <Dialog open={open} onClose={handleClose} maxWidth='sm' fullWidth>
@@ -205,7 +196,7 @@ const RegisterV2 = ({ mode }) => {
                 </Typography>
               </DialogContent>
               <DialogActions sx={{ justifyContent: 'flex-end', paddingRight: 2, paddingBottom: 2 }}>
-                <Button variant='contained' color='success' onClick={handleClose}>
+                <Button variant='outlined' onClick={handleClose}>
                   Close
                 </Button>
               </DialogActions>

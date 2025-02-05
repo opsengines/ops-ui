@@ -68,6 +68,7 @@ import CustomAvatar from '@core/components/mui/Avatar'
 import { getGitInfo } from '@/api/github'
 
 import { semgrepScanner } from '@/api/sast'
+import LoadingModal from '@/views/components/ScanningModal'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   // Rank the item
@@ -104,7 +105,7 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const CustomTable = ({ courseData, onClick = f => f }) => {
+const CustomTable = ({ courseData, onClick = f => f, refetch }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
@@ -123,6 +124,7 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   const [selectedRepos, setSelectedRepos] = useState(gitRepos.map(repo => repo.url))
   const [githubUserName, setGithubUserName] = useState('')
   const [githubToken, setGithubtoken] = useState('')
+  const [scanModal, setScanModal] = useState(false)
 
   const handleRadioChange = event => {
     setSelectedOption(event.target.value)
@@ -165,6 +167,8 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
   const startSempgrepScan = async data => {
     try {
       const response = await semgrepScanner(data, token)
+
+      setScanModal(true)
     } catch (error) {
       console.log(error)
     }
@@ -374,6 +378,17 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
         onRowsPerPageChange={e => table.setPageSize(Number(e.target.value))}
       />
 
+      <LoadingModal
+        open={scanModal}
+        handleClose={() => {
+          setScanModal(false)
+          setIsOpen(false)
+          setSelectedOption('All')
+          setSelectedRepos([])
+          refetch()
+        }}
+      />
+
       <Drawer
         anchor='right'
         open={isOpen}
@@ -439,62 +454,74 @@ const CustomTable = ({ courseData, onClick = f => f }) => {
                   Select Repositories
                 </Typography>
 
-                <RadioGroup value={selectedOption} onChange={handleRadioChange} row>
-                  <FormControlLabel value='All' control={<Radio />} label='All' />
-                  <FormControlLabel value='Custom' control={<Radio />} label='Custom' />
-                </RadioGroup>
+                <div className='flex justify-between'>
+                  <RadioGroup value={selectedOption} onChange={handleRadioChange} row>
+                    <FormControlLabel value='All' control={<Radio />} label='All' />
+                    <FormControlLabel value='Custom' control={<Radio />} label='Custom' />
+                  </RadioGroup>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={selectedOption === 'All' ? handleSelectAll : handleCustomRepos}
+                    style={{ marginTop: '10px' }}
+                    disabled={selectedOption !== 'All' && selectedRepos.length < 1}
+                  >
+                    {selectedOption === 'All' ? 'Scan All Repositories' : 'Scan Selected Repositories'}
+                  </Button>
+                </div>
 
                 {selectedOption === 'All' ? (
                   <>
                     <Typography variant='h6' style={{ marginTop: '20px', marginBottom: '20px' }}>
                       This Action Will Run This Scan On All Configured Repositories. To change this you can select the
-                      custom repositories option.
+                      custom repositories option
                     </Typography>
-                    <Button variant='contained' color='primary' onClick={handleSelectAll} style={{ marginTop: '10px' }}>
-                      Scan All Repositories
-                    </Button>
                   </>
                 ) : (
-                  <Box style={{ marginTop: '20px' }}>
-                    <TableContainer>
-                      <Table>
-                        <TableHead>
-                          <TableRow>
-                            <TableCell padding='checkbox'></TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>URL</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {gitRepos.map(repo => (
-                            <TableRow key={repo.id}>
-                              <TableCell padding='checkbox'>
-                                <Checkbox
-                                  checked={selectedRepos.includes(repo.url)}
-                                  onChange={event => handleCheckboxChange(event, repo.url)}
-                                />
-                              </TableCell>
-                              <TableCell>{repo.name}</TableCell>
-                              <TableCell>
-                                <a href={repo.url} target='_blank' rel='noopener noreferrer'>
-                                  {repo.url}
-                                </a>
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                    <Button
-                      variant='contained'
-                      color='primary'
-                      onClick={() => handleCustomRepos()}
-                      style={{ marginTop: '10px' }}
-                    >
-                      Scan Repositories
-                    </Button>
-                  </Box>
+                  <Typography variant='h6' style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    This Action Will Run This Scan On All Selected Repositories. Please select the repositories from the
+                    table below.
+                  </Typography>
                 )}
+                <Box style={{ marginTop: '20px' }}>
+                  <TableContainer>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell padding='checkbox'></TableCell>
+                          <TableCell>Name</TableCell>
+                          <TableCell>URL</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {gitRepos.map(repo => (
+                          <TableRow key={repo.id}>
+                            <TableCell padding='checkbox'>
+                              <Checkbox
+                                checked={selectedRepos.includes(repo.url)}
+                                onChange={event => handleCheckboxChange(event, repo.url)}
+                              />
+                            </TableCell>
+                            <TableCell>{repo.name}</TableCell>
+                            <TableCell>
+                              <a href={repo.url} target='_blank' rel='noopener noreferrer'>
+                                {repo.url}
+                              </a>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={() => handleCustomRepos()}
+                    style={{ marginTop: '10px' }}
+                  >
+                    Scan Repositories
+                  </Button>
+                </Box>
               </CardContent>
             </Card>
 

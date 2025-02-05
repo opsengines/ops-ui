@@ -251,6 +251,27 @@ const Cloud = async () => {
     }
   ]
 
+  const weeklyChart = {
+    totalScans: 6,
+    pendingScans: 0,
+    completedScans: 6,
+    weeklyScans: {
+      Monday: 2,
+      Tuesday: 2,
+      Wednesday: 5,
+      Thursday: 1,
+      Friday: 1,
+      Saturday: 1,
+      Sunday: 3
+    },
+    severityCounts: {
+      CRITICAL: 2,
+      HIGH: 3,
+      MEDIUM: 8,
+      LOW: 5
+    }
+  }
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -261,10 +282,10 @@ const Cloud = async () => {
         <RowSelection dataset={scanData} />
       </Grid>
       <Grid item xs={12} md={8}>
-        <InterestedTopics />
+        <InterestedTopics dashboardData={weeklyChart} />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <WeeklyOverview />
+        <WeeklyOverview dashboardData={weeklyChart} />
       </Grid>
 
       <Grid item xs={12} md={4}>
