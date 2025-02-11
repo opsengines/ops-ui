@@ -21,17 +21,21 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive'
 import AssistantIcon from '@mui/icons-material/Assistant'
 import SecurityIcon from '@mui/icons-material/Security'
 
+import { Assessment } from '@mui/icons-material'
+
 import { Menu, SubMenu, MenuItem, MenuSection } from '@menu/vertical-menu'
 
 // Hook Imports
+
 import useVerticalNav from '@menu/hooks/useVerticalNav'
 
 // Styled Component Imports
 import StyledVerticalNavExpandIcon from '@menu/styles/vertical/StyledVerticalNavExpandIcon'
 
+import menuSectionStyles from '@core/styles/vertical/menuSectionStyles'
+
 // Style Imports
 import menuItemStyles from '@core/styles/vertical/menuItemStyles'
-import menuSectionStyles from '@core/styles/vertical/menuSectionStyles'
 
 const RenderExpandIcon = ({ open, transitionDuration }) => (
   <StyledVerticalNavExpandIcon open={open} transitionDuration={transitionDuration}>
@@ -107,19 +111,18 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
             {dictionary['navigation'].helpCenter}
           </MenuItem>
         </SubMenu> */}
-        <SubMenu label={dictionary['navigation'].eCommerce} icon={<i className='ri-shopping-bag-3-line' />}>
-          <MenuItem href={`/${locale}/apps/securityengines/sast`}>SAST</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/scm`}>SCA</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/sbom`}>SBOM</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/dast`}>DAST</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/api`}>API</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/cicd`}>CI/CD</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/cloudsecurity`}>CSPM</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/aiml`}>AI/ML Model</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/privacy`}>Privacy & Security</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/compliance`}>Compliance</MenuItem>
-          <MenuItem href={`/${locale}/apps/securityengines/idesecurity`}>IDE Security Extensions</MenuItem>
-
+        <SubMenu label={'Engine Scans'} icon={<i className='ri-shopping-bag-3-line' />}>
+          <MenuItem href={`/${locale}/apps/securityengines/sast`}>SAST Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/scm`}>SCA Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/sbom`}>SBOM Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/dast`}>DAST Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/api`}>API Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/cicd`}>CI/CD Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/cloudsecurity`}>CSPM Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/iac`}>IAC Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/secrets`}>Secrets Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/compliance`}>Compliance Engine</MenuItem>
+          <MenuItem href={`/${locale}/apps/securityengines/aiml`}>AI/ML Engine</MenuItem>
           {/* <SubMenu label={dictionary['navigation'].products}>
             <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].add}</MenuItem>
             <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>
@@ -152,6 +155,9 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/ecommerce/referrals`}>{dictionary['navigation'].referrals}</MenuItem>
           <MenuItem href={`/${locale}/apps/ecommerce/settings`}>{dictionary['navigation'].settings}</MenuItem> */}
         </SubMenu>
+        <MenuItem href={`/${locale}/apps/results`} icon={<Assessment />}>
+          Engine Results
+        </MenuItem>
         <MenuItem href={`/${locale}/apps/ecommerce/products/list`} icon={<PolicyIcon />}>
           {dictionary['navigation'].list}
         </MenuItem>
@@ -160,6 +166,9 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         </MenuItem>
         <MenuItem href={`/${locale}/apps/connectors`} icon={<IntegrationInstructionsIcon />}>
           {dictionary['navigation'].myCourses}
+        </MenuItem>
+        <MenuItem href={`/${locale}/apps/reports`} icon={<Assessment />}>
+          Reports
         </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].academy} icon={<i className='ri-graduation-cap-line' />}>
             <MenuItem href={`/${locale}/apps/academy/dashboard`}>{dictionary['navigation'].dashboard}</MenuItem>

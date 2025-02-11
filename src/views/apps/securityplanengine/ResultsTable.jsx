@@ -190,22 +190,22 @@ const ResultsTable = ({ type }) => {
                 <TableRow>
                   <TableCell>
                     <Typography variant='subtitle1' fontWeight='bold'>
-                      Repo Name
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant='subtitle1' fontWeight='bold'>
-                      Vulnerability
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant='subtitle1' fontWeight='bold'>
                       Scan Id
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography variant='subtitle1' fontWeight='bold'>
-                      Status
+                      Repo Name
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold'>
+                      Description
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold' className='text-center'>
+                      Severity
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -215,7 +215,12 @@ const ResultsTable = ({ type }) => {
                   </TableCell>
                   <TableCell>
                     <Typography variant='subtitle1' fontWeight='bold'>
-                      Severity
+                      Scan Time
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant='subtitle1' fontWeight='bold' className='text-center'>
+                      Status
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -233,6 +238,7 @@ const ResultsTable = ({ type }) => {
                       transition: 'border 0.2s ease-in-out'
                     }}
                   >
+                    <TableCell>{row.scan_subcategory}</TableCell>
                     <TableCell>{row.repository.split('github.com')[1]}</TableCell>
                     <Tooltip title={row.extra.message}>
                       <TableCell>
@@ -240,16 +246,6 @@ const ResultsTable = ({ type }) => {
                           (row.extra.message.split(' ').length > 10 ? '...' : '')}
                       </TableCell>
                     </Tooltip>
-                    <TableCell>{row.scan_subcategory}</TableCell>
-                    <TableCell>
-                      <Chip
-                        label={row.status === 'completed' ? 'Completed' : 'Ongoing'}
-                        color={row.status === 'completed' ? 'success' : 'error'}
-                        variant='outlined'
-                        style={{ fontWeight: 'bold' }}
-                      />
-                    </TableCell>
-                    <TableCell>{row.scan_date.split('T')[0]}</TableCell>
                     <TableCell>
                       <Chip
                         label={row.extra.metadata.confidence}
@@ -269,8 +265,20 @@ const ResultsTable = ({ type }) => {
                                 ? 'green'
                                 : 'red'
                           }`,
+                          width: '100px',
                           color: 'white'
                         }}
+                      />
+                    </TableCell>
+
+                    <TableCell>{row.scan_date.split('T')[0]}</TableCell>
+                    <TableCell className='text-center'>{row.scan_date.split('T')[1].split('.')[0]}</TableCell>
+                    <TableCell>
+                      <Chip
+                        label={row.status === 'completed' ? 'Completed' : 'Ongoing'}
+                        color={row.status === 'completed' ? 'success' : 'error'}
+                        variant='outlined'
+                        style={{ fontWeight: 'bold' }}
                       />
                     </TableCell>
                   </TableRow>
@@ -293,7 +301,7 @@ const ResultsTable = ({ type }) => {
           }}
         >
           <Typography variant='h6' fontWeight='bold'>
-            Findings Details
+            Vulnerability Details
           </Typography>
           <IconButton onClick={closeDrawer}>
             <CloseIcon />
@@ -313,7 +321,6 @@ const ResultsTable = ({ type }) => {
               Finding Info
             </Typography>
             <div className='flex flex-row gap-3'>
-              <Chip label={selectedRow?.scan_category} sx={{ backgroundColor: '#1976d2' }} />
               <Chip label={selectedRow?.extra?.metadata.confidence} sx={{ backgroundColor: 'red' }} />
             </div>
           </div>
@@ -327,10 +334,17 @@ const ResultsTable = ({ type }) => {
             {selectedRow?.check_id}
           </Typography>
           <div className='flex flex-row gap-2'>
-            <Button variant='outlined' className='mt-10 p-2' style={{ color: 'gray', borderColor: 'gray' }}>
+            <Button
+              variant='outlined'
+              className='mt-10 p-2'
+              style={{ color: 'white', borderColor: 'gray', backgroundColor: 'gray' }}
+            >
               Create ticket
             </Button>
             <Button variant='outlined' className='mt-10 p-2' style={{ color: '#959bee', borderColor: '#959bee' }}>
+              Mark As Ignored
+            </Button>
+            <Button variant='contained' className='mt-10 p-2' style={{ color: 'white', backgroundColor: 'purple' }}>
               Mark As Ignored
             </Button>
             <Button

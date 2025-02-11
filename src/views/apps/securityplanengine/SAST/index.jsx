@@ -23,10 +23,18 @@ import HeaderComponent from '../HeaderComponent'
 import WeeklyOverview from '@/views/pages/widget-examples/charts/WeeklyOverview'
 
 import { getSASTDashboard } from '@/api/dashboard/sast'
+import SastScanModal from './SastScanModal'
+import { getGitInfo } from '@/api/github'
+import { semgrepScanner } from '@/api/sast'
 
 const Sast = () => {
   const [dashboard, setDashboard] = useState({})
   const [loading, setLoading] = useState(true)
+  const [open, setOpen] = useState(false)
+  const [type, setType] = useState('')
+  const [gitRepos, setGitRepos] = useState([])
+  const [githubUserName, setGithubUserName] = useState('')
+  const [githubToken, setGithubtoken] = useState('')
 
   const data = [
     {
@@ -84,7 +92,7 @@ const Sast = () => {
       userCount: 18,
       note: 20,
       view: 83,
-      time: '',
+      time: '17h 34m',
       logo: 'ri-angularjs-line',
       color: 'error',
       courseTitle: 'Identify insecure coding patterns',
@@ -92,8 +100,8 @@ const Sast = () => {
       tags: 'Web',
       rating: 4.4,
       ratingCount: 8,
-      active: false,
-      status: false
+      active: true,
+      status: true
     },
     {
       id: 4,
@@ -106,7 +114,7 @@ const Sast = () => {
       userCount: 18,
       note: 20,
       view: 83,
-      time: '',
+      time: '17h 34m',
       logo: 'ri-angularjs-line',
       color: 'error',
       courseTitle: 'Validate secure configurations for sensitive files',
@@ -114,8 +122,8 @@ const Sast = () => {
       tags: 'Web',
       rating: 4.4,
       ratingCount: 8,
-      active: false,
-      status: false
+      active: true,
+      status: true
     }
   ]
 
@@ -134,8 +142,33 @@ const Sast = () => {
     }
   }
 
+  const getGithubInformation = async () => {
+    try {
+      const data = await getGitInfo(token)
+
+      const links = data[0]?.GitHubLink
+
+      const transformedUrls = links.map((url, index) => {
+        const path = url.split('github.com')[1]
+
+        return {
+          id: index + 1,
+          name: path,
+          url: url
+        }
+      })
+
+      setGitRepos(transformedUrls)
+      setGithubUserName(data[0].GitHubUsername)
+      setGithubtoken(data[0].GitHubToken)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getDashboard()
+    getGithubInformation()
   }, [])
 
   const cvsList = [
@@ -333,6 +366,34 @@ const Sast = () => {
     }
   ]
 
+  const handleScanAll = () => {
+    setType('All')
+    setOpen(true)
+  }
+
+  const handleCustomScan = () => {
+    setType('Custom')
+    setOpen(true)
+  }
+
+  const startSempgrepScan = async data => {
+    try {
+      const response = await semgrepScanner(data, token)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSastScan = data => {
+    let reqData = {
+      github_url: data,
+      github_username: githubUserName,
+      github_token: githubToken
+    }
+
+    startSempgrepScan(reqData)
+  }
+
   return (
     <Grid container spacing={6}>
       {loading ? (
@@ -340,11 +401,23 @@ const Sast = () => {
       ) : (
         <>
           <Grid item xs={12}>
-            <HeaderComponent dashboardData={dashboard} />
+            <HeaderComponent
+              dashboardData={dashboard}
+              onScan={() => handleScanAll()}
+              onCustomScan={() => handleCustomScan()}
+            />
           </Grid>
-          <Grid item xs={12}>
+
+          <SastScanModal
+            open={open}
+            handleClose={() => setOpen(false)}
+            type={type}
+            gitRepos={gitRepos}
+            scan={data => handleSastScan(data)}
+          />
+          {/* <Grid item xs={12}>
             <CustomTable courseData={data} refetch={getDashboard} />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={8}>
             <InterestedTopics dashboardData={dashboard} />
           </Grid>

@@ -263,6 +263,8 @@ const CustomTable = ({ courseData, onClick = f => f, refetch }) => {
     []
   )
 
+  console.log(gitRepos)
+
   const table = useReactTable({
     data: data,
     columns,
@@ -513,14 +515,6 @@ const CustomTable = ({ courseData, onClick = f => f, refetch }) => {
                       </TableBody>
                     </Table>
                   </TableContainer>
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={() => handleCustomRepos()}
-                    style={{ marginTop: '10px' }}
-                  >
-                    Scan Repositories
-                  </Button>
                 </Box>
               </CardContent>
             </Card>
