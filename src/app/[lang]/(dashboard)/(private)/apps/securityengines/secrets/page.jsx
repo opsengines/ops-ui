@@ -1,7 +1,7 @@
 import UpgradePlan from '@/views/pages/misc/UpgradePlan'
 
-const AIML = () => {
+const Secrets = () => {
   return <UpgradePlan />
 }
 
-export default AIML
+export default Secrets

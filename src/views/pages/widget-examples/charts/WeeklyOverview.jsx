@@ -107,7 +107,7 @@ const WeeklyOverview = ({ dashboardData = {} }) => {
   return (
     <Card sx={{ height: '400px' }}>
       <CardHeader
-        title='Weekly Overview'
+        title='Daily Scan Summary'
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Delete']} />}
       />
       <CardContent sx={{ '& .apexcharts-xcrosshairs.apexcharts-active': { opacity: 0 } }}>

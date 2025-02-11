@@ -10,13 +10,14 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { lighten, darken, useTheme } from '@mui/material/styles'
 
-// Component Imports
+import { Button } from '@mui/material'
+
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const HeaderComponent = ({ dashboardData }) => {
+const HeaderComponent = ({ dashboardData, onScan, onCustomScan }) => {
   // Hooks
   const theme = useTheme()
   const belowMdScreen = useMediaQuery(theme.breakpoints.down('md'))
@@ -44,7 +45,7 @@ const HeaderComponent = ({ dashboardData }) => {
       )
     },
     {
-      title: 'Scans Pending',
+      title: 'Scans In Progress',
       value: `${dashboardData?.pendingScans || 0}`,
       color: 'info',
       icon: (
@@ -152,9 +153,21 @@ const HeaderComponent = ({ dashboardData }) => {
   return (
     <div className='flex max-md:flex-col md:items-center gap-6 plb-5'>
       <div className='md:is-8/12'>
-        <div className='flex items-baseline gap-1 mbe-2'>
-          <Typography variant='h5'>Welcome back,</Typography>
-          <Typography variant='h4'>Felecia 👋🏻</Typography>
+        <div className='flex justify-between items-center gap-1 mbe-2'>
+          <div className='flex items-center'>
+            <Typography variant='h5'>Welcome back,</Typography>
+            <Typography variant='h4'> {'  '} Felecia 👋🏻</Typography>
+          </div>
+          <div className='flex flex-row gap-2'>
+            <Chip label={'Scan All'} color={'primary'} size='small' variant='tonal' onClick={() => onScan()} />
+            <Chip label={'Custom Scan'} color={'primary'} size='small' variant='tonal' onClick={() => onScan()} />
+            {/* <Button variant='contained' onClick={() => onScan()}>
+              Scan All
+            </Button> */}
+            {/* <Button variant='contained' className='mr-5' onClick={() => onCustomScan()}>
+              Custom Scan
+            </Button> */}
+          </div>
         </div>
         <div className='mbe-4'>
           <Typography>View and manage the security findings detected</Typography>
@@ -184,9 +197,10 @@ const HeaderComponent = ({ dashboardData }) => {
             </Typography>
             <Typography>Month To Date</Typography>
           </div>
-          <div>
+
+          {/* <div>
             <Chip label='+18.4%' variant='tonal' size='small' color='success' />
-          </div>
+          </div> */}
         </div>
         <AppReactApexCharts type='donut' height={230} width={209} options={options} series={[2, 10, 5, 15, 4, 9]} />
       </div>

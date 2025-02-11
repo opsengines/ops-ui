@@ -145,7 +145,7 @@ const InterestedTopics = ({ dashboardData }) => {
   return (
     <Card>
       <CardHeader
-        title='Summary'
+        title='Risk Summary'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <CardContent>
