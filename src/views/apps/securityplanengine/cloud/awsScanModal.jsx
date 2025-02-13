@@ -128,7 +128,7 @@ const AWSValidationModal = ({ open, handleClose }) => {
               Scan is running...
             </Typography>
             <Typography mt={2} variant='body1'>
-              <a href='/en/apps/securityengines/cloudsecurity/results'>
+              <a href='/en/apps/results'>
                 <span style={{ color: '#1976d2', textDecoration: 'underline' }}>You can view the scan status here</span>
               </a>
             </Typography>

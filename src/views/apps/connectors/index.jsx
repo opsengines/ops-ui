@@ -100,18 +100,18 @@ const ConnectorsView = () => {
   ]
 
   const codeSecConnectors = [
-    {
-      id: 1,
-      name: 'Fortify On Demand',
-      image: '/images/apps/connectors/FortifyOD.png',
-      connected: false
-    },
-    {
-      id: 2,
-      name: 'Fortify Security',
-      image: '/images/apps/connectors/FortifyOD.png',
-      connected: false
-    },
+    // {
+    //   id: 1,
+    //   name: 'Fortify On Demand',
+    //   image: '/images/apps/connectors/FortifyOD.png',
+    //   connected: false
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Fortify Security',
+    //   image: '/images/apps/connectors/FortifyOD.png',
+    //   connected: false
+    // },
     {
       id: 3,
       name: 'Github SAST',
@@ -123,40 +123,41 @@ const ConnectorsView = () => {
       name: 'GitLab SAST',
       image: '/images/apps/connectors/GitLab.png',
       connected: false
-    },
-    {
-      id: 5,
-      name: 'Sonar Cloud',
-      image: '/images/apps/connectors/SonarCloud.png',
-      connected: false
-    },
-    {
-      id: 6,
-      name: 'SonarQube',
-      image: '/images/apps/connectors/SonarQube.png',
-      connected: false
-    },
-    {
-      id: 7,
-      name: 'VeraCode',
-      image: '/images/apps/connectors/VeraCode.png',
-      connected: false
     }
+
+    // {
+    //   id: 5,
+    //   name: 'Sonar Cloud',
+    //   image: '/images/apps/connectors/SonarCloud.png',
+    //   connected: false
+    // },
+    // {
+    //   id: 6,
+    //   name: 'SonarQube',
+    //   image: '/images/apps/connectors/SonarQube.png',
+    //   connected: false
+    // },
+    // {
+    //   id: 7,
+    //   name: 'VeraCode',
+    //   image: '/images/apps/connectors/VeraCode.png',
+    //   connected: false
+    // }
   ]
 
   const secretsScans = [
-    {
-      id: 1,
-      name: 'Fortify On Demand',
-      image: '/images/apps/connectors/FortifyOD.png',
-      connected: false
-    },
-    {
-      id: 2,
-      name: 'Fortify Center',
-      image: '/images/apps/connectors/FortifyOD.png',
-      connected: false
-    },
+    // {
+    //   id: 1,
+    //   name: 'Fortify On Demand',
+    //   image: '/images/apps/connectors/FortifyOD.png',
+    //   connected: false
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Fortify Center',
+    //   image: '/images/apps/connectors/FortifyOD.png',
+    //   connected: false
+    // },
     {
       id: 3,
       name: 'Github Detection',
@@ -172,12 +173,12 @@ const ConnectorsView = () => {
   ]
 
   const sbomConnector = [
-    {
-      id: 1,
-      name: 'FOSSA',
-      image: '/images/apps/connectors/Fossa.svg',
-      connected: false
-    }
+    // {
+    //   id: 1,
+    //   name: 'FOSSA',
+    //   image: '/images/apps/connectors/Fossa.svg',
+    //   connected: false
+    // }
   ]
 
   const cicdActions = [
@@ -210,13 +211,14 @@ const ConnectorsView = () => {
       name: 'Travis CI',
       image: '/images/apps/connectors/TravisCI.png',
       connected: false
-    },
-    {
-      id: 5,
-      name: 'Drone CI',
-      image: '/images/apps/connectors/Fossa.svg',
-      connected: false
     }
+
+    // {
+    //   id: 5,
+    //   name: 'Drone CI',
+    //   image: '/images/apps/connectors/Fossa.svg',
+    //   connected: false
+    // }
   ]
 
   const registryConnectors = [
@@ -367,7 +369,8 @@ const ConnectorsView = () => {
               </Grid>
             ))}
           </Grid>
-          <Typography variant='h6' className='ml-2 mt-7'>
+
+          {/* <Typography variant='h6' className='ml-2 mt-7'>
             SBOM
           </Typography>
           <Grid container spacing={2} sx={{ padding: 2 }}>
@@ -376,7 +379,8 @@ const ConnectorsView = () => {
                 <ConnectorCard name={connector.name} image={connector.image} connected={connector.connected} />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
+
           <Typography variant='h6' className='ml-2 mt-7'>
             CI/CD
           </Typography>

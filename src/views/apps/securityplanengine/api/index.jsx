@@ -8,15 +8,13 @@ import AssignmentProgress from '@views/apps/academy/dashboard/AssignmentProgress
 
 // Data Imports
 import { getAcademyData } from '@/app/server/actions'
-
-//import CustomTable from '../academy/dashboard/CustomTable'
 import CustomTable from '../../academy/dashboard/CustomTable'
 import CVSTable from '../cvsTable'
 import ComplianceTable from '../complianceTable'
 import HeaderComponent from '../HeaderComponent'
 import WeeklyOverview from '@/views/pages/widget-examples/charts/WeeklyOverview'
 
-const DASTPage = async ({ scans }) => {
+const ApiComponent = async ({ scans }) => {
   // Vars
   const data = await getAcademyData()
 
@@ -256,4 +254,4 @@ const DASTPage = async ({ scans }) => {
   )
 }
 
-export default DASTPage
+export default ApiComponent

@@ -1,7 +1,7 @@
-import ComingSoon from '@/views/pages/misc/ComingSoon'
+import ApiComponent from '@/views/apps/securityplanengine/api'
 
 const ApiPage = () => {
-  return <ComingSoon />
+  return <ApiComponent />
 }
 
 export default ApiPage

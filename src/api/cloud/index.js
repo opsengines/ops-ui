@@ -30,7 +30,6 @@ export const prowlerCloudScan = async token => {
   const requestOptions = {
     method: 'POST',
     headers: myHeaders,
-    body: raw,
     redirect: 'follow'
   }
 

@@ -145,9 +145,9 @@ const ResultTable = () => {
   const [endDate, setEndDate] = useState(addDays(new Date(), 15))
   const [data, setData] = useState([])
   const [anchorEl, setAnchorEl] = useState(null)
-  const [category, setCategory] = useState('All')
-  const [severity, setSeverity] = useState('All')
-  const [status, setStatus] = useState('All')
+  const [category, setCategory] = useState()
+  const [severity, setSeverity] = useState()
+  const [status, setStatus] = useState()
   const [dashboardStats, setDashboardStats] = useState({})
 
   const closeDrawer = () => setDrawerOpen(false)
@@ -216,7 +216,8 @@ const ResultTable = () => {
             scan_id,
             scan_subcategory,
             status,
-            repository: scan?.repository ? scan?.repository : 'AWS'
+            repository: scan?.repository ? scan?.repository : 'AWS',
+            severityStatus: false
           })
         })
       }
@@ -284,7 +285,7 @@ const ResultTable = () => {
   }
 
   useEffect(() => {
-    fetchCloudScanResults()
+    //fetchCloudScanResults()
     scanEngine({}, token).then(response => transformScanData(response?.results))
   }, [])
 
@@ -331,30 +332,12 @@ const ResultTable = () => {
         cell: ({ row }) => (
           <p>
             {row.original.status === 'completed' ? (
-              <Chip label={row.original.status} sx={{ backgroundColor: 'green' }} />
+              <Chip label={'Completed'} sx={{ backgroundColor: 'green' }} />
             ) : null}
-            {row.original.status === 'failed' ? (
-              <Chip label={row.original.status} sx={{ backgroundColor: 'red' }} />
-            ) : null}
+            {row.original.status === 'failed' ? <Chip label={'Failed'} sx={{ backgroundColor: 'red' }} /> : null}
           </p>
         ),
         header: 'Status'
-      }),
-      columnHelper.accessor('scan_date', {
-        cell: ({ row }) => (
-          <Typography className='font-medium w-[120px] text-wrap' color='text.primary'>
-            {row.original.scan_date?.split('T')[0]}
-          </Typography>
-        ),
-        header: 'Scan Date'
-      }),
-      columnHelper.accessor('scan_date', {
-        cell: ({ row }) => (
-          <Typography className='font-medium w-[120px] text-wrap' color='text.primary'>
-            {row.original.scan_date?.split('T')[1].split('.')[0]}
-          </Typography>
-        ),
-        header: 'Scan Time'
       }),
       columnHelper.accessor('severity', {
         cell: ({ row }) => (
@@ -369,8 +352,37 @@ const ResultTable = () => {
           </p>
         ),
         header: 'Severity'
+      }),
+      columnHelper.accessor('severityStatus', {
+        cell: ({ row }) => (
+          <p>
+            {row.original.severityStatus === false ? <Chip label={'Open'} sx={{ backgroundColor: 'red' }} /> : null}
+            {row.original.severityStatus === true ? (
+              <Chip label={row.original.status} sx={{ backgroundColor: 'green' }} />
+            ) : null}
+          </p>
+        ),
+        header: 'Severity Status'
+      }),
+      columnHelper.accessor('scan_date', {
+        cell: ({ row }) => (
+          <Typography className='font-medium w-[120px] text-wrap' color='text.primary'>
+            {row.original.scan_date?.split('T')[0]} {row.original.scan_date?.split('T')[1].split('.')[0]}
+          </Typography>
+        ),
+        header: 'Scan Date'
       })
+
+      //   columnHelper.accessor('scan_date', {
+      //     cell: ({ row }) => (
+      //       <Typography className='font-medium w-[120px] text-wrap' color='text.primary'>
+      //         {row.original.scan_date?.split('T')[1].split('.')[0]}
+      //       </Typography>
+      //     ),
+      //     header: 'Scan Time'
+      //   })
     ],
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
@@ -423,6 +435,35 @@ const ResultTable = () => {
     setEndDate(end)
   }
 
+  const handleFilterApply = () => {
+    setLoading(true)
+
+    const payload = {
+      scan_fromdate: startDate,
+      scan_todate: endDate,
+      ...(category && { scan_category: category }),
+      ...(severity && { severity: severity }),
+      ...(status && { status: status })
+    }
+
+    scanEngine(payload, token).then(response => transformScanData(response?.results))
+  }
+
+  const handleClearFilters = () => {
+    setCategory()
+
+    setStatus()
+
+    setSeverity()
+
+    const payload = {
+      scan_fromdate: startDate,
+      scan_todate: endDate
+    }
+
+    scanEngine(payload, token).then(response => transformScanData(response?.results))
+  }
+
   return (
     <>
       <Grid container spacing={6} className='mb-5'>
@@ -448,12 +489,7 @@ const ResultTable = () => {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <TotalSales
-            title={'Scan Targets'}
-            data={[10, 15, 30, 12]}
-            labels={['Critical', 'High', 'Medium', 'Low']}
-            loading={loading}
-          />
+          <TotalSales title={'Scan Targets'} data={[2, 0, 0]} labels={['Open', 'Fixed', 'N/A']} loading={loading} />
         </Grid>
       </Grid>
       <Card>
@@ -480,7 +516,11 @@ const ResultTable = () => {
                     <Typography variant='h6' sx={{ fontWeight: 'bold', mb: 1 }}>
                       Quick Filters
                     </Typography>
-                    <Typography variant='h6' sx={{ fontWeight: 'bold', mb: 1 }}>
+                    <Typography
+                      variant='h6'
+                      sx={{ fontWeight: 'bold', mb: 1, color: '#8657e1' }}
+                      onClick={() => handleClearFilters()}
+                    >
                       Clear Filters
                     </Typography>
                   </div>
@@ -537,6 +577,9 @@ const ResultTable = () => {
                       <DropdownItem value='Closed'>Closed</DropdownItem>
                     </Select>
                   </FormControl>
+                  <Button fullWidth variant='contained' className='mt-3' onClick={() => handleFilterApply()}>
+                    Apply
+                  </Button>
                 </MenuList>
               </Popover>
               <DebouncedInput

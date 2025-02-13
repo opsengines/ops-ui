@@ -72,7 +72,6 @@ const SecurityCard = ({ cardInfo }) => {
         {/* Button */}
         <Button
           variant='contained'
-          href={`/${locale}/${cardInfo?.page || ''}`}
           sx={{
             mt: 5,
             backgroundColor: '#4B4BFF',
@@ -81,7 +80,7 @@ const SecurityCard = ({ cardInfo }) => {
             fontWeight: 'bold'
           }}
         >
-          View Plan
+          Scan Plan
         </Button>
       </CardContent>
     </Card>
