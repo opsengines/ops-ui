@@ -130,16 +130,7 @@ const RowSelection = ({ dataset }) => {
 
   return (
     <Card>
-      <CardHeader
-        title='Scans'
-        action={
-          <a href='/en/apps/securityengines/cloudsecurity/results'>
-            <Button type='primary' variant='outlined'>
-              View Results
-            </Button>
-          </a>
-        }
-      />
+      <CardHeader title='Scans' />
       <div className='overflow-x-auto'>
         <table className={styles.table}>
           <thead>

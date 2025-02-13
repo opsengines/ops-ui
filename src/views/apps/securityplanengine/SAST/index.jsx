@@ -410,7 +410,10 @@ const Sast = () => {
 
           <SastScanModal
             open={open}
-            handleClose={() => setOpen(false)}
+            handleClose={() => {
+              setOpen(false)
+              getDashboard()
+            }}
             type={type}
             gitRepos={gitRepos}
             scan={data => handleSastScan(data)}

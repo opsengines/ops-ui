@@ -224,30 +224,6 @@ const Cloud = async () => {
       lastScanStatus: true,
       logo: '/images/apps/logos/amazons3.png',
       trigger: true
-    },
-    {
-      id: 'CSPM-002',
-      title: 'Scan Full Cloud Security - Azure',
-      lastRun: '2H 20m Ago',
-      lastScanStatus: true,
-      logo: '/images/apps/logos/amazonec2.png',
-      trigger: false
-    },
-    {
-      id: 'CSPM-003',
-      title: 'Scan Full Cloud Security - Google',
-      lastRun: '2H 20m Ago',
-      lastScanStatus: true,
-      logo: '/images/apps/logos/amazonIam.png',
-      trigger: false
-    },
-    {
-      id: 'CSPM-004',
-      title: 'S3 Bucket Engine',
-      lastRun: '2H 20m Ago',
-      lastScanStatus: false,
-      logo: '/images/apps/logos/amazons3.png',
-      trigger: false
     }
   ]
 

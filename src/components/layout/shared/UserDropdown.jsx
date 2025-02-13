@@ -23,12 +23,16 @@ import Button from '@mui/material/Button'
 // Third-party Imports
 import { signOut, useSession } from 'next-auth/react'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 // Hook Imports
 import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 import { userInfo } from '@/api/auth'
+
+import { setUser } from '@/redux-store/slices/user'
 
 // Styled component for badge content
 const BadgeContentSpan = styled('span')({
@@ -46,6 +50,8 @@ const UserDropdown = () => {
 
   // Refs
   const anchorRef = useRef(null)
+
+  const dispatch = useDispatch()
 
   // Hooks
   const router = useRouter()
@@ -85,6 +91,13 @@ const UserDropdown = () => {
   const getUserInfo = async () => {
     try {
       const userData = await userInfo(authToken) // Await the promise
+
+      dispatch(
+        setUser({
+          email: userData?.email,
+          fullName: userData?.full_name
+        })
+      )
 
       setUserInformation(userData)
     } catch (error) {

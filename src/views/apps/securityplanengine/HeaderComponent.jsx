@@ -12,6 +12,8 @@ import { lighten, darken, useTheme } from '@mui/material/styles'
 
 import { Button } from '@mui/material'
 
+import { useSelector } from 'react-redux'
+
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Styled Component Imports
@@ -21,6 +23,8 @@ const HeaderComponent = ({ dashboardData, onScan, onCustomScan }) => {
   // Hooks
   const theme = useTheme()
   const belowMdScreen = useMediaQuery(theme.breakpoints.down('md'))
+
+  const user = useSelector(state => state.userReducer)
 
   const data = [
     {
@@ -156,13 +160,16 @@ const HeaderComponent = ({ dashboardData, onScan, onCustomScan }) => {
         <div className='flex justify-between items-center gap-1 mbe-2'>
           <div className='flex items-center'>
             <Typography variant='h5'>Welcome back,</Typography>
-            <Typography variant='h4'> {'  '} Felecia 👋🏻</Typography>
+            <Typography variant='h4'>
+              {' '}
+              {'  '} {user?.fullName} 👋🏻
+            </Typography>
           </div>
           <div className='flex flex-row gap-2'>
-            <Chip label={'Scan All'} color={'primary'} size='small' variant='tonal' onClick={() => onScan()} />
-            <Chip label={'Custom Scan'} color={'primary'} size='small' variant='tonal' onClick={() => onScan()} />
-            {/* <Button variant='contained' onClick={() => onScan()}>
-              Scan All
+            <Chip label={'Scan'} color={'primary'} size='large' variant='tonal' onClick={() => onScan()} />
+
+            {/* <Button variant='contained' onClick={() => onScan()} className='border-radius-50'>
+              Scan
             </Button> */}
             {/* <Button variant='contained' className='mr-5' onClick={() => onCustomScan()}>
               Custom Scan

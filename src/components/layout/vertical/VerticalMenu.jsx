@@ -79,7 +79,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
       >
         <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='ri-home-smile-line' />}>
-          <MenuItem href={`/${locale}/dashboards/crm`}>{dictionary['navigation'].crm}</MenuItem>
+          <MenuItem href={`/${locale}/dashboards/crm`}>Visibility</MenuItem>
           <MenuItem href={`/${locale}/apps/kanban`} icon={<i className='ri-drag-drop-line' />}>
             {dictionary['navigation'].kanban}
           </MenuItem>
@@ -216,9 +216,13 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/roles`}>{dictionary['navigation'].roles}</MenuItem>
           <MenuItem href={`/${locale}/apps/permissions`}>{dictionary['navigation'].permissions}</MenuItem>
         </SubMenu> */}
-        <SubMenu label={'Administration'} icon={<SettingsIcon />}>
-          <MenuItem href={`/${locale}/apps/user/list`}>User</MenuItem>
-          <MenuItem href={`/${locale}/apps/roles`}>{dictionary['navigation'].roles}</MenuItem>
+        <SubMenu label={'Settings'} icon={<SettingsIcon />}>
+          <MenuItem href={`/${locale}/apps/settings/auditLogs`}>Audit Logs</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/userGroups`}>Users & Groups</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/roles`}>Roles & Plans</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/notifications`}>Notifications & Alerts</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/license`}>Licence & Plan</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/payments`}>Payments</MenuItem>
         </SubMenu>
         {/* <SubMenu label={dictionary['navigation'].pages} icon={<i className='ri-layout-left-line' />}>
             <MenuItem href={`/${locale}/pages/user-profile`}>{dictionary['navigation'].userProfile}</MenuItem>

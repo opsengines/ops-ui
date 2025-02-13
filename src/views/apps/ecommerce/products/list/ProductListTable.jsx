@@ -36,6 +36,8 @@ import {
   getSortedRowModel
 } from '@tanstack/react-table'
 
+import SecurityIcon from '@mui/icons-material/Security'
+
 // Component Imports
 import TableFilters from './TableFilters'
 import CustomAvatar from '@core/components/mui/Avatar'
@@ -136,7 +138,7 @@ const ProductListTable = ({ productData }) => {
         header: 'Product',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
-            <img src={row.original.image} width={38} height={38} className='rounded bg-actionHover' />
+            <SecurityIcon />
             <div className='flex flex-col'>
               <Typography className='font-medium' color='text.primary'>
                 {row.original.productName}

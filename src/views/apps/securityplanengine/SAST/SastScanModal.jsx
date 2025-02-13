@@ -34,6 +34,7 @@ const SastScanModal = ({ open, handleClose, type, scan, gitRepos }) => {
   const [selectedRepos, setSelectedRepos] = useState()
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
+  const [allSelected, setAllSelected] = useState(false)
 
   const scanData = [
     { name: 'Dependencies scan', completed: `${selectedRepos?.length}/${selectedRepos?.length} repos complete` },
@@ -48,23 +49,27 @@ const SastScanModal = ({ open, handleClose, type, scan, gitRepos }) => {
   ]
 
   const handleCheckboxChange = (event, repoId) => {
-    if (type !== 'All') {
-      setSelectedRepos(prevSelectedRepos => {
-        if (prevSelectedRepos.includes(repoId)) {
-          return prevSelectedRepos.filter(id => id !== repoId)
-        } else {
-          return [...prevSelectedRepos, repoId]
-        }
-      })
-    }
+    setSelectedRepos(prevSelectedRepos => {
+      if (prevSelectedRepos.includes(repoId)) {
+        return prevSelectedRepos.filter(id => id !== repoId)
+      } else {
+        return [...prevSelectedRepos, repoId]
+      }
+    })
   }
 
-  useEffect(() => {
-    if (open && type === 'All') {
+  const handleSelectall = value => {
+    setAllSelected(value)
+
+    if (value === true) {
       setSelectedRepos(gitRepos?.map(repo => repo.url)) // Select all repositories when 'All' is clicked
     } else {
       setSelectedRepos([])
     }
+  }
+
+  useEffect(() => {
+    setSelectedRepos([])
 
     return () => {
       setPage(1)
@@ -109,7 +114,9 @@ const SastScanModal = ({ open, handleClose, type, scan, gitRepos }) => {
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell padding='checkbox'></TableCell>
+                        <TableCell padding='checkbox'>
+                          <Checkbox checked={allSelected} onChange={event => handleSelectall(event.target.checked)} />
+                        </TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>URL</TableCell>
                       </TableRow>

@@ -12,6 +12,7 @@ import CustomTable from '../../academy/dashboard/CustomTable'
 import CVSTable from '../cvsTable'
 import ComplianceTable from '../complianceTable'
 import HeaderComponent from '../HeaderComponent'
+import WeeklyOverview from '@/views/pages/widget-examples/charts/WeeklyOverview'
 
 const Scm = async ({ scans }) => {
   // Vars
@@ -208,19 +209,37 @@ const Scm = async ({ scans }) => {
     }
   ]
 
+  const weeklyChart = {
+    totalScans: 6,
+    pendingScans: 0,
+    completedScans: 6,
+    weeklyScans: {
+      Monday: 2,
+      Tuesday: 2,
+      Wednesday: 5,
+      Thursday: 1,
+      Friday: 1,
+      Saturday: 1,
+      Sunday: 3
+    },
+    severityCounts: {
+      CRITICAL: 2,
+      HIGH: 3,
+      MEDIUM: 8,
+      LOW: 5
+    }
+  }
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <HeaderComponent />
       </Grid>
-      <Grid item xs={12}>
-        <CustomTable courseData={scans} />
-      </Grid>
       <Grid item xs={12} md={8}>
         <InterestedTopics />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
-        <AssignmentProgress />
+        <WeeklyOverview dashboardData={weeklyChart} />
       </Grid>
 
       <Grid item xs={12} md={4}>
