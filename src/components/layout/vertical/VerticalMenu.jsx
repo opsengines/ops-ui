@@ -92,7 +92,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         </SubMenu>
 
         <MenuItem href={`/${locale}/apps/securityplans`} icon={<SecurityIcon />}>
-          Security Plan Engines
+          Security Blueprints
         </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].frontPages} icon={<i className='ri-file-copy-line' />}>
           <MenuItem href='/front-pages/landing-page' target='_blank'>
@@ -156,7 +156,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/ecommerce/settings`}>{dictionary['navigation'].settings}</MenuItem> */}
         </SubMenu>
         <MenuItem href={`/${locale}/apps/results`} icon={<Assessment />}>
-          Engine Results
+          Engine Scans & Results
         </MenuItem>
         <MenuItem href={`/${locale}/apps/ecommerce/products/list`} icon={<PolicyIcon />}>
           {dictionary['navigation'].list}
@@ -165,7 +165,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           Workflows
         </MenuItem>
         <MenuItem href={`/${locale}/apps/connectors`} icon={<IntegrationInstructionsIcon />}>
-          {dictionary['navigation'].myCourses}
+          Integrations
         </MenuItem>
         <MenuItem href={`/${locale}/apps/reports`} icon={<Assessment />}>
           Reports
@@ -218,8 +218,8 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         </SubMenu> */}
         <SubMenu label={'Settings'} icon={<SettingsIcon />}>
           <MenuItem href={`/${locale}/apps/settings/auditLogs`}>Audit Logs</MenuItem>
-          <MenuItem href={`/${locale}/apps/settings/userGroups`}>Users & Groups</MenuItem>
-          <MenuItem href={`/${locale}/apps/settings/roles`}>Roles & Plans</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/userGroups`}>Users</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/roles`}>Roles & Permissions</MenuItem>
           <MenuItem href={`/${locale}/apps/settings/notifications`}>Notifications & Alerts</MenuItem>
           <MenuItem href={`/${locale}/apps/settings/license`}>Licence & Plan</MenuItem>
           <MenuItem href={`/${locale}/apps/settings/payments`}>Payments</MenuItem>

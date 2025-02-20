@@ -29,12 +29,45 @@ import { Close } from '@mui/icons-material'
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 
-const SastScanModal = ({ open, handleClose, type, scan, gitRepos }) => {
+import { getGitInfo } from '@/api/github'
+
+const SastScanModal = ({ open, handleClose, scan }) => {
   const [selectedOption, setSelectedOption] = useState('All')
   const [selectedRepos, setSelectedRepos] = useState()
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [allSelected, setAllSelected] = useState(false)
+  const [gitRepos, setGitRepos] = useState([])
+  const [githubUserName, setGithubUserName] = useState('')
+  const [githubToken, setGithubtoken] = useState('')
+
+  const token = localStorage.getItem('authToken')
+
+  // API Call
+
+  const getGithubInformation = async () => {
+    try {
+      const data = await getGitInfo(token)
+
+      const links = data[0]?.GitHubLink
+
+      const transformedUrls = links.map((url, index) => {
+        const path = url.split('github.com')[1]
+
+        return {
+          id: index + 1,
+          name: path,
+          url: url
+        }
+      })
+
+      setGitRepos(transformedUrls)
+      setGithubUserName(data[0].GitHubUsername)
+      setGithubtoken(data[0].GitHubToken)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const scanData = [
     { name: 'Dependencies scan', completed: `${selectedRepos?.length}/${selectedRepos?.length} repos complete` },
@@ -68,8 +101,19 @@ const SastScanModal = ({ open, handleClose, type, scan, gitRepos }) => {
     }
   }
 
+  const handleSastScan = repos => {
+    let reqData = {
+      github_url: repos,
+      github_username: githubUserName,
+      github_token: githubToken
+    }
+
+    scan(reqData)
+  }
+
   useEffect(() => {
     setSelectedRepos([])
+    getGithubInformation()
 
     return () => {
       setPage(1)
@@ -146,7 +190,7 @@ const SastScanModal = ({ open, handleClose, type, scan, gitRepos }) => {
                 variant='contained'
                 color='primary'
                 onClick={() => {
-                  scan(selectedRepos)
+                  handleSastScan(selectedRepos)
                   setPage(2)
                   setTimeout(() => {
                     setLoading(false)

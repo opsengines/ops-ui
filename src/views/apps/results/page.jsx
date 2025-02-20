@@ -8,11 +8,27 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import TextField from '@mui/material/TextField'
 import TablePagination from '@mui/material/TablePagination'
-import { Chip, Typography, Drawer, Box, Button, Divider, Skeleton, Tooltip, Grid } from '@mui/material'
+import { Chip, Typography, Drawer, Box, Button, Divider, Skeleton, Tooltip, Grid, CardContent } from '@mui/material'
 
 import { Popover, MenuList, MenuItem, FormControl, Select, MenuItem as DropdownItem } from '@mui/material'
 
-import { FlashOn, Alarm, ReportProblem, AddCircle, VisibilityOff, Code, Storage } from '@mui/icons-material'
+import {
+  FlashOn,
+  Alarm,
+  ReportProblem,
+  AddCircle,
+  VisibilityOff,
+  Code,
+  Storage,
+  AdminPanelSettingsOutlined,
+  ApiOutlined,
+  BubbleChartOutlined,
+  CloudCircleOutlined
+} from '@mui/icons-material'
+
+import { motion } from 'framer-motion'
+
+import { Home, Work, Settings, Info } from '@mui/icons-material'
 
 import IconButton from '@mui/material/IconButton'
 
@@ -34,7 +50,7 @@ import {
 } from '@tanstack/react-table'
 import { rankItem } from '@tanstack/match-sorter-utils'
 
-import { format, addDays } from 'date-fns'
+import { format, addDays, subDays } from 'date-fns'
 
 // Icon Imports
 import ChevronRight from '@menu/svg/ChevronRight'
@@ -48,6 +64,10 @@ import AppReactDatepicker from '@/libs/styles/AppReactDatepicker'
 import './index.css'
 import { scanEngine } from '@/api/results'
 import TotalSales from '@/views/pages/widget-examples/statistics/TotalSales'
+import SecurityReport from '@/views/components/AIFix'
+import SastScanModal from '../securityplanengine/SAST/SastScanModal'
+import { semgrepScanner } from '@/api/sast'
+import AWSValidationModal from '../securityplanengine/cloud/awsScanModal'
 
 // Column Definitions
 const columnHelper = createColumnHelper()
@@ -141,14 +161,27 @@ const ResultTable = () => {
   const [sastDrawer, setSastDrawer] = useState(false)
   const [selectedRow, setSelectedRow] = useState()
   const [loading, setLoading] = useState(true)
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(addDays(new Date(), 15))
+  const [startDate, setStartDate] = useState(subDays(new Date(), 15))
+  const [endDate, setEndDate] = useState(new Date())
   const [data, setData] = useState([])
   const [anchorEl, setAnchorEl] = useState(null)
   const [category, setCategory] = useState()
   const [severity, setSeverity] = useState()
   const [status, setStatus] = useState()
   const [dashboardStats, setDashboardStats] = useState({})
+  const [aiFixModal, setAiFixModal] = useState(false)
+  const [sastModal, setSastModal] = useState(false)
+  const [awsScanModal, setAwsScanModal] = useState(false)
+
+  const items = [
+    { icon: <AdminPanelSettingsOutlined fontSize='large' />, text: 'SAST Scan', onClick: () => setSastModal(true) },
+    { icon: <ApiOutlined fontSize='large' />, text: 'API Scan', onClick: () => setSastModal(true) },
+    { icon: <BubbleChartOutlined fontSize='large' />, text: 'DAST Scan', onClick: () => setSastModal(true) },
+    { icon: <CloudCircleOutlined fontSize='large' />, text: 'CSPM Scan', onClick: () => setAwsScanModal(true) },
+    { icon: <AdminPanelSettingsOutlined fontSize='large' />, text: 'SBOM Scan', onClick: () => setSastModal(true) },
+    { icon: <ApiOutlined fontSize='large' />, text: 'API Scan', onClick: () => setSastModal(true) },
+    { icon: <BubbleChartOutlined fontSize='large' />, text: 'Scan All', onClick: () => setSastModal(true) }
+  ]
 
   const closeDrawer = () => setDrawerOpen(false)
 
@@ -192,7 +225,15 @@ const ResultTable = () => {
       const { scan_category, scan_date, scan_id, scan_subcategory, status, results } = scan
 
       if (scan?.scan_category === 'SAST') {
-        statsCount.category.SAST = statsCount.category.SAST + results?.length
+        let result = results?.length || 0
+
+        statsCount.category.SAST = statsCount.category.SAST + result
+      }
+
+      if (scan?.scan_category === 'Cloud') {
+        let result = results?.length || 0
+
+        statsCount.category.Cloud = statsCount.category.Cloud + result
       }
 
       if (results === 'No findings in Account' || scan?.error) {
@@ -228,6 +269,8 @@ const ResultTable = () => {
     setData(transformedResults)
 
     setLoading(false)
+
+    console.log(statsCount)
 
     return transformedResults
   }
@@ -464,8 +507,66 @@ const ResultTable = () => {
     scanEngine(payload, token).then(response => transformScanData(response?.results))
   }
 
+  const startSempgrepScan = async data => {
+    try {
+      const response = await semgrepScanner(data, token)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSastScan = data => {
+    startSempgrepScan(data)
+  }
+
   return (
     <>
+      <div style={{ display: 'flex', gap: '16px', marginBottom: '15px' }}>
+        {items.map((item, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05, boxShadow: '0px 5px 15px rgba(0,0,0,0.2)' }}
+            transition={{ duration: 0.2 }}
+          >
+            <Card
+              sx={{
+                width: 160, // Increased width for rectangular shape
+                height: 60, // Reduced height
+                display: 'flex',
+                alignItems: 'baseline',
+                justifyContent: 'center',
+                borderRadius: 2,
+                padding: 1,
+                cursor: 'pointer'
+              }}
+              onClick={() => item.onClick()}
+            >
+              <CardContent
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.5,
+                  padding: '8px'
+                }}
+              >
+                {item.icon}
+                <Typography variant='body2' fontWeight='bold'>
+                  {item.text}
+                </Typography>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+      {sastModal && (
+        <SastScanModal
+          open={sastModal}
+          gitRepos={[]}
+          handleClose={() => setSastModal(false)}
+          scan={data => handleSastScan(data)}
+        />
+      )}
+      {awsScanModal && <AWSValidationModal open={awsScanModal} handleClose={() => setAwsScanModal(false)} />}
       <Grid container spacing={6} className='mb-5'>
         <Grid item xs={12} md={4}>
           <TotalSales
@@ -483,7 +584,7 @@ const ResultTable = () => {
         <Grid item xs={12} md={4}>
           <TotalSales
             title={'Category'}
-            data={[dashboardStats?.category?.SAST, 0, 0, 0]}
+            data={[dashboardStats?.category?.SAST, dashboardStats?.category?.Cloud, 0, 0]}
             labels={['SAST', 'CSPM', 'SCA', 'DAST']}
             loading={loading}
           />
@@ -674,6 +775,9 @@ const ResultTable = () => {
           }}
           onRowsPerPageChange={e => table.setPageSize(Number(e.target.value))}
         />
+
+        <SecurityReport open={aiFixModal} handleClose={() => setAiFixModal(false)} data={selectedRow} />
+
         <Drawer
           anchor='right'
           open={drawerOpen}
@@ -721,15 +825,18 @@ const ResultTable = () => {
               {selectedRow?.finding_info?.desc}
             </Typography>
             <div className='flex flex-row gap-2'>
-              <Button variant='outlined' className='mt-10 p-2' style={{ borderColor: 'gray' }}>
-                Create ticket
-              </Button>
-              <Button variant='outlined' className='mt-10 p-2' style={{ borderColor: '#959bee' }}>
-                Mark As Ignored
-              </Button>
-              <Button variant='outlined' className='mt-10 p-2'>
-                AI Fix
-              </Button>
+              <Chip label={'Create Fix'} color={'primary'} size='large' variant='tonal' />
+              <Chip label={'Mark As Ignored'} color={'primary'} size='large' variant='tonal' />
+              <Chip label={'Mark As Fixed'} color={'primary'} size='large' variant='tonal' />
+              <Chip
+                label={'AI Fix'}
+                color={'primary'}
+                size='large'
+                variant='tonal'
+                onClick={() => {
+                  setAiFixModal(true)
+                }}
+              />
             </div>
           </Box>
 
@@ -860,15 +967,13 @@ const ResultTable = () => {
           <Box
             sx={{
               padding: '16px',
-              borderRadius: '8px',
-              marginTop: '10px'
+              marginTop: '10px',
+              borderBottom: '2px solid gray'
             }}
           >
             <div className='flex items-center justify-between'>
               {/* <img src='/images/apps/connectors/GithubIcon.png' alt='GitHub Icon' w/>{' '} */}
-              <Typography variant='body1' fontWeight='bold'>
-                Finding Info
-              </Typography>
+              <Chip label={'Finding Info'} color={'secondary'} size='large' variant='tonal' />
               <div className='flex flex-row gap-3'>
                 <Chip label={selectedRow?.extra?.metadata.confidence} sx={{ backgroundColor: 'red' }} />
               </div>
@@ -882,19 +987,27 @@ const ResultTable = () => {
             <Typography variant='body1' className='mt-4'>
               {selectedRow?.check_id}
             </Typography>
-            <div className='flex flex-row gap-2'>
-              <Button
-                variant='outlined'
-                className='mt-10 p-2'
-                style={{ color: 'white', borderColor: 'gray', backgroundColor: 'gray' }}
-              >
+            <div className='flex flex-row gap-2 mt-5'>
+              <Chip label={'Create Fix'} color={'primary'} size='large' variant='tonal' />
+              <Chip label={'Mark As Ignored'} color={'primary'} size='large' variant='tonal' />
+              <Chip label={'Mark As Fixed'} color={'primary'} size='large' variant='tonal' />
+              <Chip
+                label={'AI Fix'}
+                color={'primary'}
+                size='large'
+                variant='tonal'
+                onClick={() => {
+                  setAiFixModal(true)
+                }}
+              />
+              {/* <Button variant='outlined' className='mt-10 p-2' style={{ color: 'white', borderColor: 'gray' }}>
                 Create ticket
-              </Button>
-              <Button variant='outlined' className='mt-10 p-2' style={{ color: '#959bee', borderColor: '#959bee' }}>
+              </Button> */}
+              {/* <Button variant='outlined' className='mt-10 p-2' style={{ color: '#959bee', borderColor: '#959bee' }}>
                 Mark As Ignored
               </Button>
-              <Button variant='contained' className='mt-10 p-2' style={{ color: 'white', backgroundColor: 'purple' }}>
-                Mark As Ignored
+              <Button variant='outlined' className='mt-10 p-2' style={{ color: 'purple', borderColor: 'purple' }}>
+                Mark As Fixed
               </Button>
               <Button
                 variant='outlined'
@@ -904,44 +1017,42 @@ const ResultTable = () => {
                 }}
               >
                 AI Fix
-              </Button>
+              </Button> */}
             </div>
           </Box>
 
-          <Divider className='mt-2 mb-2' />
+          {/* <Divider className='mt-2 mb-2' /> */}
           <Box
             sx={{
               padding: '16px',
-              borderRadius: '8px'
+              borderBottom: '2px solid gray'
             }}
           >
             <div className='flex items-center justify-between'>
-              <Typography variant='body1' fontWeight='bold'>
-                General Info
-              </Typography>
+              <Chip label={'General Info'} color={'secondary'} size='large' variant='tonal' />
             </div>
 
             <div className='mt-8 flex justify-between w-[100%]'>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Developers</Typography>
+                <Typography variant='h6'>Developers</Typography>
                 <Typography variant='body1' className='mt-2'>
                   2
                 </Typography>
               </div>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>File Count</Typography>
+                <Typography variant='h6'>File Count</Typography>
                 <Typography variant='body1' className='mt-2'>
                   60
                 </Typography>
               </div>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Repository Size</Typography>
+                <Typography variant='h6'>Repository Size</Typography>
                 <Typography variant='body1' className='mt-2'>
                   600.33Kb
                 </Typography>
               </div>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Branch</Typography>
+                <Typography variant='h6'>Branch</Typography>
                 <Typography variant='body1' className='mt-2'>
                   Main
                 </Typography>
@@ -950,19 +1061,19 @@ const ResultTable = () => {
 
             <div className='mt-8 flex justify-between w-[70%]'>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Last Code Changes</Typography>
+                <Typography variant='h6'>Last Code Changes</Typography>
                 <Typography variant='body1' className='mt-2'>
                   12 Months Ago
                 </Typography>
               </div>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Creation Date</Typography>
+                <Typography variant='h6'>Creation Date</Typography>
                 <Typography variant='body1' className='mt-2'>
                   12 Months Ago
                 </Typography>
               </div>
               <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Access Level</Typography>
+                <Typography variant='h6'>Access Level</Typography>
                 <Typography variant='body1' className='mt-2'>
                   Public
                 </Typography>
@@ -978,13 +1089,11 @@ const ResultTable = () => {
             }}
           >
             <div className='flex items-center justify-between'>
-              <Typography variant='body1' fontWeight='bold'>
-                About This Issue
-              </Typography>
+              <Chip label={'About This Issue'} color={'secondary'} size='large' variant='tonal' />
             </div>
 
             <div className='flex flex-row mt-5 gap-5'>
-              <Typography variant='body1'>File Path : </Typography>
+              <Typography variant='h6'>File Path : </Typography>
               <a
                 href={generateGitHubLineLink(
                   selectedRow?.repository,
@@ -1001,7 +1110,7 @@ const ResultTable = () => {
             </div>
 
             <div className='flex flex-row mt-5 gap-5'>
-              <Typography variant='body1'>Line : </Typography>
+              <Typography variant='h6'>Line : </Typography>
               <p style={{ color: '#1976d2' }}>
                 {selectedRow?.start?.line}:{selectedRow?.start?.col}
               </p>
