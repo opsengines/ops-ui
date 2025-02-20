@@ -10,7 +10,7 @@ import rehypeHighlight from 'rehype-highlight'
 
 import 'highlight.js/styles/github.css'
 
-import { Modal, Box, IconButton, Typography, Skeleton } from '@mui/material'
+import { Modal, Box, IconButton, Typography, Skeleton, CircularProgress } from '@mui/material'
 
 import CloseIcon from '@mui/icons-material/Close'
 
@@ -43,7 +43,7 @@ const SecurityReport = ({ open, handleClose, data }) => {
   return (
     <Modal open={open} onClose={handleClose} aria-labelledby='security-report'>
       {loading ? (
-        <Skeleton variant='rounded' width={'700'} height={'70vh'} />
+        <CircularProgress size='3rem' color='secondary' className='ml-[45%] mt-[25%]' />
       ) : (
         <Box
           sx={{

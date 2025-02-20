@@ -90,34 +90,33 @@ const TotalSales = ({ title, data, labels, loading = false }) => {
       ) : (
         <CardContent className='flex justify-between bs-full'>
           <div className='flex flex-col justify-between'>
-            <div className='flex flex-col gap-1'>
+            <div className='flex justify-between items-baseline gap-1'>
               <Typography variant='h5'>{title}</Typography>
-              <Typography>Calculated in last 7 days</Typography>
             </div>
             <Grid item xs={12} sm={6}>
-              <div className='flex justify-between items-start mt-4'>
-                <div className='flex flex-col gap-y-6'>
+              <div className='flex justify-between items-start gap-5' style={{ marginTop: '-20px' }}>
+                <div className='flex flex-col gap-y-2'>
                   {data1.map((item, i) => (
                     <div key={i} className='flex gap-2'>
                       <i className={`ri-circle-fill text-xs m-[5px]`} style={{ backgroundColor: item.colorClass }} />
                       <div>
-                        <Typography className='underline'>
+                        <Typography className='underline' variant='body1'>
                           <a href='#'>{item.title}</a>
                         </Typography>
-                        <Typography variant='h5'>{`${item.value}`}</Typography>
+                        {/* <Typography variant='h5'>{`${item.value}`}</Typography> */}
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className='flex flex-col gap-y-6'>
+                <div className='flex flex-col gap-y-2'>
                   {data2.map((item, i) => (
                     <div key={i} className='flex gap-2'>
                       <i className={`ri-circle-fill text-xs m-[5px]`} style={{ backgroundColor: item.colorClass }} />
                       <div>
-                        <Typography className='underline'>
+                        <Typography className='underline' variant='body1'>
                           <a href='#'>{item.title}</a>
                         </Typography>
-                        <Typography variant='h5'>{`${item.value}`}</Typography>
+                        {/* <Typography variant='h5'>{`${item.value}`}</Typography> */}
                       </div>
                     </div>
                   ))}
@@ -125,7 +124,7 @@ const TotalSales = ({ title, data, labels, loading = false }) => {
               </div>
             </Grid>
           </div>
-          <div className='mt-7'>
+          <div>
             <AppReactApexCharts type='donut' width={120} height={200} options={options} series={data} />
           </div>
         </CardContent>
