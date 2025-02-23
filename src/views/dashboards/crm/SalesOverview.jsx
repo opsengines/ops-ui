@@ -22,10 +22,12 @@ import { rgbaToHex } from '@/utils/rgbaToHex'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const CardWidgetsSalesOverview = () => {
+const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
   // Hooks
   const theme = useTheme()
   const textSecondary = 'var(--mui-palette-text-secondary)'
+
+  const cusomcolors = ['#A31D1D', '#F93827', '#FFD65A', '#077d06']
 
   const options = {
     chart: {
@@ -37,12 +39,14 @@ const CardWidgetsSalesOverview = () => {
         right: 20
       }
     },
-    colors: [
-      'var(--mui-palette-primary-main)',
-      rgbaToHex(`rgb(${theme.palette.primary.mainChannel} / 0.7)`),
-      rgbaToHex(`rgb(${theme.palette.primary.mainChannel} / 0.5)`),
-      'var(--mui-palette-customColors-trackBg)'
-    ],
+    colors: customColors
+      ? cusomcolors
+      : [
+          'var(--mui-palette-primary-main)',
+          rgbaToHex(`rgb(${theme.palette.primary.mainChannel} / 0.7)`),
+          rgbaToHex(`rgb(${theme.palette.primary.mainChannel} / 0.5)`),
+          'var(--mui-palette-customColors-trackBg)'
+        ],
     stroke: { width: 0 },
     legend: { show: false },
     tooltip: { theme: 'false' },
@@ -105,7 +109,7 @@ const CardWidgetsSalesOverview = () => {
   return (
     <Card>
       <CardHeader
-        title='Vulnerabilities Overview'
+        title={title}
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Last 28 Days', 'Last Month', 'Last Year']} />}
       />
       <CardContent>
@@ -128,7 +132,11 @@ const CardWidgetsSalesOverview = () => {
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
                   <div>
-                    <i className='ri-circle-fill text-[10px] text-primary' />
+                    {customColors ? (
+                      <i className='ri-circle-fill text-[10px]' style={{ backgroundColor: cusomcolors[0] }} />
+                    ) : (
+                      <i className='ri-circle-fill text-[10px] text-primary' />
+                    )}
                   </div>
                   <Typography>Critical</Typography>
                 </div>
@@ -137,7 +145,11 @@ const CardWidgetsSalesOverview = () => {
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
                   <div>
-                    <i className='ri-circle-fill text-[10px] text-primary' />
+                    {customColors ? (
+                      <i className='ri-circle-fill text-[10px]' style={{ backgroundColor: cusomcolors[1] }} />
+                    ) : (
+                      <i className='ri-circle-fill text-[10px] text-primary' />
+                    )}
                   </div>
                   <Typography>High</Typography>
                 </div>
@@ -146,7 +158,11 @@ const CardWidgetsSalesOverview = () => {
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
                   <div>
-                    <i className='ri-circle-fill text-[10px] text-primary' />
+                    {customColors ? (
+                      <i className='ri-circle-fill text-[10px]' style={{ backgroundColor: cusomcolors[2] }} />
+                    ) : (
+                      <i className='ri-circle-fill text-[10px] text-primary' />
+                    )}
                   </div>
                   <Typography>Medium</Typography>
                 </div>
@@ -155,7 +171,11 @@ const CardWidgetsSalesOverview = () => {
               <Grid item xs={6}>
                 <div className='flex items-center gap-2 mbe-1'>
                   <div>
-                    <i className='ri-circle-fill text-[10px] text-primary' />
+                    {customColors ? (
+                      <i className='ri-circle-fill text-[10px]' style={{ backgroundColor: cusomcolors[3] }} />
+                    ) : (
+                      <i className='ri-circle-fill text-[10px] text-primary' />
+                    )}
                   </div>
                   <Typography>Low</Typography>
                 </div>

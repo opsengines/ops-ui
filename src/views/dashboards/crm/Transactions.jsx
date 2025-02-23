@@ -48,7 +48,7 @@ const Transactions = () => {
           {data.map((item, index) => (
             <Grid item xs={12} sm={4} key={index}>
               <div className='flex items-center gap-3'>
-                <CustomAvatar variant='rounded' color={item.color} className='shadow-xs'>
+                <CustomAvatar variant='rounded' color={'primary'} className='shadow-xs'>
                   <i className={item.icon}></i>
                 </CustomAvatar>
                 <div>

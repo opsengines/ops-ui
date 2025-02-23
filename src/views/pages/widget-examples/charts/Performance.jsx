@@ -26,7 +26,7 @@ const series = [
   }
 ]
 
-const Performance = () => {
+const Performance = ({ title }) => {
   // Hooks
   const theme = useTheme()
 
@@ -84,7 +84,7 @@ const Performance = () => {
   return (
     <Card>
       <CardHeader
-        title='Performance'
+        title={title}
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Last 28 Days', 'Last Month', 'Last Year']} />}
       />
       <CardContent>

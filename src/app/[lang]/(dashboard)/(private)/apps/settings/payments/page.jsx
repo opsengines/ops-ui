@@ -1,7 +1,11 @@
+import { getInvoiceData } from '@/app/server/actions'
+import InvoiceList from '@/views/apps/invoice/list'
 import ComingSoon from '@/views/pages/misc/ComingSoon'
 
-const Payments = () => {
-  return <ComingSoon />
+const Payments = async () => {
+  const data = await getInvoiceData()
+
+  return <InvoiceList invoiceData={data} />
 }
 
 export default Payments
