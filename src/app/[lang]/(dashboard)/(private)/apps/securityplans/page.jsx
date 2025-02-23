@@ -83,9 +83,9 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/securityLeadPlan'
     },
     {
-      title: 'CISO Compliance and Governance Scan Plan',
+      title: 'CISO Compliance Scan Plan',
       description: 'Secure cloud-native applications, environments, and APIs.',
-      tags: ['Compliance', 'CSPM', 'Monitoring'],
+      tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
@@ -94,16 +94,16 @@ const SecurityPlans = async () => {
     {
       title: 'CTO Strategic Insights Scan Plan',
       description: 'Align security practices with product strategy and innovation',
-      tags: ['Compliance', 'CSPM', 'Monitoring'],
+      tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
       page: '/apps/securityplans/ctoScanPlan'
     },
     {
-      title: 'Engineering Manager Productivity Scan Plan',
-      description: 'Improve team productivity and integrate security seamlessly into development workflows',
-      tags: ['Compliance', 'CSPM', 'Monitoring'],
+      title: 'Engineering Manager Scan Plan',
+      description: 'Improve team productivity and integrate security seamlessly into workflows',
+      tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
       controls: '0 / 2',
       score: '27',
@@ -116,7 +116,7 @@ const SecurityPlans = async () => {
       <Header />
       {cards.map((card, index) => {
         return (
-          <Grid item xs={12} md={4} key={index}>
+          <Grid item xs={12} md={3} key={index}>
             <SecurityCard cardInfo={card} />
           </Grid>
         )

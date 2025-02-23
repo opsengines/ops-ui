@@ -23,14 +23,14 @@ const SecurityCard = ({ cardInfo }) => {
 
   // Map for icons
   const iconMap = {
-    'Developer Scan Plan': <CodeIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'DevOps Scan Plan': <BuildIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Enterprise Comprehensive Scan Plan': <SecurityIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Cloud-Native Security Scan Plan': <CloudIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Security Lead Visibility Scan Plan': <VisibilityIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'CISO Compliance and Governance Scan Plan': <GavelIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'CTO Strategic Insights Scan Plan': <InsightsIcon sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Engineering Manager Productivity Scan Plan': <GroupIcon sx={{ fontSize: 60, margin: 'auto' }} />
+    'Developer Scan Plan': <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'DevOps Scan Plan': <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Enterprise Comprehensive Scan Plan': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Cloud-Native Security Scan Plan': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Security Lead Visibility Scan Plan': <VisibilityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'CISO Compliance Scan Plan': <GavelIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'CTO Strategic Insights Scan Plan': <InsightsIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Engineering Manager Scan Plan': <GroupIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />
   }
 
   const renderIcon = title => iconMap[title] || null
@@ -74,7 +74,7 @@ const SecurityCard = ({ cardInfo }) => {
           variant='contained'
           sx={{
             mt: 5,
-            backgroundColor: '#4B4BFF',
+            backgroundColor: 'pimary',
             textTransform: 'none',
             width: '100%',
             fontWeight: 'bold'

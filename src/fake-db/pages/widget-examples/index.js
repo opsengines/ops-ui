@@ -22,7 +22,13 @@ export const db = {
       stats: '4.5%',
       title: 'Conversion Rate',
       avatarIcon: 'ri-refresh-line',
-      avatarColor: 'info'
+      avatarColor: 'success'
+    },
+    {
+      stats: '$24,983',
+      title: 'Total Earning',
+      avatarIcon: 'ri-money-dollar-circle-line',
+      avatarColor: 'primary'
     }
   ],
   statsHorizontalWithBorder: [
@@ -53,6 +59,70 @@ export const db = {
       trendNumber: 2.5,
       avatarIcon: 'ri-time-line',
       color: 'info'
+    },
+    {
+      title: 'Late vehicles',
+      stats: 13,
+      trendNumber: 2.5,
+      avatarIcon: 'ri-time-line',
+      color: 'info'
+    },
+    {
+      title: 'Deviated from route',
+      stats: 27,
+      trendNumber: 4.3,
+      avatarIcon: 'ri-route-line',
+      color: 'error'
+    }
+  ],
+  dashboardCardData: [
+    {
+      title: 'Code',
+      stats: 42,
+      trendNumber: 18.2,
+      avatarIcon: 'ri-car-line',
+      color: 'primary',
+      icons: ['/images/apps/connectors/GithubIcon.png']
+    },
+    {
+      title: 'Build',
+      stats: 8,
+      trendNumber: -8.7,
+      avatarIcon: 'ri-alert-line',
+      color: 'warning',
+      icons: []
+    },
+    {
+      title: 'Artifact',
+      stats: 27,
+      trendNumber: 4.3,
+      avatarIcon: 'ri-route-line',
+      color: 'error',
+      icons: []
+    },
+    {
+      title: 'Cloud',
+      stats: 13,
+      trendNumber: 2.5,
+      avatarIcon: 'ri-time-line',
+      color: 'info',
+      icons: ['/images/apps/connectors/aws-icon.png']
+    },
+    {
+      title: 'Alertinig',
+      stats: 13,
+      trendNumber: 2.5,
+      avatarIcon: 'ri-time-line',
+      color: 'warning',
+      icons: []
+    },
+    {
+      title: 'Issue Tracking',
+      stats: 27,
+      trendNumber: 4.3,
+      avatarIcon: 'ri-route-line',
+      color: 'error',
+      icons: []
     }
   ],
   customerStats: [
@@ -122,10 +192,10 @@ export const db = {
   ],
   statsVertical: [
     {
-      stats: '862',
+      stats: '95',
       trend: 'negative',
       trendNumber: '18%',
-      title: 'New Project',
+      title: 'Policies',
       subtitle: 'Yearly Project',
       avatarColor: 'primary',
       avatarIcon: 'ri-file-word-2-line'
@@ -135,12 +205,12 @@ export const db = {
       stats: '$25.6k',
       avatarColor: 'secondary',
       trendNumber: '42%',
-      title: 'Total Profit',
+      title: 'Workflows',
       subtitle: 'Weekly Profit'
     },
     {
       stats: '$95.2k',
-      title: 'Revenue',
+      title: 'Users',
       avatarColor: 'success',
       trendNumber: '12%',
       avatarIcon: 'ri-money-dollar-circle-line',
@@ -150,7 +220,7 @@ export const db = {
       avatarColor: 'error',
       stats: '44.10k',
       trend: 'negative',
-      title: 'Logistics',
+      title: 'Repositories',
       trendNumber: '42%',
       avatarIcon: 'ri-car-line',
       subtitle: 'Regional Logistics'
@@ -168,7 +238,7 @@ export const db = {
       stats: '1.2k',
       avatarColor: 'info',
       trendNumber: '38%',
-      title: 'Transactions',
+      title: 'Plan',
       avatarIcon: 'ri-bank-card-line',
       subtitle: 'Daily Transactions'
     }

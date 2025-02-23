@@ -174,13 +174,58 @@ const ResultTable = () => {
   const [awsScanModal, setAwsScanModal] = useState(false)
 
   const items = [
-    { icon: <AdminPanelSettingsOutlined fontSize='large' />, text: 'SAST Scan', onClick: () => setSastModal(true) },
-    { icon: <ApiOutlined fontSize='large' />, text: 'API Scan', onClick: () => setSastModal(true) },
-    { icon: <BubbleChartOutlined fontSize='large' />, text: 'DAST Scan', onClick: () => setSastModal(true) },
-    { icon: <CloudCircleOutlined fontSize='large' />, text: 'CSPM Scan', onClick: () => setAwsScanModal(true) },
-    { icon: <AdminPanelSettingsOutlined fontSize='large' />, text: 'SBOM Scan', onClick: () => setSastModal(true) },
-    { icon: <ApiOutlined fontSize='large' />, text: 'API Scan', onClick: () => setSastModal(true) },
-    { icon: <BubbleChartOutlined fontSize='large' />, text: 'Scan All', onClick: () => setSastModal(true) }
+    {
+      icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
+      text: 'SAST Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
+      text: 'SCA Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
+      text: 'SBOM Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'DAST Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'API Scan',
+      onClick: () => setSastModal(true)
+    },
+    { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'CI/CD Scan', onClick: () => setSastModal(true) },
+    {
+      icon: <CloudCircleOutlined fontSize='large' color='primary' />,
+      text: 'CSPM Scan',
+      onClick: () => setAwsScanModal(true)
+    },
+    { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'IAC Scan', onClick: () => setSastModal(true) },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'Secrets Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'Compliance Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'AI/ML Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'Scan All',
+      onClick: () => setSastModal(true)
+    }
   ]
 
   const closeDrawer = () => setDrawerOpen(false)
@@ -375,9 +420,11 @@ const ResultTable = () => {
         cell: ({ row }) => (
           <p>
             {row.original.status === 'completed' ? (
-              <Chip label={'Completed'} sx={{ backgroundColor: 'green' }} />
+              <Chip label={'Completed'} sx={{ backgroundColor: 'green', color: 'white' }} />
             ) : null}
-            {row.original.status === 'failed' ? <Chip label={'Failed'} sx={{ backgroundColor: 'red' }} /> : null}
+            {row.original.status === 'failed' ? (
+              <Chip label={'Failed'} sx={{ backgroundColor: 'red', color: 'white' }} />
+            ) : null}
           </p>
         ),
         header: 'Status'
@@ -386,11 +433,23 @@ const ResultTable = () => {
         cell: ({ row }) => (
           <p>
             {row.original.severity === 'Low' || row?.original?.extra?.metadata?.confidence === 'LOW' ? (
-              <Chip className=' w-[100px]' label={'Low'} sx={{ backgroundColor: 'green', textAlign: 'center' }} />
+              <Chip
+                className=' w-[100px]'
+                label={'Low'}
+                sx={{ backgroundColor: 'green', textAlign: 'center', color: 'white' }}
+              />
             ) : row.original.severity === 'Medium' || row?.original?.extra?.metadata?.confidence === 'MEDIUM' ? (
-              <Chip className='w-[100px]' label={'Medium'} sx={{ backgroundColor: '#fec76f', textAlign: 'center' }} />
+              <Chip
+                className='w-[100px]'
+                label={'Medium'}
+                sx={{ backgroundColor: '#fec76f', textAlign: 'center', color: 'white' }}
+              />
             ) : row.original.severity === 'High' || row?.original?.extra?.metadata?.confidence === 'HIGH' ? (
-              <Chip className='w-[100px]' label={'High'} sx={{ backgroundColor: 'red', textAlign: 'center' }} />
+              <Chip
+                className='w-[100px]'
+                label={'High'}
+                sx={{ backgroundColor: 'red', textAlign: 'center', color: 'white' }}
+              />
             ) : null}
           </p>
         ),
@@ -521,7 +580,7 @@ const ResultTable = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '16px', marginBottom: '15px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '15px', borderRadius: 2 }}>
         {items.map((item, index) => (
           <motion.div
             key={index}
@@ -530,14 +589,15 @@ const ResultTable = () => {
           >
             <Card
               sx={{
-                width: 160, // Increased width for rectangular shape
+                width: 120, // Increased width for rectangular shape
                 height: 60, // Reduced height
                 display: 'flex',
                 alignItems: 'baseline',
                 justifyContent: 'center',
                 borderRadius: 2,
                 padding: 1,
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backgroundColor: item?.text === 'Scan All' ? 'primary' : null
               }}
               onClick={() => item.onClick()}
             >
@@ -546,7 +606,9 @@ const ResultTable = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 1.5,
-                  padding: '8px'
+                  padding: '8px',
+                  borderRadius: 2,
+                  backgroundColor: item?.text === 'Scan All' ? 'primary' : null
                 }}
               >
                 {item.icon}

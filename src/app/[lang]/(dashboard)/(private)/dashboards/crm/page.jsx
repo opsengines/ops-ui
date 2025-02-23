@@ -14,8 +14,17 @@ import LineAreaChart from '@views/dashboards/crm/LineAreaChart'
 import UpgradePlan from '@views/dashboards/crm/UpgradePlan'
 import MeetingSchedule from '@views/dashboards/crm/MeetingSchedule'
 import DeveloperMeetup from '@views/dashboards/crm/DeveloperMeetup'
+import LogisticsStatisticsCard from '@views/apps/logistics/dashboard/LogisticsStatisticsCard'
+import { getStatisticsData } from '@/app/server/actions'
+import Performance from '@/views/pages/widget-examples/charts/Performance'
+import CustomCard from '@/views/apps/logistics/dashboard/CustomCard'
+import Vertical from '@/views/pages/widget-examples/statistics/Vertical'
+import theme from '@/@core/theme'
+import themeConfig from '@/configs/themeConfig'
 
-const DashboardCRM = () => {
+const DashboardCRM = async () => {
+  const data = await getStatisticsData()
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={6} md={3} className='self-end'>
@@ -41,42 +50,32 @@ const DashboardCRM = () => {
       <Grid item xs={12} md={6} className='self-end'>
         <Transactions />
       </Grid>
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid item xs={12} md={12} className='self-end'>
+        <CustomCard data={data?.dashboardCardData} />
+      </Grid>
+      {/* <Grid item xs={12} sm={6} md={3}>
         <TotalSales />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <RevenueReport />
+      </Grid> */}
+      <Grid item xs={12} md={6}>
+        <CardWidgetsSalesOverview customColors={true} title={'Vulnerabilities Overview'} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <CardWidgetsSalesOverview />
+        <CardWidgetsSalesOverview title='Governance, Risk & Compliance Overview' />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <ActivityTimeline />
+      <Grid item xs={12} md={3}>
+        <Performance title='Scan Coverage By Module' />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <Grid container spacing={6}>
-          <Grid item xs={12} sm={8}>
-            <WeeklySales />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Grid container spacing={6}>
-              <Grid item xs={6} sm={12}>
-                <LineAreaChart />
-              </Grid>
-              <Grid item xs={6} sm={12}>
-                <CardStatVertical
-                  stats='6'
-                  trend='negative'
-                  trendNumber='18%'
-                  title='Connectors'
-                  subtitle='Yearly Project'
-                  avatarColor='primary'
-                  avatarIcon='ri-file-word-2-line'
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+      <Grid item xs={12} md={3}>
+        <Performance title='Vulnerabilities Summary' />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <Performance title='Top 5 Vulerabilities' />
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <Performance title='Risk' />
       </Grid>
 
       {/* <Grid item xs={12} sm={6} lg={4}>
@@ -88,6 +87,9 @@ const DashboardCRM = () => {
       <Grid item xs={12} sm={6} lg={4}>
         <DeveloperMeetup />
       </Grid> */}
+      <Grid item xs={12} md={12}>
+        <Vertical data={data.statsVertical} />
+      </Grid>
     </Grid>
   )
 }

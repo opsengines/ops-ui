@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { Grid, Skeleton } from '@mui/material'
+import { Chip, Grid, Skeleton } from '@mui/material'
 
 import classnames from 'classnames'
 
@@ -94,30 +94,44 @@ const TotalSales = ({ title, data, labels, loading = false }) => {
               <Typography variant='h5'>{title}</Typography>
             </div>
             <Grid item xs={12} sm={6}>
-              <div className='flex justify-between items-start gap-5' style={{ marginTop: '-20px' }}>
+              <div className='flex justify-between items-start gap-5'>
                 <div className='flex flex-col gap-y-2'>
                   {data1.map((item, i) => (
                     <div key={i} className='flex gap-2'>
-                      <i className={`ri-circle-fill text-xs m-[5px]`} style={{ backgroundColor: item.colorClass }} />
+                      {/* <i className={`ri-circle-fill text-xs m-[5px]`} style={{ backgroundColor: item.colorClass }} />
                       <div>
                         <Typography className='underline' variant='body1'>
                           <a href='#'>{item.title}</a>
                         </Typography>
-                        {/* <Typography variant='h5'>{`${item.value}`}</Typography> */}
-                      </div>
+                      </div> */}
+                      <Chip
+                        sx={{ backgroundColor: item.colorClass, color: 'white' }}
+                        label={item.title}
+                        size='small'
+                        variant='tonal'
+                        onClick={() => console.log('Click')}
+                      />
                     </div>
                   ))}
                 </div>
                 <div className='flex flex-col gap-y-2'>
                   {data2.map((item, i) => (
                     <div key={i} className='flex gap-2'>
-                      <i className={`ri-circle-fill text-xs m-[5px]`} style={{ backgroundColor: item.colorClass }} />
+                      {/* <i className={`ri-circle-fill text-xs m-[5px]`} style={{ backgroundColor: item.colorClass }} />
                       <div>
                         <Typography className='underline' variant='body1'>
                           <a href='#'>{item.title}</a>
                         </Typography>
-                        {/* <Typography variant='h5'>{`${item.value}`}</Typography> */}
-                      </div>
+                      </div> */}
+                      {item?.title && (
+                        <Chip
+                          sx={{ backgroundColor: item.colorClass, color: 'white' }}
+                          label={item.title}
+                          size='small'
+                          variant='tonal'
+                          onClick={() => console.log('Click')}
+                        />
+                      )}
                     </div>
                   ))}
                 </div>
@@ -125,7 +139,7 @@ const TotalSales = ({ title, data, labels, loading = false }) => {
             </Grid>
           </div>
           <div>
-            <AppReactApexCharts type='donut' width={120} height={200} options={options} series={data} />
+            <AppReactApexCharts type='donut' width={120} height={100} options={options} series={data} />
           </div>
         </CardContent>
       )}
