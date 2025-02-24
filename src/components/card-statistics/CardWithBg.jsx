@@ -43,27 +43,40 @@ const CardWithBG = props => {
         <div className='flex gap-3'>
           {icons?.length ? (
             icons?.map((icon, index) => (
-              <div
-                key={index}
-                style={{
-                  backgroundColor: 'white',
-                  borderBottom: '5px solid green',
-                  borderRadius: '10px',
-                  width: 35,
-                  height: 35,
-                  padding: '5px'
-                }}
-              >
-                <CardMedia
-                  component='img'
-                  image={icon}
-                  alt={title}
-                  sx={{
-                    width: 25,
-                    height: 25
+              <>
+                <div
+                  key={index}
+                  style={{
+                    backgroundColor: 'white',
+                    borderBottom: '5px solid green',
+                    borderRadius: '10px',
+                    width: 35,
+                    height: 35,
+                    padding: '5px'
                   }}
-                />
-              </div>
+                >
+                  <CardMedia
+                    component='img'
+                    image={icon}
+                    alt={title}
+                    sx={{
+                      width: 25,
+                      height: 25
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    backgroundColor: `${theme?.palette?.primary?.main}`,
+                    borderRadius: '10px',
+                    width: 35,
+                    height: 35,
+                    padding: '5px'
+                  }}
+                >
+                  <Add sx={{ color: 'white' }} />
+                </div>
+              </>
             ))
           ) : (
             <div

@@ -12,7 +12,7 @@ import CardContent from '@mui/material/CardContent'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const ApexBarChart = () => {
+const ApexBarChart = ({ title, subtitle = '' }) => {
   // Hooks
   const theme = useTheme()
 
@@ -63,8 +63,8 @@ const ApexBarChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Data Science'
-        subheader='$74,382.72'
+        title={title}
+        subheader={subtitle}
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -76,9 +76,9 @@ const ApexBarChart = () => {
         <AppReactApexCharts
           type='bar'
           width='100%'
-          height={400}
+          height={280}
           options={options}
-          series={[{ data: [700, 350, 480, 600, 210, 550, 150] }]}
+          series={[{ data: [20, 10, 8, 6, 2, 5, 15] }]}
         />
       </CardContent>
     </Card>

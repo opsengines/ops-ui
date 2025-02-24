@@ -198,23 +198,56 @@ export const db = {
       title: 'Policies',
       subtitle: 'Yearly Project',
       avatarColor: 'primary',
-      avatarIcon: 'ri-file-word-2-line'
+      avatarIcon: 'ri-file-word-2-line',
+      multiple: true,
+      values: [
+        {
+          label: 'Configured',
+          value: 90
+        },
+        {
+          label: 'Not Configured',
+          value: 5
+        }
+      ]
     },
     {
       avatarIcon: 'ri-pie-chart-2-line ',
-      stats: '$25.6k',
+      stats: '25',
       avatarColor: 'secondary',
       trendNumber: '42%',
       title: 'Workflows',
-      subtitle: 'Weekly Profit'
+      subtitle: 'Weekly Profit',
+      multiple: true,
+      values: [
+        {
+          label: 'Active',
+          value: 22
+        },
+        {
+          label: 'Disabled',
+          value: 3
+        }
+      ]
     },
     {
-      stats: '$95.2k',
+      stats: '95',
       title: 'Users',
       avatarColor: 'success',
       trendNumber: '12%',
       avatarIcon: 'ri-money-dollar-circle-line',
-      subtitle: 'Revenue Increase'
+      subtitle: 'Revenue Increase',
+      multiple: true,
+      values: [
+        {
+          label: 'Active',
+          value: 92
+        },
+        {
+          label: 'Disabled',
+          value: 3
+        }
+      ]
     },
     {
       avatarColor: 'error',
@@ -235,7 +268,7 @@ export const db = {
       subtitle: 'System Bugs'
     },
     {
-      stats: '1.2k',
+      stats: 'Enterprise',
       avatarColor: 'info',
       trendNumber: '38%',
       title: 'Plan',

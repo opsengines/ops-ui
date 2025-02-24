@@ -23,14 +23,18 @@ const SecurityCard = ({ cardInfo }) => {
 
   // Map for icons
   const iconMap = {
-    'Developer Scan Plan': <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'DevOps Scan Plan': <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Enterprise Comprehensive Scan Plan': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Cloud-Native Security Scan Plan': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Security Lead Visibility Scan Plan': <VisibilityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'CISO Compliance Scan Plan': <GavelIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'CTO Strategic Insights Scan Plan': <InsightsIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Engineering Manager Scan Plan': <GroupIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />
+    'Developer Blueprint': <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'DevOps Blueprint': <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Enterprise Comprehensive Blueprint': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Cloud Engineer Security Blueprint': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Security Lead Blueprint': <VisibilityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'CISO Blueprint': <GavelIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'CTO Blueprint': <InsightsIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Engineering Manager Blueprint': <GroupIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Healthcare Blueprint': <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Finance Blueprint': <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Energy Blueprint': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Government Blueprint': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />
   }
 
   const renderIcon = title => iconMap[title] || null

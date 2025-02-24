@@ -15,6 +15,7 @@ const Header = () => {
         p: 3,
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         gap: 2
       }}
     >
@@ -22,7 +23,7 @@ const Header = () => {
       <Box display={'flex'} flexDirection={'column'}>
         <Box>
           <Typography variant='h4' sx={{ fontWeight: 'bold' }}>
-            Security Plans Engines
+            Security Blueprints
           </Typography>
           {/* <Box display='flex' gap={1} mt={3}>
             <Typography
@@ -63,9 +64,8 @@ const Header = () => {
           </Typography> */}
         </Box>
         <Typography variant='body2' className='mt-5 mb-5'>
-          The Security Plans Engine is designed as a foundational security guide for beginners, encompassing essential
-          tools like Static Application Security Testing (SAST), Software Composition Analysis (SCA), and Secret
-          Detection to establish a strong initial defense against common security vulnerabilities.{' '}
+          The Security Bluepints are designed as a foundational security guide, to establish a strong initial defense
+          against common security vulnerabilities.{' '}
         </Typography>
       </Box>
 
@@ -74,9 +74,8 @@ const Header = () => {
         {/* Other Metrics */}
 
         {[
-          { label: 'Activated', value: 1 },
-          { label: 'Passed', value: 0, color: '#81FF81' },
-          { label: 'Failed', value: 0, color: '#FF8181' }
+          { label: 'OE Blueprints', value: 12, color: '#81FF81' },
+          { label: 'Custom Blueprints', value: 0, color: '#FF8181' }
         ].map((item, index) => (
           <Box
             key={index}
@@ -86,7 +85,7 @@ const Header = () => {
               alignItems: 'center',
               textAlign: 'center',
               padding: '10px 0',
-              width: '100px',
+              width: '150px',
               borderRadius: 2
             }}
           >
