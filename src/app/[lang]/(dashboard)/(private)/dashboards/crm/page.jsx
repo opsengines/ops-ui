@@ -3,24 +3,13 @@ import Grid from '@mui/material/Grid'
 
 // Components Imports
 import CardStatWithImage from '@components/card-statistics/Character'
-import CardStatVertical from '@components/card-statistics/Vertical'
 import Transactions from '@views/dashboards/crm/Transactions'
-import TotalSales from '@views/dashboards/crm/TotalSales'
-import RevenueReport from '@views/dashboards/crm/RevenueReport'
 import CardWidgetsSalesOverview from '@views/dashboards/crm/SalesOverview'
-import ActivityTimeline from '@views/dashboards/crm/ActivityTimeline'
-import WeeklySales from '@views/dashboards/crm/WeeklySales'
-import LineAreaChart from '@views/dashboards/crm/LineAreaChart'
-import UpgradePlan from '@views/dashboards/crm/UpgradePlan'
-import MeetingSchedule from '@views/dashboards/crm/MeetingSchedule'
-import DeveloperMeetup from '@views/dashboards/crm/DeveloperMeetup'
-import LogisticsStatisticsCard from '@views/apps/logistics/dashboard/LogisticsStatisticsCard'
 import { getStatisticsData } from '@/app/server/actions'
 import Performance from '@/views/pages/widget-examples/charts/Performance'
 import CustomCard from '@/views/apps/logistics/dashboard/CustomCard'
 import Vertical from '@/views/pages/widget-examples/statistics/Vertical'
-import theme from '@/@core/theme'
-import themeConfig from '@/configs/themeConfig'
+import ApexBarChart from '@/views/charts/apex/ApexBarChart'
 
 const DashboardCRM = async () => {
   const data = await getStatisticsData()
@@ -34,7 +23,7 @@ const DashboardCRM = async () => {
           trendNumber='11.23%'
           chipColor='primary'
           src='/images/illustrations/characters/9.png'
-          chipText={`Year of ${new Date().getFullYear()}`}
+          chipText={`Feb 25`}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3} className='self-end'>
@@ -43,7 +32,8 @@ const DashboardCRM = async () => {
           trend='negative'
           title='Total Findings'
           trendNumber='20%'
-          chipText='Dec 2024'
+          chipText='Feb 25'
+          chipColor='primary'
           src='/images/illustrations/characters/10.png'
         />
       </Grid>
@@ -66,16 +56,13 @@ const DashboardCRM = async () => {
         <CardWidgetsSalesOverview title='Governance, Risk & Compliance Overview' />
       </Grid>
       <Grid item xs={12} md={3}>
-        <Performance title='Scan Coverage By Module' />
+        <Performance title='Scan Coverage' />
       </Grid>
       <Grid item xs={12} md={3}>
         <Performance title='Vulnerabilities Summary' />
       </Grid>
-      <Grid item xs={12} md={3}>
-        <Performance title='Top 5 Vulerabilities' />
-      </Grid>
-      <Grid item xs={12} md={3}>
-        <Performance title='Risk' />
+      <Grid item xs={12} md={6}>
+        <ApexBarChart title='Top Vulnerabilities' subtitle='Month To Date' />
       </Grid>
 
       {/* <Grid item xs={12} sm={6} lg={4}>

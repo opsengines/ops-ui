@@ -1,3 +1,7 @@
+'use client'
+
+import { useState } from 'react'
+
 //MUI Imports
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -7,6 +11,7 @@ import Grid from '@mui/material/Grid'
 
 // Components Imports
 import OptionMenu from '@core/components/option-menu'
+
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Vars
@@ -32,6 +37,8 @@ const data = [
 ]
 
 const Transactions = () => {
+  const [active, setActive] = useState('Developer')
+
   return (
     <Card>
       <CardHeader
@@ -47,8 +54,13 @@ const Transactions = () => {
         <Grid container spacing={2}>
           {data.map((item, index) => (
             <Grid item xs={12} sm={4} key={index}>
-              <div className='flex items-center gap-3'>
-                <CustomAvatar variant='rounded' color={'primary'} className='shadow-xs'>
+              <div
+                className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${
+                  active === item.title ? 'border-primary shadow-md' : 'border-transparent'
+                }`}
+                onClick={() => setActive(item.title)}
+              >
+                <CustomAvatar variant='rounded' color='primary' className='shadow-xs'>
                   <i className={item.icon}></i>
                 </CustomAvatar>
                 <div>
