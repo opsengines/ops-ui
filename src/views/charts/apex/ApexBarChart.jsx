@@ -76,9 +76,9 @@ const ApexBarChart = ({ title, subtitle = '' }) => {
         <AppReactApexCharts
           type='bar'
           width='100%'
-          height={280}
+          height={300}
           options={options}
-          series={[{ data: [20, 10, 8, 6, 2, 5, 15] }]}
+          series={[{ data: [2, 1, 2, 1, 1, 2, 1] }]}
         />
       </CardContent>
     </Card>

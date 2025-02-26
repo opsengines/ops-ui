@@ -23,18 +23,18 @@ const SecurityCard = ({ cardInfo }) => {
 
   // Map for icons
   const iconMap = {
-    'Developer Blueprint': <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'DevOps Blueprint': <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Enterprise Comprehensive Blueprint': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Cloud Engineer Security Blueprint': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Security Lead Blueprint': <VisibilityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'CISO Blueprint': <GavelIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'CTO Blueprint': <InsightsIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Engineering Manager Blueprint': <GroupIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Healthcare Blueprint': <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Finance Blueprint': <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Energy Blueprint': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
-    'Government Blueprint': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />
+    Developer: <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    DevOps: <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Quality Engineer': <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Cloud Engineer': <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Security Lead': <VisibilityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    CISO: <GavelIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    CTO: <InsightsIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    'Engineering Manager': <GroupIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    Healthcare: <CodeIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    Finance: <BuildIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    Energy: <SecurityIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />,
+    Government: <CloudIcon color='primary' sx={{ fontSize: 60, margin: 'auto' }} />
   }
 
   const renderIcon = title => iconMap[title] || null

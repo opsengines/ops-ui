@@ -18,15 +18,15 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 const series = [
   {
     name: 'Income',
-    data: [70, 90, 90, 90, 80, 90]
+    data: [70, 90, 90, 90, 80, 90, 50, 60, 70]
   },
   {
     name: 'Net Worth',
-    data: [120, 80, 100, 80, 100, 80]
+    data: [120, 80, 100, 80, 100, 80, 50, 60, 70]
   }
 ]
 
-const Performance = ({ title }) => {
+const Performance = ({ title, labels = [] }) => {
   // Hooks
   const theme = useTheme()
 
@@ -60,7 +60,7 @@ const Performance = ({ title }) => {
         stops: [0, 100]
       }
     },
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: labels,
     markers: { size: 0 },
     legend: {
       fontSize: '15px',

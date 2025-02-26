@@ -692,16 +692,8 @@ const ResultTable = () => {
                     Quick Fixes
                   </MenuItem>
                   <MenuItem>
-                    <Alarm fontSize='small' sx={{ mr: 1 }} />
-                    SLA Due Soon
-                  </MenuItem>
-                  <MenuItem>
-                    <ReportProblem fontSize='small' sx={{ mr: 1 }} />
-                    Out of SLA
-                  </MenuItem>
-                  <MenuItem>
                     <AddCircle fontSize='small' sx={{ mr: 1 }} />
-                    New Issues
+                    AI Fixes
                   </MenuItem>
                   <MenuItem>
                     <VisibilityOff fontSize='small' sx={{ mr: 1 }} />
@@ -715,7 +707,7 @@ const ResultTable = () => {
                     <Select value={category} onChange={e => onCategoryFilter(e)} size='small'>
                       <DropdownItem value='All'>All</DropdownItem>
                       <DropdownItem value='SAST'>SAST</DropdownItem>
-                      <DropdownItem value='Cloud'>Cloud</DropdownItem>
+                      <DropdownItem value='Cloud'>CSPM</DropdownItem>
                     </Select>
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
