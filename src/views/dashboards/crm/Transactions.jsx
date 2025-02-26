@@ -44,18 +44,13 @@ const Transactions = () => {
       <CardHeader
         title='Custom Dashboard'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Share', 'Update']} />}
-        subheader={
-          <>
-            <span className='font-medium text-textPrimary'>View Custom Dashboard</span>
-          </>
-        }
       />
       <CardContent>
         <Grid container spacing={2}>
           {data.map((item, index) => (
             <Grid item xs={12} sm={4} key={index}>
               <div
-                className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${
+                className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all ${
                   active === item.title ? 'border-primary shadow-md' : 'border-transparent'
                 }`}
                 onClick={() => setActive(item.title)}

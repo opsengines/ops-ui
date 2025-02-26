@@ -25,7 +25,6 @@ const CardStatWithImage = props => {
           </Typography>
         </div>
         <Chip label={chipText} color={chipColor} variant='tonal' size='small' />
-        <img src={src} alt={title} className='absolute block-end-0 inline-end-4 bs-44' />
       </CardContent>
       <OnboardingModal />
     </Card>

@@ -16,21 +16,33 @@ const DashboardCRM = async () => {
 
   return (
     <Grid container spacing={6}>
-      <Grid item xs={12} sm={6} md={3} className='self-end'>
+      <Grid item xs={12} sm={6} md={2} className='self-end'>
         <CardStatWithImage
-          stats='1K'
+          stats='59'
+          trend='positive'
           title='Total Scans'
-          trendNumber='11.23%'
+          trendNumber='20%'
+          chipText='Feb 25'
           chipColor='primary'
-          src='/images/illustrations/characters/9.png'
-          chipText={`Feb 25`}
+          src='/images/illustrations/characters/10.png'
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={3} className='self-end'>
+      <Grid item xs={12} sm={6} md={2} className='self-end'>
         <CardStatWithImage
-          stats='2.5k'
+          stats='27'
           trend='negative'
           title='Total Findings'
+          trendNumber='20%'
+          chipText='Feb 25'
+          chipColor='primary'
+          src='/images/illustrations/characters/10.png'
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={2} className='self-end'>
+        <CardStatWithImage
+          stats='15'
+          trend='positive'
+          title='Total AI Fix'
           trendNumber='20%'
           chipText='Feb 25'
           chipColor='primary'
@@ -50,30 +62,30 @@ const DashboardCRM = async () => {
         <RevenueReport />
       </Grid> */}
       <Grid item xs={12} md={6}>
-        <CardWidgetsSalesOverview customColors={true} title={'Vulnerabilities Overview'} />
+        <CardWidgetsSalesOverview
+          customColors={true}
+          title={'Vulnerabilities Overview'}
+          labels={['Critical', 'High', 'Medium', 'Low']}
+        />
       </Grid>
       <Grid item xs={12} md={6}>
-        <CardWidgetsSalesOverview title='Governance, Risk & Compliance Overview' />
+        <CardWidgetsSalesOverview
+          title='Governance, Risk & Compliance Overview'
+          labels={['PCI-DSS', 'ISO 27001', 'NIST SP 800-53', 'HIPAA', 'GDPR']}
+        />
       </Grid>
       <Grid item xs={12} md={3}>
-        <Performance title='Scan Coverage' />
+        <Performance
+          title='Scan Module Coverage'
+          labels={['SAST', 'DAST', 'SCA', 'SBOM', 'CSPM', 'AI/ML', 'Secrets', 'IAC', 'CI/CD']}
+        />
       </Grid>
       <Grid item xs={12} md={3}>
-        <Performance title='Vulnerabilities Summary' />
+        <Performance title='Vulnerabilities Summary' labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <ApexBarChart title='Top Vulnerabilities' subtitle='Month To Date' />
+        <ApexBarChart title='Top 10 Vulnerabilities' />
       </Grid>
-
-      {/* <Grid item xs={12} sm={6} lg={4}>
-        <UpgradePlan />
-      </Grid>
-      <Grid item xs={12} sm={6} lg={4}>
-        <MeetingSchedule />
-      </Grid>
-      <Grid item xs={12} sm={6} lg={4}>
-        <DeveloperMeetup />
-      </Grid> */}
       <Grid item xs={12} md={12}>
         <Vertical data={data.statsVertical} />
       </Grid>

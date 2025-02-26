@@ -86,11 +86,16 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 
 // Vars
 const userRoleObj = {
-  admin: { icon: 'ri-vip-crown-line', color: 'error' },
-  author: { icon: 'ri-computer-line', color: 'warning' },
-  editor: { icon: 'ri-edit-box-line', color: 'info' },
-  maintainer: { icon: 'ri-pie-chart-2-line', color: 'success' },
-  subscriber: { icon: 'ri-user-3-line', color: 'primary' }
+  developer: { icon: 'ri-vip-crown-line', color: 'error' },
+  'Engineering Manager': { icon: 'ri-computer-line', color: 'warning' },
+  devops: { icon: 'ri-edit-box-line', color: 'info' },
+  'Security Lead': { icon: 'ri-pie-chart-2-line', color: 'success' },
+  'Security Engineer': { icon: 'ri-user-3-line', color: 'primary' },
+  devsecops: { icon: 'ri-vip-crown-line', color: 'error' },
+  'Full Admin': { icon: 'ri-computer-line', color: 'warning' },
+  LimitedView: { icon: 'ri-edit-box-line', color: 'info' },
+  temporaryPlanAccess: { icon: 'ri-pie-chart-2-line', color: 'success' },
+  'Monitoring Team': { icon: 'ri-user-3-line', color: 'primary' }
 }
 
 const userStatusObj = {
@@ -167,14 +172,6 @@ const UserListTable = ({ tableData }) => {
               {row.original.role}
             </Typography>
           </div>
-        )
-      }),
-      columnHelper.accessor('currentPlan', {
-        header: 'Plan',
-        cell: ({ row }) => (
-          <Typography className='capitalize' color='text.primary'>
-            {row.original.currentPlan}
-          </Typography>
         )
       }),
       columnHelper.accessor('status', {

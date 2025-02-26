@@ -22,7 +22,7 @@ import { rgbaToHex } from '@/utils/rgbaToHex'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
+const CardWidgetsSalesOverview = ({ title, customColors = false, labels = [] }) => {
   // Hooks
   const theme = useTheme()
   const textSecondary = 'var(--mui-palette-text-secondary)'
@@ -51,7 +51,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
     legend: { show: false },
     tooltip: { theme: 'false' },
     dataLabels: { enabled: false },
-    labels: ['Critical', 'High', 'Medium', 'Low'],
+    labels: labels,
     states: {
       hover: {
         filter: { type: 'none' }
@@ -138,7 +138,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
                       <i className='ri-circle-fill text-[10px] text-primary' />
                     )}
                   </div>
-                  <Typography>Critical</Typography>
+                  <Typography>{labels[0]}</Typography>
                 </div>
                 <Typography className='font-medium'>12</Typography>
               </Grid>
@@ -151,7 +151,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
                       <i className='ri-circle-fill text-[10px] text-primary' />
                     )}
                   </div>
-                  <Typography>High</Typography>
+                  <Typography>{labels[1]}</Typography>
                 </div>
                 <Typography className='font-medium'>25</Typography>
               </Grid>
@@ -164,7 +164,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
                       <i className='ri-circle-fill text-[10px] text-primary' />
                     )}
                   </div>
-                  <Typography>Medium</Typography>
+                  <Typography>{labels[2]}</Typography>
                 </div>
                 <Typography className='font-medium'>13</Typography>
               </Grid>
@@ -177,7 +177,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false }) => {
                       <i className='ri-circle-fill text-[10px] text-primary' />
                     )}
                   </div>
-                  <Typography>Low</Typography>
+                  <Typography>{labels[3]}</Typography>
                 </div>
                 <Typography className='font-medium'>50</Typography>
               </Grid>

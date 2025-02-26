@@ -38,7 +38,7 @@ const SecurityPlans = async () => {
 
   const cards = [
     {
-      title: 'Developer Blueprint',
+      title: 'Developer',
       description: 'Secure code and APIs during the development phase for developers',
       tags: ['SAST', 'SCA', 'API'],
       colors: ['#4c5e83', '#343453'],
@@ -47,7 +47,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/developerScanPlan'
     },
     {
-      title: 'DevOps Blueprint',
+      title: 'DevOps',
       description: 'OE will help your company on your journey for cloud security.',
       tags: ['CI/CD', 'IAC', 'Container'],
       colors: ['#94a2eb', '#343453'],
@@ -56,7 +56,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/devopsScanPlan'
     },
     {
-      title: 'Enterprise Comprehensive Blueprint',
+      title: 'Quality Engineer',
       description: 'Full visibility and protection across the SDLC and infrastructure',
       tags: ['SCA', 'SCM', 'SBOM', '+ 6'],
       colors: ['#4c5e83', '#b76e79'],
@@ -65,7 +65,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/enterpriseScanPlan'
     },
     {
-      title: 'Cloud Engineer Security Blueprint',
+      title: 'Cloud Engineer',
       description: 'Secure cloud-native applications, environments, and APIs',
       tags: ['Container', 'CSPM', 'API'],
       colors: ['#4c5e83', '#b76e79'],
@@ -74,7 +74,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/cloudNativeScanPlan'
     },
     {
-      title: 'Security Lead Blueprint',
+      title: 'Security Lead',
       description: 'Provide insights into vulnerabilities and risk management across teams',
       tags: ['Threat', 'CSPM', 'API'],
       colors: ['#4c5e83', '#b76e79'],
@@ -83,7 +83,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/securityLeadPlan'
     },
     {
-      title: 'CISO Blueprint',
+      title: 'CISO',
       description: 'Secure cloud-native applications, environments, and APIs.',
       tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
@@ -92,7 +92,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/cisoScanPlan'
     },
     {
-      title: 'CTO Blueprint',
+      title: 'CTO',
       description: 'Align security practices with product strategy and innovation',
       tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
@@ -101,7 +101,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/ctoScanPlan'
     },
     {
-      title: 'Engineering Manager Blueprint',
+      title: 'Engineering Manager',
       description: 'Improve team productivity and integrate security seamlessly into workflows',
       tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
@@ -110,7 +110,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/emScanPlan'
     },
     {
-      title: 'Healthcare Blueprint',
+      title: 'Healthcare',
       description: 'Patient Data Protection, HIPAA Compliance, Secure Medical Devices',
       tags: ['Threat', 'CSPM', 'API'],
       colors: ['#4c5e83', '#b76e79'],
@@ -119,7 +119,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/securityLeadPlan'
     },
     {
-      title: 'Finance Blueprint',
+      title: 'Finance',
       description: 'Data Encryption, Fraud Detection, PCI DSS Compliance',
       tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
@@ -128,7 +128,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/cisoScanPlan'
     },
     {
-      title: 'Energy Blueprint',
+      title: 'Energy',
       description: ' SCADA Security, Infrastructure Resilience, Threat Detection',
       tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],
@@ -137,7 +137,7 @@ const SecurityPlans = async () => {
       page: '/apps/securityplans/ctoScanPlan'
     },
     {
-      title: 'Government Blueprint',
+      title: 'Government',
       description: 'Data Sovereignty, Secure Communication, Regulatory Compliance',
       tags: ['Compliance', 'CSPM'],
       colors: ['#4c5e83', '#b76e79'],

@@ -92,7 +92,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         </SubMenu>
 
         <MenuItem href={`/${locale}/apps/securityplans`} icon={<SecurityIcon />}>
-          Security Blueprints
+          Blueprints
         </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].frontPages} icon={<i className='ri-file-copy-line' />}>
           <MenuItem href='/front-pages/landing-page' target='_blank'>
@@ -111,7 +111,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
             {dictionary['navigation'].helpCenter}
           </MenuItem>
         </SubMenu> */}
-        <SubMenu label={'Engine Scans'} icon={<i className='ri-shopping-bag-3-line' />}>
+        {/* <SubMenu label={'Engine Scans'} icon={<i className='ri-shopping-bag-3-line' />}>
           <MenuItem href={`/${locale}/apps/securityengines/sast`}>SAST Engine</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/scm`}>SCA Engine</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/sbom`}>SBOM Engine</MenuItem>
@@ -123,40 +123,10 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/securityengines/secrets`}>Secrets Engine</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/compliance`}>Compliance Engine</MenuItem>
           <MenuItem href={`/${locale}/apps/securityengines/aiml`}>AI/ML Engine</MenuItem>
-          {/* <SubMenu label={dictionary['navigation'].products}>
-            <MenuItem href={`/${locale}/apps/ecommerce/products/add`}>{dictionary['navigation'].add}</MenuItem>
-            <MenuItem href={`/${locale}/apps/ecommerce/products/category`}>
-              {dictionary['navigation'].category}
-            </MenuItem>
-          </SubMenu> */}
-          {/* <SubMenu label={dictionary['navigation'].orders}>
-            <MenuItem href={`/${locale}/apps/ecommerce/orders/list`}>{dictionary['navigation'].list}</MenuItem>
-            <MenuItem
-              href={`/${locale}/apps/ecommerce/orders/details/5434`}
-              exactMatch={false}
-              activeUrl='/apps/ecommerce/orders/details'
-            >
-              {dictionary['navigation'].details}
-            </MenuItem>
-          </SubMenu> */}
-          {/* <SubMenu label={dictionary['navigation'].customers}>
-            <MenuItem href={`/${locale}/apps/ecommerce/customers/list`}>{dictionary['navigation'].list}</MenuItem>
-            <MenuItem
-              href={`/${locale}/apps/ecommerce/customers/details/879861`}
-              exactMatch={false}
-              activeUrl='/apps/ecommerce/customers/details'
-            >
-              {dictionary['navigation'].details}
-            </MenuItem>
-          </SubMenu>
-          <MenuItem href={`/${locale}/apps/ecommerce/manage-reviews`}>
-            {dictionary['navigation'].manageReviews}
-          </MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/referrals`}>{dictionary['navigation'].referrals}</MenuItem>
-          <MenuItem href={`/${locale}/apps/ecommerce/settings`}>{dictionary['navigation'].settings}</MenuItem> */}
-        </SubMenu>
+        </SubMenu> */}
+
         <MenuItem href={`/${locale}/apps/results`} icon={<Assessment />}>
-          Engine Scans & Results
+          Scans & Results
         </MenuItem>
         <MenuItem href={`/${locale}/apps/ecommerce/products/list`} icon={<PolicyIcon />}>
           {dictionary['navigation'].list}
