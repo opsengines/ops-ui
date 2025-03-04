@@ -1,8 +1,6 @@
 import axios from 'axios'
 
 export const semgrepScanner = async (data, token) => {
-  console.log('Token:', token)
-  console.log(data)
   const url = 'https://api.opsengines.io/api/sast/semgrepscanner'
 
   const headers = {

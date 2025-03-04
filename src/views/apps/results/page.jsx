@@ -68,6 +68,7 @@ import SecurityReport from '@/views/components/AIFix'
 import SastScanModal from '../securityplanengine/SAST/SastScanModal'
 import { semgrepScanner } from '@/api/sast'
 import AWSValidationModal from '../securityplanengine/cloud/awsScanModal'
+import DastScanModal from './DastScanModal'
 
 // Column Definitions
 const columnHelper = createColumnHelper()
@@ -172,6 +173,7 @@ const ResultTable = () => {
   const [aiFixModal, setAiFixModal] = useState(false)
   const [sastModal, setSastModal] = useState(false)
   const [awsScanModal, setAwsScanModal] = useState(false)
+  const [dastModal, setDastModal] = useState(false)
 
   const items = [
     {
@@ -192,12 +194,7 @@ const ResultTable = () => {
     {
       icon: <BubbleChartOutlined fontSize='large' color='primary' />,
       text: 'DAST Scan',
-      onClick: () => setSastModal(true)
-    },
-    {
-      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-      text: 'API Scan',
-      onClick: () => setSastModal(true)
+      onClick: () => setDastModal(true)
     },
     { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'CI/CD Scan', onClick: () => setSastModal(true) },
     {
@@ -213,7 +210,7 @@ const ResultTable = () => {
     },
     {
       icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-      text: 'Compliance Scan',
+      text: 'Compliance Check',
       onClick: () => setSastModal(true)
     },
     {
@@ -233,9 +230,7 @@ const ResultTable = () => {
   const token = localStorage.getItem('authToken')
 
   const handleRowSelection = data => {
-    console.log(data)
     setSelectedRow(data)
-    console.log(data?.scan_category)
     data?.scan_category === 'SAST' ? setSastDrawer(true) : setDrawerOpen(true)
   }
 
@@ -244,7 +239,6 @@ const ResultTable = () => {
   }
 
   const handleClose = () => {
-    console.log(category, status, severity)
     setAnchorEl(null)
   }
 
@@ -629,6 +623,7 @@ const ResultTable = () => {
         />
       )}
       {awsScanModal && <AWSValidationModal open={awsScanModal} handleClose={() => setAwsScanModal(false)} />}
+      {dastModal && <DastScanModal open={dastModal} handleClose={() => setDastModal(false)} />}
       <Grid container spacing={6} className='mb-5'>
         <Grid item xs={12} md={4}>
           <TotalSales
@@ -705,9 +700,9 @@ const ResultTable = () => {
                       Category
                     </Typography>
                     <Select value={category} onChange={e => onCategoryFilter(e)} size='small'>
-                      <DropdownItem value='All'>All</DropdownItem>
                       <DropdownItem value='SAST'>SAST</DropdownItem>
                       <DropdownItem value='Cloud'>CSPM</DropdownItem>
+                      <DropdownItem value='DAST'>DAST</DropdownItem>
                     </Select>
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
@@ -727,9 +722,9 @@ const ResultTable = () => {
                       Status
                     </Typography>
                     <Select value={status} onChange={e => setStatus(e.target.value)} size='small'>
-                      <DropdownItem value='All'>All</DropdownItem>
                       <DropdownItem value='Open'>Open</DropdownItem>
-                      <DropdownItem value='Closed'>Closed</DropdownItem>
+                      <DropdownItem value='Closed'>Fixed</DropdownItem>
+                      <DropdownItem value='NA'>N/A</DropdownItem>
                     </Select>
                   </FormControl>
                   <Button fullWidth variant='contained' className='mt-3' onClick={() => handleFilterApply()}>

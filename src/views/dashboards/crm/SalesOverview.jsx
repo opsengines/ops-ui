@@ -22,7 +22,7 @@ import { rgbaToHex } from '@/utils/rgbaToHex'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const CardWidgetsSalesOverview = ({ title, customColors = false, labels = [] }) => {
+const CardWidgetsSalesOverview = ({ title, customColors = false, labels = [], subTitle }) => {
   // Hooks
   const theme = useTheme()
   const textSecondary = 'var(--mui-palette-text-secondary)'
@@ -82,7 +82,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false, labels = [] }) 
             total: {
               show: true,
               fontSize: '0.875rem',
-              label: 'Total Vulnerabilities',
+              label: `${subTitle}`,
               color: textSecondary,
               formatter: value => `${value.globals.seriesTotals.reduce((total, num) => total + num)}k`
             }
@@ -123,7 +123,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false, labels = [] }) 
                 <i className='ri-wallet-line text-primary' />
               </CustomAvatar>
               <div className='flex flex-col'>
-                <Typography>Total Vulnerabilities</Typography>
+                <Typography>{subTitle}</Typography>
                 <Typography variant='h5'>100</Typography>
               </div>
             </div>
