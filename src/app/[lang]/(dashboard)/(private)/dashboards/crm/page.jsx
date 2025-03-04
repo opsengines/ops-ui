@@ -65,12 +65,15 @@ const DashboardCRM = async () => {
         <CardWidgetsSalesOverview
           customColors={true}
           title={'Vulnerabilities Overview'}
+          subTitle={'Total Vulnerabilties'}
           labels={['Critical', 'High', 'Medium', 'Low']}
         />
       </Grid>
       <Grid item xs={12} md={6}>
         <CardWidgetsSalesOverview
-          title='Governance, Risk & Compliance Overview'
+          customColors={true}
+          title='Compliance Overview'
+          subTitle={'Total Compliance'}
           labels={['PCI-DSS', 'ISO 27001', 'NIST SP 800-53', 'HIPAA', 'GDPR']}
         />
       </Grid>
@@ -86,9 +89,10 @@ const DashboardCRM = async () => {
       <Grid item xs={12} md={6}>
         <ApexBarChart title='Top 10 Vulnerabilities' />
       </Grid>
-      <Grid item xs={12} md={12}>
+
+      {/* <Grid item xs={12} md={12}>
         <Vertical data={data.statsVertical} />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

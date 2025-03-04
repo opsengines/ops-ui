@@ -91,9 +91,9 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           {/* <MenuItem href={`/${locale}/dashboards/logistics`}>{dictionary['navigation'].logistics}</MenuItem> */}
         </SubMenu>
 
-        <MenuItem href={`/${locale}/apps/securityplans`} icon={<SecurityIcon />}>
+        {/* <MenuItem href={`/${locale}/apps/securityplans`} icon={<SecurityIcon />}>
           Blueprints
-        </MenuItem>
+        </MenuItem> */}
         {/* <SubMenu label={dictionary['navigation'].frontPages} icon={<i className='ri-file-copy-line' />}>
           <MenuItem href='/front-pages/landing-page' target='_blank'>
             {dictionary['navigation'].landing}
@@ -127,12 +127,6 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
 
         <MenuItem href={`/${locale}/apps/results`} icon={<Assessment />}>
           Scans & Results
-        </MenuItem>
-        <MenuItem href={`/${locale}/apps/ecommerce/products/list`} icon={<PolicyIcon />}>
-          {dictionary['navigation'].list}
-        </MenuItem>
-        <MenuItem href={`/${locale}/apps/workflow`} icon={<AccountTreeIcon />}>
-          Workflows
         </MenuItem>
         <MenuItem href={`/${locale}/apps/connectors`} icon={<IntegrationInstructionsIcon />}>
           Integrations

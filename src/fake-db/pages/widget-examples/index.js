@@ -195,7 +195,7 @@ export const db = {
       stats: '95',
       trend: 'negative',
       trendNumber: '18%',
-      title: 'Policies',
+      title: 'Repository',
       subtitle: 'Yearly Project',
       avatarColor: 'primary',
       avatarIcon: 'ri-file-word-2-line',
@@ -216,7 +216,7 @@ export const db = {
       stats: '25',
       avatarColor: 'secondary',
       trendNumber: '42%',
-      title: 'Workflows',
+      title: 'Registry',
       subtitle: 'Weekly Profit',
       multiple: true,
       values: [
@@ -232,7 +232,7 @@ export const db = {
     },
     {
       stats: '95',
-      title: 'Users',
+      title: 'Secrets',
       avatarColor: 'success',
       trendNumber: '12%',
       avatarIcon: 'ri-money-dollar-circle-line',
@@ -253,14 +253,14 @@ export const db = {
       avatarColor: 'error',
       stats: '44.10k',
       trend: 'negative',
-      title: 'Repositories',
+      title: 'API',
       trendNumber: '42%',
       avatarIcon: 'ri-car-line',
       subtitle: 'Regional Logistics'
     },
     {
       stats: '268',
-      title: 'Reports',
+      title: 'CSPM',
       avatarColor: 'warning',
       trend: 'negative',
       trendNumber: '28%',
@@ -271,7 +271,7 @@ export const db = {
       stats: 'Enterprise',
       avatarColor: 'info',
       trendNumber: '38%',
-      title: 'Plan',
+      title: 'SBOM',
       avatarIcon: 'ri-bank-card-line',
       subtitle: 'Daily Transactions'
     }

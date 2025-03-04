@@ -17,11 +17,11 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 
 const series = [
   {
-    name: 'Income',
+    name: 'High',
     data: [70, 90, 90, 90, 80, 90, 50, 60, 70]
   },
   {
-    name: 'Net Worth',
+    name: 'Low',
     data: [120, 80, 100, 80, 100, 80, 50, 60, 70]
   }
 ]

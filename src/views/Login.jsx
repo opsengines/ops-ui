@@ -74,6 +74,7 @@ const Login = ({ mode }) => {
   const lightIllustration = '/images/illustrations/auth/v2-login-light.png'
   const borderedDarkIllustration = '/images/illustrations/auth/v2-login-dark-border.png'
   const borderedLightIllustration = '/images/illustrations/auth/v2-login-light-border.png'
+  const bgIcon = '/images/illustrations/auth/LoginBG.png'
 
   // Hooks
   const router = useRouter()
@@ -162,18 +163,19 @@ const Login = ({ mode }) => {
           >
             <div className='plb-12 pis-12'>
               <img
-                src={characterIllustration}
+                src={bgIcon}
                 alt='character-illustration'
+                style={{ transform: 'translateX(45deg)' }}
                 className='max-bs-[500px] max-is-full bs-auto'
               />
             </div>
-            <Illustrations
+            {/* <Illustrations
               image1={{ src: '/images/illustrations/objects/tree-2.png' }}
               image2={null}
               maskImg={{ src: authBackground }}
-            />
+            /> */}
           </div>
-          <div className='flex justify-center items-center bs-full bg-backgroundPaper !min-is-full p-6 md:!min-is-[unset] md:p-12 md:is-[480px]'>
+          <div className='flex justify-center items-center bs-full bg-backgroundPaper !min-is-full p-6 md:!min-is-[unset] md:p-12 md:is-[500px]'>
             <div className='absolute block-start-5 sm:block-start-[33px] inline-start-6 sm:inline-start-[38px]'>
               <Logo />
             </div>
