@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const getConnectorStatus = async token => {
-  const url = 'https://api.opsengines.io/api/utils/connectors'
+  const url = 'https://api.threatreaper.io/api/utils/connectors'
 
   const headers = {
     Authorization: `Bearer ${token}`,

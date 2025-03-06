@@ -1,6 +1,6 @@
 export const scanEngine = async (data, token) => {
   try {
-    const response = await fetch('https://api.opsengines.io/api/engine/scan', {
+    const response = await fetch('https://api.threatreaper.io/api/engine/scan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

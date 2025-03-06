@@ -12,6 +12,7 @@ import { getConnectorStatus } from '@/api/connectors'
 
 import AwsConnector from './AwsConnector'
 import SecurityReport from '@/views/components/AIFix'
+import { useQuery } from '@tanstack/react-query'
 
 const ConnectorsView = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -43,9 +44,14 @@ const ConnectorsView = () => {
     }
   }
 
-  useEffect(() => {
-    getConnectorInfo()
-  }, [])
+  const { data, isLoading, isError } = useQuery({
+    queryFn: async () => await getConnectorInfo(),
+    queryKey: ['movies'] //Array according to Documentation
+  })
+
+  // useEffect(() => {
+  //   getConnectorInfo()
+  // }, [])
 
   const scmConnectors = [
     {
