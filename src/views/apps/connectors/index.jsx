@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { useQuery } from '@tanstack/react-query'
+
 import { Typography, Grid, Skeleton, Modal } from '@mui/material'
 
 import GithubModal from './GithubConnector'
@@ -11,6 +13,7 @@ import ConnectorCard from './ConnectorCard'
 import { getConnectorStatus } from '@/api/connectors'
 
 import AwsConnector from './AwsConnector'
+
 import SecurityReport from '@/views/components/AIFix'
 
 const ConnectorsView = () => {
@@ -43,9 +46,14 @@ const ConnectorsView = () => {
     }
   }
 
-  useEffect(() => {
-    getConnectorInfo()
-  }, [])
+  const { data, isLoading, isError } = useQuery({
+    queryFn: async () => await getConnectorInfo(),
+    queryKey: ['movies'] //Array according to Documentation
+  })
+
+  // useEffect(() => {
+  //   getConnectorInfo()
+  // }, [])
 
   const scmConnectors = [
     {

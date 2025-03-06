@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const login = async ({ email, password }) => {
-  const url = 'https://api.opsengines.io/token'
+  const url = 'https://api.threatreaper.io/token'
 
   // Headers
   const headers = {
@@ -30,7 +30,7 @@ export const login = async ({ email, password }) => {
 }
 
 export const userInfo = async token => {
-  const url = 'https://api.opsengines.io/users/me/'
+  const url = 'https://api.threatreaper.io/users/me/'
 
   const headers = {
     Authorization: `Bearer ${token}`

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const dastScanner = async (data, token) => {
-  const url = 'https://api.opsengines.io/api/DAST/start-owasp'
+  const url = 'https://api.threatreaper.io/api/DAST/start-owasp'
 
   const headers = {
     Authorization: `Bearer ${token}`,

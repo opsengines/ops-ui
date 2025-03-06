@@ -17,6 +17,7 @@ import '@/app/globals.css'
 
 // Generated Icon CSS Imports
 import '@assets/iconify-icons/generated-icons.css'
+import ReactQueryProvider from './reactQueryConfig'
 
 export const metadata = {
   title: 'OE',
@@ -30,9 +31,11 @@ const RootLayout = ({ children, params }) => {
 
   return (
     <TranslationWrapper headersList={headersList} lang={params.lang}>
-      <html id='__next' lang={params.lang} dir={direction}>
-        <body className='flex is-full min-bs-full flex-auto flex-col'>{children}</body>
-      </html>
+      <ReactQueryProvider>
+        <html id='__next' lang={params.lang} dir={direction}>
+          <body className='flex is-full min-bs-full flex-auto flex-col'>{children}</body>
+        </html>
+      </ReactQueryProvider>
     </TranslationWrapper>
   )
 }

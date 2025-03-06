@@ -13,7 +13,7 @@ export const getSASTDashboard = async token => {
   }
 
   try {
-    const response = await fetch('https://api.opsengines.io/scan-stats?scan_category=SAST', requestOptions)
+    const response = await fetch('https://api.threatreaper.io/scan-stats?scan_category=SAST', requestOptions)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)

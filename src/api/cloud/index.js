@@ -33,7 +33,7 @@ export const prowlerCloudScan = async token => {
     redirect: 'follow'
   }
 
-  const response = await fetch('https://api.opsengines.io/api/cloud/scan-cloud-prowler-aws/', requestOptions)
+  const response = await fetch('https://api.threatreaper.io/api/cloud/scan-cloud-prowler-aws/', requestOptions)
     .then(response => response)
     .then(result => result)
     .catch(error => console.error(error))

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const semgrepScanner = async (data, token) => {
-  const url = 'https://api.opsengines.io/api/sast/semgrepscanner'
+  const url = 'https://api.threatreaper.io/api/sast/semgrepscanner'
 
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export const semgrepScanner = async (data, token) => {
 export const semgrepScanInfo = async (data, token) => {
   console.log('Token:', token)
   console.log(data)
-  const url = 'https://api.opsengines.io/api/sast/semgrep_scan_status/'
+  const url = 'https://api.threatreaper.io/api/sast/semgrep_scan_status/'
 
   const headers = {
     Authorization: `Bearer ${token}`,
