@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { useQuery } from '@tanstack/react-query'
+
 import { Typography, Grid, Skeleton, Modal } from '@mui/material'
 
 import GithubModal from './GithubConnector'
@@ -11,8 +13,8 @@ import ConnectorCard from './ConnectorCard'
 import { getConnectorStatus } from '@/api/connectors'
 
 import AwsConnector from './AwsConnector'
+
 import SecurityReport from '@/views/components/AIFix'
-import { useQuery } from '@tanstack/react-query'
 
 const ConnectorsView = () => {
   const [modalOpen, setModalOpen] = useState(false)
