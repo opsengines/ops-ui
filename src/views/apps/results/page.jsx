@@ -256,7 +256,8 @@ const ResultTable = () => {
       },
       category: {
         SAST: 0,
-        Cloud: 0
+        Cloud: 0,
+        DAST: 0
       }
     }
 
@@ -275,9 +276,47 @@ const ResultTable = () => {
         statsCount.category.Cloud = statsCount.category.Cloud + result
       }
 
+      if (scan?.scan_category === 'DAST') {
+        // debugger
+        const { alerts } = scan?.results[0]?.site[0]
+        let res = alerts?.length || 0
+        statsCount.category.DAST = statsCount.category.DAST + res
+        alerts?.forEach((alert, index) => {
+          console.log(alert)
+          transformedResults.push({
+            ...alerts[index],
+            scan_category: scan?.scan_category,
+            scan_date: scan?.created_at,
+            status: scan?.status,
+            severity: 'Low',
+            repository: alert?.instances[0]?.uri,
+            message: alert?.alert,
+            severityStatus: false
+          })
+          if (alert?.confidence === '1') {
+            console.log('Added 1')
+            statsCount.severity.Low = statsCount.severity.Low + 1
+          }
+          if (alert?.confidence === '2') {
+            console.log('Added 2')
+            statsCount.severity.Medium = statsCount.severity.Medium + 1
+          }
+          if (alert?.confidence === '3') {
+            console.log('Added 3')
+            statsCount.severity.High = statsCount.severity.High + 1
+          }
+          if (alert?.confidence === '4') {
+            console.log('Added 4')
+            statsCount.severity.Critical = statsCount.severity.Critical + 1
+          }
+        })
+        // console.log(alerts)
+      }
+
       if (results === 'No findings in Account' || scan?.error) {
         return
-      } else {
+      }
+      if (scan_category !== 'DAST') {
         results?.forEach(result => {
           if (result?.extra?.metadata?.confidence === 'LOW' || result?.severity === 'Low') {
             statsCount.severity.Low = statsCount.severity.Low + 1
@@ -314,6 +353,7 @@ const ResultTable = () => {
     return transformedResults
   }
 
+  // console.log(data)
   const fetchCloudScanResults = async () => {
     const reqData = {
       scan_category: 'Cloud'
@@ -389,7 +429,9 @@ const ResultTable = () => {
       columnHelper.accessor('repository', {
         cell: ({ row }) => (
           <Typography className='font-medium w-[170px] text-wrap' color='text.primary'>
-            {row?.original.repository?.split('github.com')[1] || 'AWS'}
+            {row?.original?.scan_category === 'SAST'
+              ? row?.original.repository?.split('github.com')[1]
+              : row?.original?.repository}
           </Typography>
         ),
         header: 'Name'
@@ -572,6 +614,14 @@ const ResultTable = () => {
     startSempgrepScan(data)
   }
 
+  function removePTags(inputString) {
+    if (!inputString) {
+      return ''
+    } else {
+      return inputString.replace(/<\/?p>/g, '')
+    }
+  }
+
   return (
     <>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '15px', borderRadius: 2 }}>
@@ -641,7 +691,7 @@ const ResultTable = () => {
         <Grid item xs={12} md={4}>
           <TotalSales
             title={'Category'}
-            data={[dashboardStats?.category?.SAST, dashboardStats?.category?.Cloud, 0, 0]}
+            data={[dashboardStats?.category?.SAST, dashboardStats?.category?.Cloud, dashboardStats?.category?.DAST, 0]}
             labels={['SAST', 'CSPM', 'SCA', 'DAST']}
             loading={loading}
           />
@@ -871,7 +921,9 @@ const ResultTable = () => {
               {selectedRow?.message}
             </Typography>
             <Typography variant='body1' className='mt-4'>
-              {selectedRow?.finding_info?.desc}
+              {selectedRow?.scan_category === 'DAST'
+                ? removePTags(selectedRow?.otherinfo)
+                : selectedRow?.finding_info?.desc}
             </Typography>
             <div className='flex flex-row gap-2'>
               <Chip label={'Create Fix'} color={'primary'} size='large' variant='tonal' />
@@ -902,47 +954,60 @@ const ResultTable = () => {
               </Typography>
             </div>
 
-            <div className='mt-8 flex justify-between w-[70%]'>
-              <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Cloud</Typography>
-                <Typography variant='body1' className='mt-2'>
-                  {selectedRow?.cloud?.provider}
-                </Typography>
+            {selectedRow?.scan_category !== 'DAST' ? (
+              <div className='mt-8 flex justify-between w-[70%]'>
+                <div className='flex flex-col items-center'>
+                  <Typography variant='body2'>Cloud</Typography>
+                  <Typography variant='body1' className='mt-2'>
+                    {selectedRow?.cloud?.provider}
+                  </Typography>
+                </div>
+                <div className='flex flex-col items-center'>
+                  <Typography variant='body2'>Region</Typography>
+                  <Typography variant='body1' className='mt-2'>
+                    {selectedRow?.cloud?.region}
+                  </Typography>
+                </div>
+                <div className='flex flex-col items-center'>
+                  <Typography variant='body2'>User Id</Typography>
+                  <Typography variant='body1' className='mt-2'>
+                    {selectedRow?.cloud?.account?.uid}
+                  </Typography>
+                </div>
               </div>
-              <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Region</Typography>
-                <Typography variant='body1' className='mt-2'>
-                  {selectedRow?.cloud?.region}
-                </Typography>
-              </div>
-              <div className='flex flex-col items-center'>
-                <Typography variant='body2'>User Id</Typography>
-                <Typography variant='body1' className='mt-2'>
-                  {selectedRow?.cloud?.account?.uid}
-                </Typography>
-              </div>
-            </div>
+            ) : null}
 
-            <div className='mt-8 flex justify-between w-[70%]'>
-              <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Resource</Typography>
-                <Typography variant='body1' className='mt-2'>
-                  {selectedRow?.finding_info?.types[0]}
+            {selectedRow?.scan_category === 'DAST' ? (
+              <div className='mt-8 flex gap-5 w-[70%]'>
+                <Typography variant='body1'>URL :</Typography>
+                <Typography variant='body2' className='text-blue-400'>
+                  {selectedRow?.instances[0]?.uri}
                 </Typography>
               </div>
-              <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Creation Date</Typography>
-                <Typography variant='body1' className='mt-2'>
-                  12 Months Ago
-                </Typography>
+            ) : null}
+
+            {selectedRow?.scan_category !== 'DAST' ? (
+              <div className='mt-8 flex justify-between w-[70%]'>
+                <div className='flex flex-col items-center'>
+                  <Typography variant='body2'>Resource</Typography>
+                  <Typography variant='body1' className='mt-2'>
+                    {selectedRow?.finding_info?.types[0]}
+                  </Typography>
+                </div>
+                <div className='flex flex-col items-center'>
+                  <Typography variant='body2'>Creation Date</Typography>
+                  <Typography variant='body1' className='mt-2'>
+                    12 Months Ago
+                  </Typography>
+                </div>
+                <div className='flex flex-col items-center'>
+                  <Typography variant='body2'>Access Level</Typography>
+                  <Typography variant='body1' className='mt-2'>
+                    Public
+                  </Typography>
+                </div>
               </div>
-              <div className='flex flex-col items-center'>
-                <Typography variant='body2'>Access Level</Typography>
-                <Typography variant='body1' className='mt-2'>
-                  Public
-                </Typography>
-              </div>
-            </div>
+            ) : null}
           </Box>
 
           <Divider className='mt-2 mb-2' />
@@ -960,7 +1025,7 @@ const ResultTable = () => {
               </Typography>
               <br />
               <Typography variant='body2' fontWeight='bold'>
-                Suggestion : {selectedRow?.remediation?.desc}
+                Suggestion : {selectedRow?.remediation?.desc || removePTags(selectedRow?.solution)}
               </Typography>
             </div>
 

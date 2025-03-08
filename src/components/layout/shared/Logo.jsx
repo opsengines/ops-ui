@@ -41,6 +41,12 @@ const Logo = ({ color }) => {
   // Vars
   const { layout } = settings
 
+  const logoStyle = {
+    fontFamily: 'Black Ops One',
+    fontWeight: 400,
+    fontStyle: 'normal'
+  }
+
   useEffect(() => {
     if (layout !== 'collapsed') {
       return
@@ -58,8 +64,10 @@ const Logo = ({ color }) => {
 
   return (
     <div className='flex items-center min-bs-[22px]'>
-      <MaterioLogo className='text-[18px] text-primary' />
-      <LogoText
+      {/* <MaterioLogo className='text-[18px] text-primary' /> */}
+      <img src='/images/robo.png' style={{ width: '60px', height: '50px' }} />
+      <h3 style={logoStyle}>ThreatReaper</h3>
+      {/* <LogoText
         color={color}
         ref={logoTextRef}
         isHovered={isHovered}
@@ -67,7 +75,7 @@ const Logo = ({ color }) => {
         transitionDuration={transitionDuration}
       >
         <span style={{ marginLeft: '-23px' }}>{themeConfig.templateName}</span>
-      </LogoText>
+      </LogoText> */}
     </div>
   )
 }
