@@ -279,10 +279,12 @@ const ResultTable = () => {
       if (scan?.scan_category === 'DAST') {
         // debugger
         const { alerts } = scan?.results[0]?.site[0]
+
         let res = alerts?.length || 0
+
         statsCount.category.DAST = statsCount.category.DAST + res
+
         alerts?.forEach((alert, index) => {
-          console.log(alert)
           transformedResults.push({
             ...alerts[index],
             scan_category: scan?.scan_category,
@@ -293,29 +295,33 @@ const ResultTable = () => {
             message: alert?.alert,
             severityStatus: false
           })
+
           if (alert?.confidence === '1') {
             console.log('Added 1')
             statsCount.severity.Low = statsCount.severity.Low + 1
           }
+
           if (alert?.confidence === '2') {
             console.log('Added 2')
             statsCount.severity.Medium = statsCount.severity.Medium + 1
           }
+
           if (alert?.confidence === '3') {
             console.log('Added 3')
             statsCount.severity.High = statsCount.severity.High + 1
           }
+
           if (alert?.confidence === '4') {
             console.log('Added 4')
             statsCount.severity.Critical = statsCount.severity.Critical + 1
           }
         })
-        // console.log(alerts)
       }
 
       if (results === 'No findings in Account' || scan?.error) {
         return
       }
+
       if (scan_category !== 'DAST') {
         results?.forEach(result => {
           if (result?.extra?.metadata?.confidence === 'LOW' || result?.severity === 'Low') {
