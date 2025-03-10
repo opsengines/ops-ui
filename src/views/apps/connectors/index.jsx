@@ -48,12 +48,8 @@ const ConnectorsView = () => {
 
   const { data, isLoading, isError } = useQuery({
     queryFn: async () => await getConnectorInfo(),
-    queryKey: ['movies'] //Array according to Documentation
+    queryKey: ['connectors'] //Array according to Documentation
   })
-
-  // useEffect(() => {
-  //   getConnectorInfo()
-  // }, [])
 
   const scmConnectors = [
     {
