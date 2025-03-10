@@ -163,7 +163,7 @@ const ResultTable = () => {
   const [selectedRow, setSelectedRow] = useState()
   const [loading, setLoading] = useState(true)
   const [startDate, setStartDate] = useState(subDays(new Date(), 15))
-  const [endDate, setEndDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(addDays(new Date(), 1))
   const [data, setData] = useState([])
   const [anchorEl, setAnchorEl] = useState(null)
   const [category, setCategory] = useState()
@@ -279,7 +279,6 @@ const ResultTable = () => {
       if (scan?.scan_category === 'DAST') {
         // debugger
         const { alerts } = scan?.results[0]?.site[0]
-
         let res = alerts?.length || 0
 
         statsCount.category.DAST = statsCount.category.DAST + res
@@ -400,21 +399,17 @@ const ResultTable = () => {
 
   const onCategoryFilter = e => {
     setCategory(e.target.value)
-
-    // setLoading(true)
-    // scanEngine(
-    //   {
-    //     scan_category: e.target.value,
-    //     scan_fromdate: startDate,
-    //     scan_todate: endDate
-    //   },
-    //   token
-    // ).then(response => transformScanData(response?.results))
   }
 
   useEffect(() => {
     //fetchCloudScanResults()
-    scanEngine({}, token).then(response => transformScanData(response?.results))
+    scanEngine(
+      {
+        scan_fromdate: startDate,
+        scan_todate: endDate
+      },
+      token
+    ).then(response => transformScanData(response?.results))
   }, [])
 
   useEffect(() => {
@@ -697,7 +692,7 @@ const ResultTable = () => {
         <Grid item xs={12} md={4}>
           <TotalSales
             title={'Category'}
-            data={[dashboardStats?.category?.SAST, dashboardStats?.category?.Cloud, dashboardStats?.category?.DAST, 0]}
+            data={[dashboardStats?.category?.SAST, dashboardStats?.category?.Cloud, 0, dashboardStats?.category?.DAST]}
             labels={['SAST', 'CSPM', 'SCA', 'DAST']}
             loading={loading}
           />

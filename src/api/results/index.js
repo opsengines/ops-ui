@@ -1,5 +1,7 @@
-export const scanEngine = async (data, token) => {
+export const scanEngine = async data => {
   try {
+    let token = localStorage?.getItem('authToken')
+
     const response = await fetch('https://api.threatreaper.io/api/engine/scan', {
       method: 'POST',
       headers: {
