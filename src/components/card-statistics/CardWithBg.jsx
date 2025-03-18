@@ -55,15 +55,17 @@ const CardWithBG = props => {
                     padding: '5px'
                   }}
                 >
-                  <CardMedia
-                    component='img'
-                    image={icon}
-                    alt={title}
-                    sx={{
-                      width: 25,
-                      height: 25
-                    }}
-                  />
+                  <a href='/en/apps/connectors'>
+                    <CardMedia
+                      component='img'
+                      image={icon}
+                      alt={title}
+                      sx={{
+                        width: 25,
+                        height: 25
+                      }}
+                    />
+                  </a>
                 </div>
                 <div
                   style={{
@@ -74,7 +76,9 @@ const CardWithBG = props => {
                     padding: '5px'
                   }}
                 >
-                  <Add sx={{ color: 'white' }} />
+                  <a href='/en/apps/connectors'>
+                    <Add sx={{ color: 'white' }} />
+                  </a>
                 </div>
               </>
             ))
@@ -88,7 +92,9 @@ const CardWithBG = props => {
                 padding: '5px'
               }}
             >
-              <Add sx={{ color: 'white' }} />
+              <a href='/en/apps/connectors'>
+                <Add sx={{ color: 'white' }} />
+              </a>
             </div>
           )}
         </div>

@@ -894,7 +894,7 @@ const ResultTable = () => {
             }}
           >
             <Typography variant='h6' fontWeight='bold'>
-              Findings Details
+              Vulnerability Details
             </Typography>
             <IconButton onClick={closeDrawer}>
               <CloseIcon />
@@ -904,15 +904,13 @@ const ResultTable = () => {
           <Box
             sx={{
               padding: '16px',
-              borderRadius: '8px',
-              marginTop: '10px'
+              marginTop: '10px',
+              borderBottom: '2px solid gray'
             }}
           >
             <div className='flex items-center justify-between'>
               {/* <img src='/images/apps/connectors/GithubIcon.png' alt='GitHub Icon' w/>{' '} */}
-              <Typography variant='body1' fontWeight='bold'>
-                Finding Info
-              </Typography>
+              <Chip label={'Finding Info'} color={'secondary'} size='large' variant='tonal' />
               <div className='flex flex-row gap-3'>
                 <Chip label={selectedRow?.status} sx={{ backgroundColor: '#1976d2' }} />
                 <Chip label={selectedRow?.severity} sx={{ backgroundColor: 'red' }} />
@@ -926,7 +924,7 @@ const ResultTable = () => {
                 ? removePTags(selectedRow?.otherinfo)
                 : selectedRow?.finding_info?.desc}
             </Typography>
-            <div className='flex flex-row gap-2'>
+            <div className='flex flex-row gap-2 mt-5'>
               <Chip label={'Create Fix'} color={'primary'} size='large' variant='tonal' />
               <Chip label={'Mark As Ignored'} color={'primary'} size='large' variant='tonal' />
               <Chip label={'Mark As Fixed'} color={'primary'} size='large' variant='tonal' />
@@ -942,17 +940,14 @@ const ResultTable = () => {
             </div>
           </Box>
 
-          <Divider className='mt-2 mb-2' />
           <Box
             sx={{
               padding: '16px',
-              borderRadius: '8px'
+              borderBottom: '2px solid gray'
             }}
           >
             <div className='flex items-center justify-between'>
-              <Typography variant='body1' fontWeight='bold'>
-                General Info
-              </Typography>
+              <Chip label={'General Info'} color={'secondary'} size='large' variant='tonal' />
             </div>
 
             {selectedRow?.scan_category !== 'DAST' ? (
@@ -1011,8 +1006,6 @@ const ResultTable = () => {
             ) : null}
           </Box>
 
-          <Divider className='mt-2 mb-2' />
-
           <Box
             sx={{
               padding: '16px',
@@ -1021,11 +1014,9 @@ const ResultTable = () => {
             }}
           >
             <div>
-              <Typography variant='body1' fontWeight='bold'>
-                Remediation
-              </Typography>
+              <Chip label={'Recommendation'} color={'secondary'} size='large' variant='tonal' />
               <br />
-              <Typography variant='body2' fontWeight='bold'>
+              <Typography variant='body2' fontWeight='bold' className='mt-5'>
                 Suggestion : {selectedRow?.remediation?.desc || removePTags(selectedRow?.solution)}
               </Typography>
             </div>
