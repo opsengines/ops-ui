@@ -40,7 +40,6 @@ const VulnerabilitiesCard = () => {
                 size={54}
                 value={item.progress}
                 thickness={3}
-                // color={item.color}
                 sx={{ '& .MuiCircularProgress-circle': { strokeLinecap: 'round' }, color: `${item.color}` }}
               />
               <Typography className='absolute font-medium' color='text.primary'>
