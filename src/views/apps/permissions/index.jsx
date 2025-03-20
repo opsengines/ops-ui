@@ -12,6 +12,9 @@ import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
 import TablePagination from '@mui/material/TablePagination'
 import IconButton from '@mui/material/IconButton'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Box from '@mui/material/Box'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -35,14 +38,15 @@ import OpenDialogOnElementClick from '@components/dialogs/OpenDialogOnElementCli
 
 // Style Imports
 import tableStyles from '@core/styles/table.module.css'
+import Roles from '../roles'
 
 // Vars
 const colors = {
-  support: 'info',
-  users: 'success',
-  manager: 'warning',
+  'Super Admin': 'success',
+  developer: 'warning',
+  'Security Lead': 'primary',
   administrator: 'primary',
-  'restricted-user': 'error'
+  DevSecOps: 'error'
 }
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
@@ -80,7 +84,7 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const Permissions = ({ permissionsData }) => {
+const Permissions = ({ permissionsData, rolesData }) => {
   // States
   const [open, setOpen] = useState(false)
   const [rowSelection, setRowSelection] = useState({})
@@ -88,6 +92,12 @@ const Permissions = ({ permissionsData }) => {
 
   const [data, setData] = useState(...[permissionsData])
   const [globalFilter, setGlobalFilter] = useState('')
+
+  const [value, setValue] = useState('one')
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
 
   // Vars
   const buttonProps = {
@@ -191,92 +201,108 @@ const Permissions = ({ permissionsData }) => {
 
   return (
     <>
-      <Card>
-        <CardContent className='flex flex-col gap-4 sm:flex-row items-start sm:items-center justify-between'>
-          <DebouncedInput
-            value={globalFilter ?? ''}
-            onChange={value => setGlobalFilter(String(value))}
-            placeholder='Search Permissions'
-            className='is-full sm:is-auto'
+      <Box sx={{ width: '100%', marginBottom: '10px' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor='secondary'
+          indicatorColor='secondary'
+          aria-label='secondary tabs example'
+        >
+          <Tab value='one' label='Roles' />
+          <Tab value='two' label='Permissions' />
+        </Tabs>
+      </Box>
+      {value === 'two' ? (
+        <Card>
+          <CardContent className='flex flex-col gap-4 sm:flex-row items-start sm:items-center justify-between'>
+            <DebouncedInput
+              value={globalFilter ?? ''}
+              onChange={value => setGlobalFilter(String(value))}
+              placeholder='Search Permissions'
+              className='is-full sm:is-auto'
+            />
+            <OpenDialogOnElementClick
+              element={Button}
+              elementProps={buttonProps}
+              dialog={PermissionDialog}
+              dialogProps={{ editValue }}
+            />
+          </CardContent>
+          <div className='overflow-x-auto'>
+            <table className={tableStyles.table}>
+              <thead>
+                {table.getHeaderGroups().map(headerGroup => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map(header => (
+                      <th key={header.id}>
+                        {header.isPlaceholder ? null : (
+                          <>
+                            <div
+                              className={classnames({
+                                'flex items-center': header.column.getIsSorted(),
+                                'cursor-pointer select-none': header.column.getCanSort()
+                              })}
+                              onClick={header.column.getToggleSortingHandler()}
+                            >
+                              {flexRender(header.column.columnDef.header, header.getContext())}
+                              {{
+                                asc: <i className='ri-arrow-up-s-line text-xl' />,
+                                desc: <i className='ri-arrow-down-s-line text-xl' />
+                              }[header.column.getIsSorted()] ?? null}
+                            </div>
+                          </>
+                        )}
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              {table?.getFilteredRowModel()?.rows?.length === 0 ? (
+                <tbody>
+                  <tr>
+                    <td colSpan={table.getVisibleFlatColumns().length} className='text-center'>
+                      No data available
+                    </td>
+                  </tr>
+                </tbody>
+              ) : (
+                <tbody>
+                  {table
+                    .getRowModel()
+                    .rows.slice(0, table.getState().pagination.pageSize)
+                    .map(row => {
+                      return (
+                        <tr key={row.id} className={classnames({ selected: row.getIsSelected() })}>
+                          {row.getVisibleCells().map(cell => (
+                            <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                          ))}
+                        </tr>
+                      )
+                    })}
+                </tbody>
+              )}
+            </table>
+          </div>
+          <TablePagination
+            rowsPerPageOptions={[5, 7, 10]}
+            component='div'
+            className='border-bs'
+            count={table.getFilteredRowModel().rows.length}
+            rowsPerPage={table.getState().pagination.pageSize}
+            page={table.getState().pagination.pageIndex}
+            SelectProps={{
+              inputProps: { 'aria-label': 'rows per page' }
+            }}
+            onPageChange={(_, page) => {
+              table.setPageIndex(page)
+            }}
+            onRowsPerPageChange={e => table.setPageSize(Number(e.target.value))}
           />
-          <OpenDialogOnElementClick
-            element={Button}
-            elementProps={buttonProps}
-            dialog={PermissionDialog}
-            dialogProps={{ editValue }}
-          />
-        </CardContent>
-        <div className='overflow-x-auto'>
-          <table className={tableStyles.table}>
-            <thead>
-              {table.getHeaderGroups().map(headerGroup => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map(header => (
-                    <th key={header.id}>
-                      {header.isPlaceholder ? null : (
-                        <>
-                          <div
-                            className={classnames({
-                              'flex items-center': header.column.getIsSorted(),
-                              'cursor-pointer select-none': header.column.getCanSort()
-                            })}
-                            onClick={header.column.getToggleSortingHandler()}
-                          >
-                            {flexRender(header.column.columnDef.header, header.getContext())}
-                            {{
-                              asc: <i className='ri-arrow-up-s-line text-xl' />,
-                              desc: <i className='ri-arrow-down-s-line text-xl' />
-                            }[header.column.getIsSorted()] ?? null}
-                          </div>
-                        </>
-                      )}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            {table?.getFilteredRowModel()?.rows?.length === 0 ? (
-              <tbody>
-                <tr>
-                  <td colSpan={table.getVisibleFlatColumns().length} className='text-center'>
-                    No data available
-                  </td>
-                </tr>
-              </tbody>
-            ) : (
-              <tbody>
-                {table
-                  .getRowModel()
-                  .rows.slice(0, table.getState().pagination.pageSize)
-                  .map(row => {
-                    return (
-                      <tr key={row.id} className={classnames({ selected: row.getIsSelected() })}>
-                        {row.getVisibleCells().map(cell => (
-                          <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-                        ))}
-                      </tr>
-                    )
-                  })}
-              </tbody>
-            )}
-          </table>
-        </div>
-        <TablePagination
-          rowsPerPageOptions={[5, 7, 10]}
-          component='div'
-          className='border-bs'
-          count={table.getFilteredRowModel().rows.length}
-          rowsPerPage={table.getState().pagination.pageSize}
-          page={table.getState().pagination.pageIndex}
-          SelectProps={{
-            inputProps: { 'aria-label': 'rows per page' }
-          }}
-          onPageChange={(_, page) => {
-            table.setPageIndex(page)
-          }}
-          onRowsPerPageChange={e => table.setPageSize(Number(e.target.value))}
-        />
-      </Card>
+        </Card>
+      ) : (
+        <Roles userData={rolesData} />
+      )}
       <PermissionDialog open={open} setOpen={setOpen} data={editValue} />
     </>
   )

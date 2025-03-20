@@ -17,11 +17,11 @@ import Link from '@components/Link'
 
 // Vars
 const cardData = [
-  { totalUsers: 4, title: 'Administrator', avatars: ['1.png', '2.png', '3.png', '4.png'] },
-  { totalUsers: 7, title: 'Editor', avatars: ['5.png', '6.png', '7.png'] },
-  { totalUsers: 5, title: 'Users', avatars: ['4.png', '5.png', '6.png'] },
-  { totalUsers: 6, title: 'Support', avatars: ['1.png', '2.png', '3.png'] },
-  { totalUsers: 10, title: 'Restricted User', avatars: ['4.png', '5.png', '6.png'] }
+  { totalUsers: 4, title: 'Super Admin', avatars: ['1.png', '2.png', '3.png', '4.png'] },
+  { totalUsers: 7, title: 'Developer', avatars: ['5.png', '6.png', '7.png'] },
+  { totalUsers: 5, title: 'DevOps', avatars: ['4.png', '5.png', '6.png'] },
+  { totalUsers: 6, title: 'DevSecOps', avatars: ['1.png', '2.png', '3.png'] },
+  { totalUsers: 10, title: 'Security Lead', avatars: ['4.png', '5.png', '6.png'] }
 ]
 
 const RoleCards = () => {

@@ -142,12 +142,11 @@ const RolesTable = ({ tableData }) => {
         header: 'User',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
-            {getAvatar({ avatar: row.original.avatar, fullName: row.original.fullName })}
+            {getAvatar({ avatar: row?.original?.avatar, fullName: row.original?.fullName })}
             <div className='flex flex-col'>
               <Typography className='font-medium' color='text.primary'>
                 {row.original.fullName}
               </Typography>
-              <Typography variant='body2'>{row.original.username}</Typography>
             </div>
           </div>
         )
@@ -161,11 +160,11 @@ const RolesTable = ({ tableData }) => {
         cell: ({ row }) => (
           <div className='flex items-center gap-2'>
             <Icon
-              className={userRoleObj[row.original.role].icon}
-              sx={{ color: `var(--mui-palette-${userRoleObj[row.original.role].color}-main)`, fontSize: '1.375rem' }}
+              className={userRoleObj[row?.original?.role]?.icon}
+              sx={{ color: `var(--mui-palette-${userRoleObj[row?.original?.role]?.color}-main)`, fontSize: '1.375rem' }}
             />
             <Typography className='capitalize' color='text.primary'>
-              {row.original.role}
+              {row?.original?.role}
             </Typography>
           </div>
         )
@@ -174,7 +173,7 @@ const RolesTable = ({ tableData }) => {
         header: 'Plan',
         cell: ({ row }) => (
           <Typography className='capitalize' color='text.primary'>
-            {row.original.currentPlan}
+            {row?.original?.currentPlan}
           </Typography>
         )
       }),
@@ -184,9 +183,9 @@ const RolesTable = ({ tableData }) => {
           <div className='flex items-center gap-3'>
             <Chip
               variant='tonal'
-              label={row.original.status}
+              label={row?.original?.status}
               size='small'
-              color={userStatusObj[row.original.status]}
+              color={userStatusObj[row?.original?.status]}
               className='capitalize'
             />
           </div>
@@ -196,7 +195,7 @@ const RolesTable = ({ tableData }) => {
         header: 'Actions',
         cell: ({ row }) => (
           <div className='flex items-center'>
-            <IconButton onClick={() => setData(data?.filter(product => product.id !== row.original.id))}>
+            <IconButton onClick={() => setData(data?.filter(product => product?.id !== row?.original?.id))}>
               <i className='ri-delete-bin-7-line text-textSecondary' />
             </IconButton>
             <IconButton>

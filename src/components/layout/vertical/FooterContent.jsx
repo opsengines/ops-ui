@@ -24,8 +24,8 @@ const FooterContent = () => {
         <span>{`© ${new Date().getFullYear()}, Made with `}</span>
         <span>{`❤️`}</span>
         <span>{` by `}</span>
-        <Link href='https://opsengines.io/' target='_blank' className='font-medium text-white'>
-          OpsEngines
+        <Link href='https://threatreaper.io/' target='_blank' className='font-medium text-white'>
+          ThreatReaper
         </Link>
       </p>
       {!isBreakpointReached && (

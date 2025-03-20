@@ -20,6 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { Info } from '@mui/icons-material'
 
 import { layout } from './data'
+import ProductCard from '../ecommerce/products/list/ProductCard'
 
 const PoliciesViewPage = () => {
   const [isChecked, setIsChecked] = useState(false)
@@ -32,7 +33,7 @@ const PoliciesViewPage = () => {
   return (
     <>
       <Grid container spacing={6}>
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <ProductCard />
         </Grid>
         <Grid item xs={12}>
@@ -104,7 +105,7 @@ const PoliciesViewPage = () => {
                               <Grid container spacing={3} className='mt-2'>
                                 {policy?.configurations?.map((config, index) => {
                                   return (
-                                    <Grid item xs={12} md={3} className='flex gap-2'>
+                                    <Grid item xs={12} md={3} className='flex gap-2' key={index}>
                                       <Tooltip title={config?.tooltip}>
                                         <Info />
                                       </Tooltip>
@@ -129,7 +130,7 @@ const PoliciesViewPage = () => {
               </Accordion>
             )
           })}
-        </Grid> */}
+        </Grid>
       </Grid>
     </>
   )

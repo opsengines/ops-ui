@@ -31,7 +31,10 @@ import {
   getSortedRowModel
 } from '@tanstack/react-table'
 
+import { Badge, Button } from '@mui/material'
+
 // Components Imports
+
 import CustomAvatar from '@core/components/mui/Avatar'
 import OptionMenu from '@core/components/option-menu'
 
@@ -39,6 +42,7 @@ import OptionMenu from '@core/components/option-menu'
 import { getLocalizedUrl } from '@/utils/i18n'
 
 // Style Imports
+
 import tableStyles from '@core/styles/table.module.css'
 
 export const chipColor = {
@@ -71,6 +75,8 @@ const LogisticsOverviewTable = ({ vehicleData }) => {
 
   const [data, setData] = useState(...[vehicleData])
 
+  const customcolors = ['#A31D1D', '#F93827', '#FFD65A', '#077d06']
+
   // Hooks
   const { lang: locale } = useParams()
 
@@ -99,54 +105,58 @@ const LogisticsOverviewTable = ({ vehicleData }) => {
         )
       },
       columnHelper.accessor('location', {
-        header: 'Location',
+        header: 'CVE ID',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
-            <CustomAvatar skin='light' color='secondary'>
-              <i className='ri-car-line text-[28px]' />
-            </CustomAvatar>
             <Typography
               component={Link}
               href={getLocalizedUrl('/apps/logistics/fleet', locale)}
               className='font-medium hover:text-primary'
               color='text.primary'
             >
-              VOL-{row.original.location}
+              {row.original.location}
             </Typography>
           </div>
         )
       }),
-      columnHelper.accessor('startCity', {
-        header: 'Starting Route',
-        cell: ({ row }) => <Typography>{`${row.original.startCity}, ${row.original.startCountry}`}</Typography>
+      columnHelper.accessor('severity', {
+        header: 'Severity',
+        cell: ({ row }) =>
+          row?.original?.severity === 'Critical' ? (
+            <Chip label={'Critical'} style={{ backgroundColor: customcolors[0], color: 'white' }} />
+          ) : row?.original?.severity === 'High' ? (
+            <Chip label={'High'} style={{ backgroundColor: customcolors[1], color: 'white' }} />
+          ) : row?.original?.severity === 'Medium' ? (
+            <Chip label={'Medium'} style={{ backgroundColor: customcolors[2], color: 'white' }} />
+          ) : row?.original?.severity === 'Low' ? (
+            <Chip label={'Low'} style={{ backgroundColor: customcolors[3], color: 'white' }} />
+          ) : null
       }),
-      columnHelper.accessor('endCity', {
-        header: 'Ending Route',
-        cell: ({ row }) => <Typography>{`${row.original.endCity}, ${row.original.endCountry}`}</Typography>
+      columnHelper.accessor('affectedTech', {
+        header: 'Affected Tech',
+        cell: ({ row }) => <Typography>{row?.original?.affectedTech}</Typography>
       }),
       columnHelper.accessor('warnings', {
-        header: 'Warnings',
+        header: 'Exploitability',
         cell: ({ row }) => (
           <Chip
             variant='tonal'
             label={row.original.warnings}
             size='small'
-            color={chipColor[row.original.warnings].color}
+            color={row?.original?.warnings === 'No Active Exploit' ? 'success' : 'error'}
           />
         )
       }),
-      columnHelper.accessor('progress', {
-        header: 'Progress',
+      columnHelper.accessor('aiFix', {
+        header: 'AI Fix Status',
+        cell: ({ row }) => <Typography>{row?.original?.aiFix}</Typography>
+      }),
+      columnHelper.accessor('startCity', {
+        header: 'Action',
         cell: ({ row }) => (
-          <div className='flex items-center gap-2 min-is-48'>
-            <LinearProgress
-              color='primary'
-              value={row.original.progress}
-              variant='determinate'
-              className='is-full bs-2'
-            />
-            <Typography>{`${row.original.progress}%`}</Typography>
-          </div>
+          <Button variant='outlined' color='primary'>
+            Apply Fix
+          </Button>
         )
       })
     ],
@@ -182,7 +192,7 @@ const LogisticsOverviewTable = ({ vehicleData }) => {
   return (
     <Card>
       <CardHeader
-        title='On route vehicles'
+        title='ReaperCVE Hub Overview'
         action={<OptionMenu iconClassName='text-textPrimary' options={['Refresh', 'Update', 'Share']} />}
       />
       <div className='overflow-x-auto'>

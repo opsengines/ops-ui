@@ -84,7 +84,7 @@ const CardWidgetsSalesOverview = ({ title, customColors = false, labels = [], su
               fontSize: '0.875rem',
               label: `${subTitle}`,
               color: textSecondary,
-              formatter: value => `${value.globals.seriesTotals.reduce((total, num) => total + num)}k`
+              formatter: value => `${value.globals.seriesTotals.reduce((total, num) => total + num)}`
             }
           }
         }

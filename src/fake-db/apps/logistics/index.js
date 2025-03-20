@@ -2,63 +2,81 @@ export const db = {
   vehicles: [
     {
       id: 1,
-      location: 468031,
+      location: 'CVE-2024-1001',
       startCity: 'Cagnes-sur-Mer',
       startCountry: 'France',
+      affectedTech: 'Apache, Linux',
       endCity: 'Catania',
       endCountry: 'Italy',
-      warnings: 'No Warnings',
-      progress: 49
+      warnings: 'Actively Exploited',
+      aiFix: '✅ AI-FIX Ready',
+      progress: 49,
+      severity: 'Critical'
     },
     {
       id: 2,
-      location: 302781,
+      location: 'CVE-2023-2022',
       startCity: 'Köln',
       startCountry: 'Germany',
       endCity: 'Laspezia',
       endCountry: 'Italy',
-      warnings: 'Ecu Not Responding',
-      progress: 24
+      warnings: 'No Active Exploit',
+      progress: 24,
+      severity: 'High',
+      aiFix: '⚠️ AI-FIX In Progress',
+      affectedTech: 'Windows, IIS'
     },
     {
       id: 3,
-      location: 715822,
+      location: 'CVE-2022-3033',
       startCity: 'Chambray-lès-Tours',
       startCountry: 'France',
       endCity: 'Hamm',
       endCountry: 'Germany',
-      warnings: 'Oil Leakage',
-      progress: 7
+      warnings: 'No Active Exploit',
+      progress: 7,
+      severity: 'Medium',
+      aiFix: '✅ AI-FIX Ready',
+      affectedTech: 'Python, Django'
     },
     {
       id: 4,
-      location: 451430,
+      location: 'CVE-2024-4004',
       startCity: 'Berlin',
       startCountry: 'Germany',
       endCity: 'Gelsenkirchen',
       endCountry: 'Germany',
-      warnings: 'No Warnings',
-      progress: 95
+      warnings: 'No Active Exploit',
+      progress: 95,
+      severity: 'Low',
+      aiFix: '❌ AI-FIX Not Available',
+      affectedTech: 'Kubernetes, Helm'
     },
     {
       id: 5,
-      location: 921577,
+      location: 'CVE-2023-5055',
       startCity: 'Cergy-Pontoise',
       startCountry: 'France',
       endCity: 'Berlin',
       endCountry: 'Germany',
-      warnings: 'No Warnings',
-      progress: 65
+      warnings: 'Actively Exploited',
+      progress: 65,
+      severity: 'Critical',
+      aiFix: '✅ AI-FIX Ready',
+      affectedTech: 'AWS S3, IAM'
     },
     {
       id: 6,
-      location: 480957,
+      location: 'CVE-2022-6066',
       startCity: 'Villefranche-sur-Saône',
       startCountry: 'France',
       endCity: 'Halle',
       endCountry: 'Germany',
-      warnings: 'Ecu Not Responding',
-      progress: 55
+      warnings: 'No Active Exploit',
+      progress: 55,
+      severity: 'High',
+      aiFix: '⚠️ AI-FIX In Progress',
+      affectedTech: 'Terraform, CloudFormation'
     },
     {
       id: 7,
@@ -68,7 +86,10 @@ export const db = {
       endCity: 'Bochum',
       endCountry: 'Germany',
       warnings: 'Fuel Problems',
-      progress: 74
+      progress: 74,
+      severity: 'Medium',
+      aiFix: '✅ AI-FIX Ready',
+      affectedTech: 'Python, Django'
     },
     {
       id: 8,

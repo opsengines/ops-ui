@@ -33,7 +33,7 @@ const data = [
   },
   {
     title: 'Modified By',
-    value: 'OE-Security',
+    value: 'TR-Security',
     icon: 'ri-gift-line',
     desc: '6k'
   },
@@ -76,17 +76,6 @@ const ProductCard = () => {
                   <CustomAvatar variant='rounded' size={44}>
                     <i className={classnames('text-[28px]', item.icon)} />
                   </CustomAvatar>
-                </div>
-                <div className='flex items-start gap-2'>
-                  <Typography>{item.desc} orders</Typography>
-                  {item.change && (
-                    <Chip
-                      variant='tonal'
-                      label={`${item.change}%`}
-                      size='small'
-                      color={item.change > 0 ? 'success' : 'error'}
-                    />
-                  )}
                 </div>
               </div>
               {isBelowMdScreen && !isSmallScreen && index < data.length - 2 && (

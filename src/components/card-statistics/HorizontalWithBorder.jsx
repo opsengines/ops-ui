@@ -39,12 +39,6 @@ const HorizontalWithBorder = props => {
         </div>
         <div className='flex flex-col justify-center'>
           <Typography color='text.primary'>{title}</Typography>
-          <div className='flex items-center gap-2'>
-            <Typography className='font-medium'>{`${trendNumber > 0 ? '+' : ''}${trendNumber}%`}</Typography>
-            <Typography variant='body2' color='text.disabled'>
-              than last week
-            </Typography>
-          </div>
         </div>
       </CardContent>
     </Card>
