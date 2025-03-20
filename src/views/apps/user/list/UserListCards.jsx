@@ -7,8 +7,8 @@ import HorizontalWithSubtitle from '@components/card-statistics/HorizontalWithSu
 // Vars
 const data = [
   {
-    title: 'Session',
-    stats: '21,459',
+    title: 'Total Users',
+    stats: '10',
     avatarIcon: 'ri-group-line',
     avatarColor: 'primary',
     trend: 'positive',
@@ -16,17 +16,8 @@ const data = [
     subtitle: 'Total User'
   },
   {
-    title: 'Paid Users',
-    stats: '4,567',
-    avatarIcon: 'ri-user-add-line',
-    avatarColor: 'error',
-    trend: 'positive',
-    trendNumber: '18%',
-    subtitle: 'Last week analytics'
-  },
-  {
     title: 'Active Users',
-    stats: '19,860',
+    stats: '4',
     avatarIcon: 'ri-user-follow-line',
     avatarColor: 'success',
     trend: 'negative',
@@ -34,8 +25,17 @@ const data = [
     subtitle: 'Last week analytics'
   },
   {
+    title: 'Total Roles',
+    stats: '5',
+    avatarIcon: 'ri-user-add-line',
+    avatarColor: 'error',
+    trend: 'positive',
+    trendNumber: '18%',
+    subtitle: 'Last week analytics'
+  },
+  {
     title: 'Pending Users',
-    stats: '237',
+    stats: '4',
     avatarIcon: 'ri-user-search-line',
     avatarColor: 'warning',
     trend: 'positive',

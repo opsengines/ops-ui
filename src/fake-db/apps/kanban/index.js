@@ -8,19 +8,19 @@ export const db = {
     {
       id: 2,
       title: 'In Review',
-      taskIds: [3, 4]
+      taskIds: [3]
     },
     {
       id: 3,
       title: 'Done',
-      taskIds: [5, 6]
+      taskIds: [5]
     }
   ],
   tasks: [
     {
       id: 1,
-      title: 'Research FAQ page UX',
-      badgeText: ['UX'],
+      title: 'Rescan repo1',
+      badgeText: ['SAST'],
       attachments: 4,
       comments: 12,
       assigned: [
@@ -32,8 +32,8 @@ export const db = {
     },
     {
       id: 2,
-      title: 'Review Javascript code',
-      badgeText: ['Code Review'],
+      title: 'Rescan AWS account',
+      badgeText: ['CSPM'],
       attachments: 2,
       comments: 8,
       assigned: [
@@ -44,8 +44,8 @@ export const db = {
     },
     {
       id: 3,
-      title: 'Review completed Apps',
-      badgeText: ['Dashboard'],
+      title: 'API AI Fi done',
+      badgeText: ['DAST'],
       attachments: 8,
       comments: 17,
       assigned: [
@@ -71,8 +71,8 @@ export const db = {
     },
     {
       id: 5,
-      title: 'Forms & tables section',
-      badgeText: ['App'],
+      title: 'repo2 scan done',
+      badgeText: ['SAST'],
       attachments: 5,
       comments: 14,
       assigned: [

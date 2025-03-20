@@ -25,12 +25,9 @@ import CustomAvatar from '@core/components/mui/Avatar'
 import styles from './styles.module.css'
 
 export const chipColor = {
-  UX: { color: 'success' },
-  'Code Review': { color: 'error' },
-  Dashboard: { color: 'info' },
-  Images: { color: 'warning' },
-  App: { color: 'secondary' },
-  'Charts & Map': { color: 'primary' }
+  SAST: { color: 'success' },
+  CSPM: { color: 'error' },
+  DAST: { color: 'info' }
 }
 
 const TaskCard = props => {

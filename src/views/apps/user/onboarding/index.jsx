@@ -155,7 +155,7 @@ const OnboardingModal = () => {
       >
         <Box mb={4}>
           <Typography variant='h4' textAlign='center' mb={2}>
-            Welcome to OpsEngines!
+            Welcome to ThreatReaper!
           </Typography>
           <Typography variant='subtitle1' textAlign='center'>
             Configure your application to get started with ease.
@@ -322,7 +322,7 @@ const OnboardingModal = () => {
                 <CardContent>
                   <Security fontSize='large' />
                   <Typography variant='h6' textAlign='center'>
-                    <a href='/en/apps/securityengines/sast'>SAST Scan Engines</a>
+                    <a href='/en/apps/results'>Scan</a>
                   </Typography>
                 </CardContent>
               </Card>

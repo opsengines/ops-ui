@@ -50,6 +50,7 @@ const RegisterV2 = ({ mode }) => {
   const lightIllustration = '/images/illustrations/auth/v2-register-light.png'
   const borderedDarkIllustration = '/images/illustrations/auth/v2-register-dark-border.png'
   const borderedLightIllustration = '/images/illustrations/auth/v2-register-light-border.png'
+  const bgIcon = '/images/illustrations/auth/LoginBG.png'
 
   const registerUser = async () => {
     try {
@@ -101,18 +102,18 @@ const RegisterV2 = ({ mode }) => {
           }
         )}
       >
-        <div className='plb-12 pis-12'>
-          <img
-            src={characterIllustration}
-            alt='character-illustration'
-            className='max-bs-[500px] max-is-full bs-auto'
-          />
-        </div>
-        <Illustrations
+        <img
+          src={bgIcon}
+          alt='character-illustration'
+          style={{ transform: 'translateX(45deg)' }}
+          className='max-bs-[500px] max-is-full bs-auto'
+        />
+
+        {/* <Illustrations
           image1={{ src: '/images/illustrations/objects/tree-3.png' }}
           image2={null}
           maskImg={{ src: authBackground }}
-        />
+        /> */}
       </div>
       <div className='flex justify-center items-center bs-full bg-backgroundPaper !min-is-full p-6 md:!min-is-[unset] md:p-12 md:is-[480px]'>
         <Link

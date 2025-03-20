@@ -752,8 +752,15 @@ const ResultTable = () => {
                     </Typography>
                     <Select value={category} onChange={e => onCategoryFilter(e)} size='small'>
                       <DropdownItem value='SAST'>SAST</DropdownItem>
-                      <DropdownItem value='Cloud'>CSPM</DropdownItem>
+                      <DropdownItem value='SCA'>SCA</DropdownItem>
+                      <DropdownItem value='SBOM'>SBOM</DropdownItem>
                       <DropdownItem value='DAST'>DAST</DropdownItem>
+                      <DropdownItem value='CICD'>CI/CD</DropdownItem>
+                      <DropdownItem value='CSPM'>CSPM</DropdownItem>
+                      <DropdownItem value='IAC'>IAC</DropdownItem>
+                      <DropdownItem value='Secrets'>Secrets</DropdownItem>
+                      <DropdownItem value='Compliance'>Compliance</DropdownItem>
+                      <DropdownItem value='AIML'>AI/ML</DropdownItem>
                     </Select>
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>

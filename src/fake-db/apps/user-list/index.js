@@ -7,9 +7,9 @@ export const db = [
     username: 'gslixby0',
     country: 'El Salvador',
     contact: '(479) 232-9151',
-    email: 'gslixby0@abc.net.au',
+    email: 'niraj@threatreaper.io',
     currentPlan: 'enterprise',
-    status: 'inactive',
+    status: 'active',
     avatar: '',
     avatarColor: 'primary'
   },
@@ -21,9 +21,9 @@ export const db = [
     username: 'hredmore1',
     country: 'Albania',
     contact: '(472) 607-9137',
-    email: 'hredmore1@imgur.com',
+    email: 'rahil@threatreaper.io',
     currentPlan: 'team',
-    status: 'pending',
+    status: 'active',
     avatar: '/images/avatars/3.png'
   },
   {
@@ -34,7 +34,7 @@ export const db = [
     username: 'msicely2',
     country: 'Russia',
     contact: '(321) 264-4599',
-    email: 'msicely2@who.int',
+    email: 'chandan@threatreaper.io',
     currentPlan: 'enterprise',
     status: 'active',
     avatar: '/images/avatars/1.png'
@@ -47,9 +47,9 @@ export const db = [
     username: 'crisby3',
     country: 'China',
     contact: '(923) 690-6806',
-    email: 'crisby3@wordpress.com',
+    email: 'keval@threatreaper.io',
     currentPlan: 'team',
-    status: 'inactive',
+    status: 'active',
     avatar: '/images/avatars/3.png'
   },
   {
@@ -60,7 +60,7 @@ export const db = [
     username: 'mhurran4',
     country: 'Pakistan',
     contact: '(669) 914-1078',
-    email: 'mhurran4@yahoo.co.jp',
+    email: 'maggy@threatreaper.io',
     currentPlan: 'enterprise',
     status: 'pending',
     avatar: '/images/avatars/1.png'
@@ -73,7 +73,7 @@ export const db = [
     username: 'shalstead5',
     country: 'China',
     contact: '(958) 973-3093',
-    email: 'shalstead5@shinystat.com',
+    email: 'silvain@threatreaper.io',
     currentPlan: 'company',
     status: 'active',
     avatar: '',
@@ -87,7 +87,7 @@ export const db = [
     username: 'bgallemore6',
     country: 'Canada',
     contact: '(825) 977-8152',
-    email: 'bgallemore6@boston.com',
+    email: 'breena@threatreaper.io',
     currentPlan: 'company',
     status: 'pending',
     avatar: '',
@@ -101,7 +101,7 @@ export const db = [
     username: 'kliger7',
     country: 'France',
     contact: '(187) 440-0934',
-    email: 'kliger7@vinaora.com',
+    email: 'kathryne@threatreaper.io',
     currentPlan: 'enterprise',
     status: 'pending',
     avatar: '/images/avatars/4.png'
@@ -114,7 +114,7 @@ export const db = [
     username: 'fscotfurth8',
     country: 'China',
     contact: '(978) 146-5443',
-    email: 'fscotfurth8@dailymotion.com',
+    email: 'abhishek@threatreaper.io',
     currentPlan: 'team',
     status: 'pending',
     avatar: '/images/avatars/2.png'
@@ -127,7 +127,7 @@ export const db = [
     username: 'jbellany9',
     country: 'Jamaica',
     contact: '(589) 284-6732',
-    email: 'jbellany9@kickstarter.com',
+    email: 'rajshekar@threatreaper.io',
     currentPlan: 'company',
     status: 'inactive',
     avatar: '/images/avatars/5.png'

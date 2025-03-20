@@ -13,6 +13,7 @@ import ApexBarChart from '@/views/charts/apex/ApexBarChart'
 import VulnerabilitiesCard from '@/views/apps/dashboard/VulnerabilitiesCard'
 import AiFixPanel from '@/views/apps/dashboard/AiFixPanel'
 import HealthScore from '@/views/apps/dashboard/HealthScore'
+import OnboardingModal from '@/views/apps/user/onboarding'
 
 const DashboardCRM = async () => {
   const data = await getStatisticsData()
@@ -102,6 +103,7 @@ const DashboardCRM = async () => {
       {/* <Grid item xs={12} md={12}>
         <Vertical data={data.statsVertical} />
       </Grid> */}
+      <OnboardingModal />
     </Grid>
   )
 }

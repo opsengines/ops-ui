@@ -33,46 +33,32 @@ export const db = {
   ],
   statsHorizontalWithBorder: [
     {
-      title: 'On route vehicles',
-      stats: 42,
+      title: 'Total CVE',
+      stats: '272,751',
       trendNumber: 18.2,
       avatarIcon: 'ri-car-line',
       color: 'primary'
     },
     {
-      title: 'Vehicles with errors',
-      stats: 8,
+      title: 'Total Exploitability',
+      stats: '20,000',
       trendNumber: -8.7,
       avatarIcon: 'ri-alert-line',
       color: 'warning'
     },
     {
-      title: 'Deviated from route',
-      stats: 27,
+      title: 'Total AI Fix Available',
+      stats: '12,000',
       trendNumber: 4.3,
       avatarIcon: 'ri-route-line',
       color: 'error'
     },
     {
-      title: 'Late vehicles',
-      stats: 13,
+      title: 'Total Critical Severity',
+      stats: '8,000',
       trendNumber: 2.5,
       avatarIcon: 'ri-time-line',
       color: 'info'
-    },
-    {
-      title: 'Late vehicles',
-      stats: 13,
-      trendNumber: 2.5,
-      avatarIcon: 'ri-time-line',
-      color: 'info'
-    },
-    {
-      title: 'Deviated from route',
-      stats: 27,
-      trendNumber: 4.3,
-      avatarIcon: 'ri-route-line',
-      color: 'error'
     }
   ],
   dashboardCardData: [

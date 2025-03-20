@@ -128,11 +128,40 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         <MenuItem href={`/${locale}/apps/results`} icon={<Assessment />}>
           Scans & Results
         </MenuItem>
+        <MenuItem
+          href={`/${locale}/apps/cweList`}
+          icon={
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
+              <path
+                fill='#dfdede'
+                d='M15 3h6v5h-2V5h-4zM9 3v2H5v3H3V3zm6 18v-2h4v-3h2v5zm-6 0H3v-5h2v3h4zM3 11h18v2H3z'
+              />
+            </svg>
+          }
+        >
+          VulnFix-Hub
+        </MenuItem>
+        <MenuItem href={`/${locale}/apps/policies`} icon={<PolicyIcon />}>
+          Policies
+        </MenuItem>
         <MenuItem href={`/${locale}/apps/connectors`} icon={<IntegrationInstructionsIcon />}>
           Integrations
         </MenuItem>
         <MenuItem href={`/${locale}/apps/reports`} icon={<Assessment />}>
           Reports
+        </MenuItem>
+        <MenuItem
+          href={`/${locale}/apps/feedback`}
+          icon={
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
+              <path
+                fill='#dfdede'
+                d='M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1zM11 13v2h2v-2zm0-6v5h2V7z'
+              />
+            </svg>
+          }
+        >
+          Feedback
         </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].academy} icon={<i className='ri-graduation-cap-line' />}>
             <MenuItem href={`/${locale}/apps/academy/dashboard`}>{dictionary['navigation'].dashboard}</MenuItem>
@@ -185,7 +214,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
           <MenuItem href={`/${locale}/apps/settings/userGroups`}>Users</MenuItem>
           <MenuItem href={`/${locale}/apps/settings/roles`}>Roles & Permissions</MenuItem>
           <MenuItem href={`/${locale}/apps/settings/notifications`}>Notifications & Alerts</MenuItem>
-          <MenuItem href={`/${locale}/apps/settings/license`}>Licence & Plan</MenuItem>
+          <MenuItem href={`/${locale}/apps/settings/licence`}>Licence & Plan</MenuItem>
           <MenuItem href={`/${locale}/apps/settings/payments`}>Payments</MenuItem>
         </SubMenu>
         {/* <SubMenu label={dictionary['navigation'].pages} icon={<i className='ri-layout-left-line' />}>
