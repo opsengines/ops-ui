@@ -35,7 +35,7 @@ const RootLayout = ({ children, params }) => {
         <html id='__next' lang={params.lang} dir={direction}>
           <head>
             <link rel='preconnect' href='https://fonts.googleapis.com' />
-            <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+            <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
             <link href='https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap' rel='stylesheet' />
           </head>
           <body className='flex is-full min-bs-full flex-auto flex-col'>{children}</body>
