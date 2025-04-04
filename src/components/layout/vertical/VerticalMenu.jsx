@@ -150,19 +150,6 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         <MenuItem href={`/${locale}/apps/reports`} icon={<Assessment />}>
           Reports
         </MenuItem>
-        <MenuItem
-          href={`/${locale}/apps/feedback`}
-          icon={
-            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
-              <path
-                fill='#dfdede'
-                d='M6.455 19L2 22.5V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1zM11 13v2h2v-2zm0-6v5h2V7z'
-              />
-            </svg>
-          }
-        >
-          Feedback
-        </MenuItem>
         {/* <SubMenu label={dictionary['navigation'].academy} icon={<i className='ri-graduation-cap-line' />}>
             <MenuItem href={`/${locale}/apps/academy/dashboard`}>{dictionary['navigation'].dashboard}</MenuItem>
             <MenuItem href={`/${locale}/apps/academy/course-details`}>

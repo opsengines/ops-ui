@@ -63,7 +63,7 @@ const data = [
   {
     category: 'CSPM',
     items: [
-      { title: 'Licenses & SBOM', description: 'Aikido identifies potential risks related to open-source licenses.' },
+      { title: 'Licenses & SBOM', description: 'TR identifies potential risks related to open-source licenses.' },
       { title: 'Malware Monitor', description: 'Check your dependencies for potential software attacks.' },
       { title: 'Runtimes & Frameworks', description: 'Overview of your important servers, runtimes, and frameworks.' }
     ]

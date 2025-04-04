@@ -215,7 +215,12 @@ const ResultTable = () => {
     },
     {
       icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-      text: 'AI/ML Scan',
+      text: 'AI Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <ApiOutlined fontSize='large' color='primary' />,
+      text: 'LLM Scan',
       onClick: () => setSastModal(true)
     },
     {
@@ -932,9 +937,8 @@ const ResultTable = () => {
                 : selectedRow?.finding_info?.desc}
             </Typography>
             <div className='flex flex-row gap-2 mt-5'>
-              <Chip label={'Create Fix'} color={'primary'} size='large' variant='tonal' />
+              <Chip label={'Create Ticket'} color={'primary'} size='large' variant='tonal' />
               <Chip label={'Mark As Ignored'} color={'primary'} size='large' variant='tonal' />
-              <Chip label={'Mark As Fixed'} color={'primary'} size='large' variant='tonal' />
               <Chip
                 label={'AI Fix'}
                 color={'primary'}
@@ -1101,9 +1105,8 @@ const ResultTable = () => {
               {selectedRow?.check_id}
             </Typography>
             <div className='flex flex-row gap-2 mt-5'>
-              <Chip label={'Create Fix'} color={'primary'} size='large' variant='tonal' />
+              <Chip label={'Create Ticket'} color={'primary'} size='large' variant='tonal' />
               <Chip label={'Mark As Ignored'} color={'primary'} size='large' variant='tonal' />
-              <Chip label={'Mark As Fixed'} color={'primary'} size='large' variant='tonal' />
               <Chip
                 label={'AI Fix'}
                 color={'primary'}
