@@ -29,9 +29,10 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import SettingsIcon from '@mui/icons-material/Settings'
 import DeleteIcon from '@mui/icons-material/Delete'
 
-import { useEditor } from '@tiptap/react'
-import { getGitInfo, storeGithubInfo } from '@/api/github'
 import { useQuery } from '@tanstack/react-query'
+
+import { getGitInfo, storeGithubInfo } from '@/api/github'
+
 import RoboLoader from '@/views/RoboLoader'
 
 const GithubModal = ({ open, onClose }) => {
@@ -69,7 +70,7 @@ const GithubModal = ({ open, onClose }) => {
           url: url
         }
       })
-      console.log(data[0].githubUserName)
+
       setUsername(data[0].GitHubUsername)
       setToken(data[0].GitHubToken)
       setSelectedRepos(data[0]?.GitHubLink)
@@ -83,6 +84,7 @@ const GithubModal = ({ open, onClose }) => {
     setGitRepos([])
 
     const url = `https://api.github.com/users/${username}/repos`
+
     try {
       const headers = {
         Accept: 'application/vnd.github.v3+json',
@@ -107,7 +109,6 @@ const GithubModal = ({ open, onClose }) => {
       setGitRepos(formattedRepos)
     } catch (err) {
       setError(true)
-      console.log('setting error')
     } finally {
       setLoading(false)
     }
@@ -145,7 +146,7 @@ const GithubModal = ({ open, onClose }) => {
       github_token: token,
       github_links: selectedRepos
     }
-    console.log(githubData)
+
     try {
       await storeGithubInfo(githubData, authtoken)
     } catch (error) {
@@ -262,9 +263,10 @@ const GithubModal = ({ open, onClose }) => {
               )}
               {tabValue === 1 && (
                 <>
-                  {gitProfiles?.map(profile => {
+                  {gitProfiles?.map((profile, index) => {
                     return (
                       <Accordion
+                        key={index}
                         className='mb-2'
                         style={{ borderLeft: '4px solid green', borderRadius: '0px', padding: '4px' }}
                       >
