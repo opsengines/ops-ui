@@ -59,16 +59,10 @@ const DashboardCRM = async () => {
       <Grid item xs={12} md={12} className='self-end'>
         <CustomCard data={data?.dashboardCardData} />
       </Grid>
-      {/* <Grid item xs={12} sm={6} md={3}>
-        <TotalSales />
-      </Grid>
-      <Grid item xs={12} sm={6} md={3}>
-        <RevenueReport />
-      </Grid> */}
       <Grid item xs={12} md={6}>
         <CardWidgetsSalesOverview
           customColors={true}
-          title={'Vulnerabilities Posture'}
+          title={'LLMs Posture'}
           subTitle={'Total Vulnerabilties'}
           labels={['Critical', 'High', 'Medium', 'Low']}
         />
@@ -83,8 +77,8 @@ const DashboardCRM = async () => {
       </Grid>
       <Grid item xs={12} md={3}>
         <Performance
-          title='Risk Heatmap'
-          labels={['SAST', 'DAST', 'SCA', 'SBOM', 'CSPM', 'AI/ML', 'Secrets', 'IAC', 'CI/CD']}
+          title='Score Heatmap'
+          labels={['OpenAI', 'HuggingFace', 'Gemini', 'Mistral', 'Bedrock', 'Meta', 'Anthropic']}
         />
       </Grid>
       <Grid item xs={12} md={3}>

@@ -29,8 +29,8 @@ const teamData = [
     value: 60,
     totalTasks: 130,
     color: 'primary',
-    project: 'SAST',
-    name: 'SAST',
+    project: 'Chatgpt',
+    name: 'Chatgpt',
     completedTasks: 87,
     post: 'IOS developer',
     src: '/images/avatars/1.png'
@@ -39,8 +39,8 @@ const teamData = [
     value: 80,
     totalTasks: 120,
     color: 'success',
-    project: 'SCA',
-    name: 'SCA',
+    project: 'Gemini',
+    name: 'Gemini',
     completedTasks: 70,
     post: 'Laravel developer',
     src: '/images/avatars/8.png'
@@ -49,9 +49,9 @@ const teamData = [
     value: 50,
     totalTasks: 62,
     color: 'warning',
-    project: 'SBOM',
+    project: 'Mistral',
     completedTasks: 50,
-    name: 'SBOM',
+    name: 'Mistral',
     post: 'React developer',
     src: '/images/avatars/5.png'
   },
@@ -59,19 +59,19 @@ const teamData = [
     value: 70,
     totalTasks: 90,
     color: 'error',
-    project: 'DAST',
+    project: 'Deepseek',
     completedTasks: 135,
-    name: 'DAST',
+    name: 'Deepseek',
     post: 'Angular developer',
     src: '/images/avatars/2.png'
   },
   {
     value: 60,
     totalTasks: 25,
-    project: 'CI/CD',
+    project: 'Claude',
     color: 'secondary',
     completedTasks: 12,
-    name: 'CI/CD',
+    name: 'Claude',
     post: 'VueJs developer',
     src: '/images/avatars/3.png'
   }
@@ -126,7 +126,7 @@ const HealthScore = () => {
   return (
     <Card>
       <CardHeader
-        title='Security Health Score'
+        title='LLMs Health Score'
         action={<OptionsMenu iconClassName='text-textPrimary' options={['Refresh', 'Share', 'Update']} />}
         className='pbe-2.5'
       />

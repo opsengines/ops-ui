@@ -63,15 +63,15 @@ export const db = {
   ],
   dashboardCardData: [
     {
-      title: 'Code',
+      title: 'Model',
       stats: 42,
       trendNumber: 18.2,
       avatarIcon: 'ri-car-line',
       color: 'primary',
-      icons: ['/images/apps/connectors/GithubIcon.png']
+      icons: []
     },
     {
-      title: 'Build',
+      title: 'CI/CD',
       stats: 8,
       trendNumber: -8.7,
       avatarIcon: 'ri-alert-line',
@@ -79,7 +79,7 @@ export const db = {
       icons: []
     },
     {
-      title: 'Artifact',
+      title: 'Compliance',
       stats: 27,
       trendNumber: 4.3,
       avatarIcon: 'ri-route-line',
@@ -87,15 +87,15 @@ export const db = {
       icons: []
     },
     {
-      title: 'Cloud',
+      title: 'Webhook',
       stats: 13,
       trendNumber: 2.5,
       avatarIcon: 'ri-time-line',
       color: 'info',
-      icons: ['/images/apps/connectors/aws-icon.png']
+      icons: []
     },
     {
-      title: 'Alertinig',
+      title: 'Alerting',
       stats: 13,
       trendNumber: 2.5,
       avatarIcon: 'ri-time-line',

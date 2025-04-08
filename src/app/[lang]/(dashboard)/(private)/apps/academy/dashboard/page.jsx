@@ -31,13 +31,30 @@ import GithubIntegration from '@/views/apps/academy/dashboard/GithubIntegration'
   return res.json()
 } */
 const AcademyDashboard = async () => {
+  const data = await getAcademyData()
+
   return (
     <Grid container spacing={6}>
-      {/* <Grid item md={12}>
+      <Grid item xs={12}>
         <WelcomeCard />
-      </Grid> */}
-      <Grid item xs={12} md={12}>
-        <GithubIntegration />
+      </Grid>
+      <Grid item xs={12} md={8}>
+        <InterestedTopics />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <PopularInstructors />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <TopCourses />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <UpcomingWebinar />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4}>
+        <AssignmentProgress />
+      </Grid>
+      <Grid item xs={12}>
+        <CourseTable courseData={data?.courses} />
       </Grid>
     </Grid>
   )
