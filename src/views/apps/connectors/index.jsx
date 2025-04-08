@@ -86,6 +86,65 @@ const ConnectorsView = () => {
     }
   ]
 
+  const AiModelProvider = [
+    {
+      id: 1,
+      name: 'OpenAI',
+      image: '/images/apps/connectors/GithubIcon.png',
+      connected: connectorData?.isGitHubConnected,
+      handleClick: handleOpenModal
+    },
+    {
+      id: 2,
+      name: 'Anthropic (Claude)',
+      image: '/images/apps/connectors/GitLab.png',
+      connected: false
+    },
+    {
+      id: 3,
+      name: 'Google Gemini',
+      image: '/images/apps/connectors/BitBucket.png',
+      connected: false
+    },
+    {
+      id: 5,
+      name: 'Mistral',
+      image: '/images/apps/connectors/AzureRepos.png',
+      connected: false
+    },
+    {
+      id: 8,
+      name: 'Meta (LLaMA)',
+      image: '/images/apps/connectors/AwsCodeCommit.png',
+      connected: false
+    },
+    {
+      id: 10,
+      name: 'Cohere',
+      image: '/images/apps/connectors/AwsCodeCommit.png',
+      connected: false
+    },
+
+    {
+      id: 11,
+      name: 'Hugging Face',
+      image: '/images/apps/connectors/AwsCodeCommit.png',
+      connected: false
+    },
+    {
+      id: 12,
+      name: 'Amazon Bedrock',
+      image: '/images/apps/connectors/AwsCodeCommit.png',
+      connected: false
+    },
+    {
+      id: 13,
+      name: 'Azure OpenAI',
+      image: '/images/apps/connectors/AwsCodeCommit.png',
+      connected: false
+    }
+  ]
+
   const codeSecConnectors = [
     // {
     //   id: 1,
@@ -407,38 +466,29 @@ const ConnectorsView = () => {
   const securityConnectors = [
     {
       id: 1,
-      name: 'SonarQube',
+      name: 'Sprinto',
       image: '/images/apps/connectors/SonarQube.png',
       connected: false
     },
     {
       id: 2,
-      name: 'Veracode',
+      name: 'Venta',
       image: '/images/apps/connectors/VeraCode.png',
       connected: false
-    },
+    }
+  ]
+
+  const customConnectors = [
     {
-      id: 3,
-      name: 'Snyk',
-      image: '/images/apps/connectors/Jenkins.png',
+      id: 1,
+      name: 'Webhooks',
+      image: '/images/apps/connectors/SonarQube.png',
       connected: false
     },
     {
-      id: 4,
-      name: 'Clair',
-      image: '/images/apps/connectors/Jenkins.png',
-      connected: false
-    },
-    {
-      id: 5,
-      name: 'Sysdig',
-      image: '/images/apps/connectors/Jenkins.png',
-      connected: false
-    },
-    {
-      id: 6,
-      name: 'Prisma',
-      image: '/images/apps/connectors/Jenkins.png',
+      id: 2,
+      name: 'REST API',
+      image: '/images/apps/connectors/VeraCode.png',
       connected: false
     }
   ]
@@ -454,7 +504,24 @@ const ConnectorsView = () => {
               Connectors
             </Typography>
           </div>
+
           <Typography variant='h6' className='ml-2 mt-7'>
+            AI Model Providers
+          </Typography>
+          <Grid container spacing={2} sx={{ padding: 2 }}>
+            {AiModelProvider.map(connector => (
+              <Grid item xs={12} sm={6} md={2} key={connector.id}>
+                <ConnectorCard
+                  name={connector.name}
+                  image={connector.image}
+                  connected={connector.connected}
+                  handleClick={connector.handleClick}
+                />
+              </Grid>
+            ))}
+          </Grid>
+
+          {/* <Typography variant='h6' className='ml-2 mt-7'>
             Code Repositories
           </Typography>
           <GithubModal open={modalOpen} onClose={handleCloseModal} />
@@ -469,9 +536,9 @@ const ConnectorsView = () => {
                 />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
 
-          <Typography variant='h6' className='ml-2 mt-7'>
+          {/* <Typography variant='h6' className='ml-2 mt-7'>
             Registry
           </Typography>
           <Grid container spacing={2} sx={{ padding: 2 }}>
@@ -480,9 +547,9 @@ const ConnectorsView = () => {
                 <ConnectorCard name={connector.name} image={connector.image} connected={connector.connected} />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
 
-          <Typography variant='h6' className='ml-2 mt-7'>
+          {/* <Typography variant='h6' className='ml-2 mt-7'>
             Cloud Providers
           </Typography>
           <AwsConnector open={awsModal} onClose={closeAwsModal} />
@@ -498,7 +565,7 @@ const ConnectorsView = () => {
               </Grid>
             ))}
           </Grid>
-          <AwsConnector open={awsModal} onClose={closeAwsModal} />
+          <AwsConnector open={awsModal} onClose={closeAwsModal} /> */}
 
           <Typography variant='h6' className='ml-2 mt-7'>
             CI/CD
@@ -511,7 +578,7 @@ const ConnectorsView = () => {
             ))}
           </Grid>
 
-          <Typography variant='h6' className='ml-2 mt-7'>
+          {/* <Typography variant='h6' className='ml-2 mt-7'>
             Secrets
           </Typography>
           <Grid container spacing={2} sx={{ padding: 2 }}>
@@ -520,7 +587,7 @@ const ConnectorsView = () => {
                 <ConnectorCard name={connector.name} image={connector.image} connected={connector.connected} />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
 
           <Typography variant='h6' className='ml-2 mt-7'>
             Ticketing
@@ -538,7 +605,7 @@ const ConnectorsView = () => {
             ))}
           </Grid>
 
-          <Typography variant='h6' className='ml-2 mt-7'>
+          {/* <Typography variant='h6' className='ml-2 mt-7'>
             IAC
           </Typography>
           <Grid container spacing={2} sx={{ padding: 2 }}>
@@ -552,7 +619,7 @@ const ConnectorsView = () => {
                 />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
 
           <Typography variant='h6' className='ml-2 mt-7'>
             Identity
@@ -571,7 +638,7 @@ const ConnectorsView = () => {
           </Grid>
 
           <Typography variant='h6' className='ml-2 mt-7'>
-            Security
+            Compliance
           </Typography>
           <Grid container spacing={2} sx={{ padding: 2 }}>
             {securityConnectors.map(connector => (
@@ -591,6 +658,22 @@ const ConnectorsView = () => {
           </Typography>
           <Grid container spacing={2} sx={{ padding: 2 }}>
             {notificationsConectors.map(connector => (
+              <Grid item xs={12} sm={6} md={2} key={connector.id}>
+                <ConnectorCard
+                  name={connector.name}
+                  image={connector.image}
+                  connected={connector.connected}
+                  handleClick={connector.handleClick}
+                />
+              </Grid>
+            ))}
+          </Grid>
+
+          <Typography variant='h6' className='ml-2 mt-7'>
+            Custom Integrations
+          </Typography>
+          <Grid container spacing={2} sx={{ padding: 2 }}>
+            {customConnectors.map(connector => (
               <Grid item xs={12} sm={6} md={2} key={connector.id}>
                 <ConnectorCard
                   name={connector.name}

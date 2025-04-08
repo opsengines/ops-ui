@@ -80,9 +80,9 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
       >
         <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='ri-home-smile-line' />}>
           <MenuItem href={`/${locale}/dashboards/crm`}>Visibility</MenuItem>
-          <MenuItem href={`/${locale}/apps/kanban`} icon={<i className='ri-drag-drop-line' />}>
+          {/* <MenuItem href={`/${locale}/apps/kanban`} icon={<i className='ri-drag-drop-line' />}>
             {dictionary['navigation'].kanban}
-          </MenuItem>
+          </MenuItem> */}
           {/* <MenuItem href={`/${locale}/apps/chat`} icon={<i className='ri-wechat-line' />}>
             {dictionary['navigation'].chat}
           </MenuItem> */}
@@ -126,7 +126,10 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
         </SubMenu> */}
 
         <MenuItem href={`/${locale}/apps/results`} icon={<Assessment />}>
-          Scans & Results
+          LLM Scans & Results
+        </MenuItem>
+        <MenuItem href={`/${locale}/apps/academy/dashboard`} icon={<Assessment />}>
+          Red Team Lab
         </MenuItem>
         <MenuItem
           href={`/${locale}/apps/cweList`}
@@ -139,7 +142,7 @@ const VerticalMenu = ({ dictionary, scrollMenu }) => {
             </svg>
           }
         >
-          VulnFix-Hub
+          Threat Database
         </MenuItem>
         <MenuItem href={`/${locale}/apps/policies`} icon={<PolicyIcon />}>
           Policies

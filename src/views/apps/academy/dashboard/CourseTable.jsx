@@ -77,7 +77,7 @@ const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...prop
 // Column Definitions
 const columnHelper = createColumnHelper()
 
-const CourseTable = ({ courseData, selectedRows, setSelectedRows }) => {
+const CourseTable = ({ courseData, selectedRows = [], setSelectedRows = () => {} }) => {
   // States
   const [rowSelection, setRowSelection] = useState({})
 
