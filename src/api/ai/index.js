@@ -1,3 +1,5 @@
+import { API_URL } from '../ApiConstanst'
+
 export const getAiFix = async (token, data) => {
   const myHeaders = new Headers()
 
@@ -17,7 +19,7 @@ export const getAiFix = async (token, data) => {
   }
 
   try {
-    const response = await fetch('https://api.threatreaper.io/ai-suggest-fixes', requestOptions)
+    const response = await fetch(`${API_URL}/ai-suggest-fixes`, requestOptions)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)

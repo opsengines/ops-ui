@@ -1,8 +1,10 @@
+import { API_URL } from '../ApiConstanst'
+
 export const scanEngine = async data => {
   try {
     let token = localStorage?.getItem('authToken')
 
-    const response = await fetch('https://api.threatreaper.io/api/engine/scan', {
+    const response = await fetch(`${API_URL}/api/engine/scan`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

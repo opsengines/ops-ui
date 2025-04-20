@@ -176,59 +176,58 @@ const ResultTable = () => {
   const [dastModal, setDastModal] = useState(false)
 
   const items = [
-    // {
-    //   icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
-    //   text: 'SAST Scan',
-    //   onClick: () => setSastModal(true)
-    // },
-    // {
-    //   icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
-    //   text: 'SCA Scan',
-    //   onClick: () => setSastModal(true)
-    // },
-    // {
-    //   icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
-    //   text: 'SBOM Scan',
-    //   onClick: () => setSastModal(true)
-    // },
-    // {
-    //   icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-    //   text: 'DAST Scan',
-    //   onClick: () => setDastModal(true)
-    // },
-    // { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'CI/CD Scan', onClick: () => setSastModal(true) },
-    // {
-    //   icon: <CloudCircleOutlined fontSize='large' color='primary' />,
-    //   text: 'CSPM Scan',
-    //   onClick: () => setAwsScanModal(true)
-    // },
-    // { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'IAC Scan', onClick: () => setSastModal(true) },
-    // {
-    //   icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-    //   text: 'Secrets Scan',
-    //   onClick: () => setSastModal(true)
-    // },
-    // {
-    //   icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-    //   text: 'Compliance Check',
-    //   onClick: () => setSastModal(true)
-    // },
-    // {
-    //   icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-    //   text: 'AI Scan',
-    //   onClick: () => setSastModal(true)
-    // },
+    {
+      icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
+      text: 'SAST Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
+      text: 'SCA Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <AdminPanelSettingsOutlined fontSize='large' color='primary' />,
+      text: 'SBOM Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'DAST Scan',
+      onClick: () => setDastModal(true)
+    },
+    { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'CI/CD Scan', onClick: () => setSastModal(true) },
+    {
+      icon: <CloudCircleOutlined fontSize='large' color='primary' />,
+      text: 'CSPM Scan',
+      onClick: () => setAwsScanModal(true)
+    },
+    { icon: <ApiOutlined fontSize='large' color='primary' />, text: 'IAC Scan', onClick: () => setSastModal(true) },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'Secrets Scan',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'Compliance Check',
+      onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'AI Scan',
+      onClick: () => setSastModal(true)
+    },
     {
       icon: <ApiOutlined fontSize='large' color='primary' />,
       text: 'LLM Scan',
       onClick: () => setSastModal(true)
+    },
+    {
+      icon: <BubbleChartOutlined fontSize='large' color='primary' />,
+      text: 'Scan All',
+      onClick: () => setSastModal(true)
     }
-
-    // {
-    //   icon: <BubbleChartOutlined fontSize='large' color='primary' />,
-    //   text: 'Scan All',
-    //   onClick: () => setSastModal(true)
-    // }
   ]
 
   const closeDrawer = () => setDrawerOpen(false)
@@ -431,7 +430,7 @@ const ResultTable = () => {
             {row.original.scan_category}
           </Typography>
         ),
-        header: 'Threat'
+        header: 'Category'
       }),
       columnHelper.accessor('repository', {
         cell: ({ row }) => (
@@ -441,7 +440,7 @@ const ResultTable = () => {
               : row?.original?.repository}
           </Typography>
         ),
-        header: 'Count'
+        header: 'Name'
       }),
       columnHelper.accessor('message', {
         cell: ({ row }) => (
@@ -457,23 +456,21 @@ const ResultTable = () => {
             </Typography>
           </Tooltip>
         ),
-        header: 'Description'
+        header: 'Vulnerability'
       }),
-
-      // columnHelper.accessor('status', {
-      //   cell: ({ row }) => (
-      //     <p>
-      //       {row.original.status === 'completed' ? (
-      //         <Chip label={'Completed'} sx={{ backgroundColor: 'green', color: 'white' }} />
-      //       ) : null}
-      //       {row.original.status === 'failed' ? (
-      //         <Chip label={'Failed'} sx={{ backgroundColor: 'red', color: 'white' }} />
-      //       ) : null}
-      //     </p>
-      //   ),
-      //   header: 'Status'
-      // }),
-
+      columnHelper.accessor('status', {
+        cell: ({ row }) => (
+          <p>
+            {row.original.status === 'completed' ? (
+              <Chip label={'Completed'} sx={{ backgroundColor: 'green', color: 'white' }} />
+            ) : null}
+            {row.original.status === 'failed' ? (
+              <Chip label={'Failed'} sx={{ backgroundColor: 'red', color: 'white' }} />
+            ) : null}
+          </p>
+        ),
+        header: 'Status'
+      }),
       columnHelper.accessor('severity', {
         cell: ({ row }) => (
           <p>
@@ -509,17 +506,16 @@ const ResultTable = () => {
             ) : null}
           </p>
         ),
-        header: 'Score'
+        header: 'Severity Status'
+      }),
+      columnHelper.accessor('scan_date', {
+        cell: ({ row }) => (
+          <Typography className='font-medium w-[120px] text-wrap' color='text.primary'>
+            {row.original.scan_date?.split('T')[0]} {row.original.scan_date?.split('T')[1].split('.')[0]}
+          </Typography>
+        ),
+        header: 'Scan Date'
       })
-
-      // columnHelper.accessor('scan_date', {
-      //   cell: ({ row }) => (
-      //     <Typography className='font-medium w-[120px] text-wrap' color='text.primary'>
-      //       {row.original.scan_date?.split('T')[0]} {row.original.scan_date?.split('T')[1].split('.')[0]}
-      //     </Typography>
-      //   ),
-      //   header: 'Scan Date'
-      // })
 
       //   columnHelper.accessor('scan_date', {
       //     cell: ({ row }) => (
@@ -757,13 +753,19 @@ const ResultTable = () => {
                   <Divider sx={{ my: 2 }} />
                   <FormControl fullWidth sx={{ mb: 2 }}>
                     <Typography variant='subtitle2' sx={{ mb: 0.5 }}>
-                      Threat
+                      Category
                     </Typography>
                     <Select value={category} onChange={e => onCategoryFilter(e)} size='small'>
-                      <DropdownItem value='SAST'>Prompt Injection</DropdownItem>
-                      <DropdownItem value='SCA'>Bias Detection</DropdownItem>
-                      <DropdownItem value='SBOM'>Jailbreak</DropdownItem>
-                      <DropdownItem value='DAST'>Custom Prompt</DropdownItem>
+                      <DropdownItem value='SAST'>SAST</DropdownItem>
+                      <DropdownItem value='SCA'>SCA</DropdownItem>
+                      <DropdownItem value='SBOM'>SBOM</DropdownItem>
+                      <DropdownItem value='DAST'>DAST</DropdownItem>
+                      <DropdownItem value='CICD'>CI/CD</DropdownItem>
+                      <DropdownItem value='CSPM'>CSPM</DropdownItem>
+                      <DropdownItem value='IAC'>IAC</DropdownItem>
+                      <DropdownItem value='Secrets'>Secrets</DropdownItem>
+                      <DropdownItem value='Compliance'>Compliance</DropdownItem>
+                      <DropdownItem value='AIML'>AI/ML</DropdownItem>
                     </Select>
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
@@ -780,11 +782,12 @@ const ResultTable = () => {
                   </FormControl>
                   <FormControl fullWidth>
                     <Typography variant='subtitle2' sx={{ mb: 0.5 }}>
-                      Score
+                      Status
                     </Typography>
                     <Select value={status} onChange={e => setStatus(e.target.value)} size='small'>
-                      <DropdownItem value='Open'>Less Than 5</DropdownItem>
-                      <DropdownItem value='Closed'>Greater Than 5</DropdownItem>
+                      <DropdownItem value='Open'>Open</DropdownItem>
+                      <DropdownItem value='Closed'>Fixed</DropdownItem>
+                      <DropdownItem value='NA'>N/A</DropdownItem>
                     </Select>
                   </FormControl>
                   <Button fullWidth variant='contained' className='mt-3' onClick={() => handleFilterApply()}>

@@ -20,49 +20,19 @@ const DashboardCRM = async () => {
 
   return (
     <Grid container spacing={6}>
-      {/* <Grid item xs={12} sm={6} md={2} className='self-end'>
-        <CardStatWithImage
-          stats='59'
-          trend='positive'
-          title='Total Scans'
-          trendNumber='20%'
-          chipText='Feb 25'
-          chipColor='primary'
-          src='/images/illustrations/characters/10.png'
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={2} className='self-end'>
-        <CardStatWithImage
-          stats='27'
-          trend='negative'
-          title='Total Findings'
-          trendNumber='20%'
-          chipText='Feb 25'
-          chipColor='primary'
-          src='/images/illustrations/characters/10.png'
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={2} className='self-end'>
-        <CardStatWithImage
-          stats='15'
-          trend='positive'
-          title='Total AI Fix'
-          trendNumber='20%'
-          chipText='Feb 25'
-          chipColor='primary'
-          src='/images/illustrations/characters/10.png'
-        />
-      </Grid> */}
-      {/* <Grid item xs={12} md={6} className='self-end'>
-        <Transactions />
-      </Grid> */}
       <Grid item xs={12} md={12} className='self-end'>
         <CustomCard data={data?.dashboardCardData} />
       </Grid>
+      {/* <Grid item xs={12} sm={6} md={3}>
+        <TotalSales />
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <RevenueReport />
+      </Grid> */}
       <Grid item xs={12} md={6}>
         <CardWidgetsSalesOverview
           customColors={true}
-          title={'LLMs Posture'}
+          title={'Vulnerabilities Posture'}
           subTitle={'Total Vulnerabilties'}
           labels={['Critical', 'High', 'Medium', 'Low']}
         />
@@ -77,8 +47,8 @@ const DashboardCRM = async () => {
       </Grid>
       <Grid item xs={12} md={3}>
         <Performance
-          title='Score Heatmap'
-          labels={['OpenAI', 'HuggingFace', 'Gemini', 'Mistral', 'Bedrock', 'Meta', 'Anthropic']}
+          title='Risk Heatmap'
+          labels={['SAST', 'DAST', 'SCA', 'SBOM', 'CSPM', 'AI/ML', 'Secrets', 'IAC', 'CI/CD']}
         />
       </Grid>
       <Grid item xs={12} md={3}>
@@ -97,7 +67,7 @@ const DashboardCRM = async () => {
       {/* <Grid item xs={12} md={12}>
         <Vertical data={data.statsVertical} />
       </Grid> */}
-      <OnboardingModal />
+      {/* <OnboardingModal /> */}
     </Grid>
   )
 }

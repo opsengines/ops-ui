@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { API_URL } from '../ApiConstanst'
 
 export const storeGithubInfo = async (data, token) => {
-  const url = 'https://api.threatreaper.io/api/utils/storegitusers/'
+  const url = `${API_URL}/api/utils/storegitusers/`
 
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -19,7 +20,7 @@ export const storeGithubInfo = async (data, token) => {
 }
 
 export const getGitInfo = async token => {
-  const url = 'https://api.threatreaper.io/api/utils/fetchgitusers'
+  const url = `${API_URL}/api/utils/fetchgitusers`
 
   const headers = {
     Authorization: `Bearer ${token}`,

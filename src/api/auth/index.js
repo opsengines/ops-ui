@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { API_URL } from '../ApiConstanst'
 
 export const login = async ({ email, password }) => {
-  const url = 'https://api.threatreaper.io/token'
+  const url = `${API_URL}/token`
 
   // Headers
   const headers = {

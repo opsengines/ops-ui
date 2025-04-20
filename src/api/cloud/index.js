@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { API_URL } from '../ApiConstanst'
 
 export const getCspmScanResult = async (data, token) => {
-  const url = 'https://api.opsengines.io/api/cloud/aws_scan_status/'
+  const url = `${API_URL}/api/cloud/aws_scan_status/`
 
   const headers = {
     Authorization: `Bearer ${token}`,
