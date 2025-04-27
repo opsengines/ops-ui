@@ -25,7 +25,7 @@ const FooterContent = () => {
         <span>{`❤️`}</span>
         <span>{` by `}</span>
         <Link href='https://threatreaper.io/' target='_blank' className='font-medium text-white'>
-          ThreatReaper
+          OpsEngine
         </Link>
       </p>
       {!isBreakpointReached && (

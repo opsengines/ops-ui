@@ -66,7 +66,7 @@ const Logo = ({ color }) => {
     <div className='flex items-center min-bs-[22px]'>
       {/* <MaterioLogo className='text-[18px] text-primary' /> */}
       <img src='/images/robo.png' style={{ width: '60px', height: '50px' }} />
-      <h3 style={logoStyle}>ThreatReaper</h3>
+      <h3 style={logoStyle}>OpsEngine</h3>
       {/* <LogoText
         color={color}
         ref={logoTextRef}

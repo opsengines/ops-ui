@@ -158,7 +158,7 @@ function Footer() {
             <span>{`❤️`}</span>
             <span>{` by `}</span>
             <Link href='https://threatreaper.io/' target='_blank' className='font-medium text-white'>
-              ThreatReaper
+              OpsEngine
             </Link>
           </p>
           <div className='flex gap-6 items-center opacity-[0.78]'>
